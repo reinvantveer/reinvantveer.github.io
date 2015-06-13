@@ -3,8 +3,9 @@ layout: default
 ---
 
 <div class="home">
-    <h1>Personal professional pages for Rein van 't Veer</h1>
+    <h1>Rein van 't Veer</h1>
     <p><img src="./IMG_0150_25_pct.JPG" height="200px"/></p>
+    <h2>Geospatial and semantic web engineer</h2>
     <p>Rein van 't Veer is a heritage professional, specialised in application and data development. He is working both freelance and employed directly, mainly by heritage institutions or organisations directly or indirectly related to them.</p>
     
 
