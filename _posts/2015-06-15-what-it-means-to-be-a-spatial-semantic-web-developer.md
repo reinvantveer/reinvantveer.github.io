@@ -44,3 +44,6 @@ Looking from the spatial standpoint, there has been no attempt at a crossover be
  On the other hand, looking from it is hard to find an implementation that combines the graph properties of linked data and a spatial search, particularly one that scales and performs well. Probably it is in [Neo4j](http://neo4j.com) that one of the best reference implementations that can be found, but the research in the spatial semantic field is so sparse that there are hardly any figures on scalability and performance, let alone recent ones. 
  
  For what it's worth, it looks like the spatial semantic field, or Linked Geodata (LGD) still has a long way to come befor it is fully mature. There is hardly any semantic data storage type that can be coupled with GeoServer. There is hardly any spatial data storage that can be coupled with Jena or Sesame. These are a few basic steps to be taken for the two fields to really come together.
+ 
+ #Edit, 2015-06-16
+ It seems that OpenLink has improved many spatial functions in [Virtuoso version 7.2](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSNews#2015-02-11 -- Virtuoso Open-Source Edition 7.2.0 Released), building towards a fuller geospatial semantic backend. I hope to be able to test it soon. 
