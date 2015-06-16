@@ -45,5 +45,5 @@ Looking from the spatial standpoint, there has been no attempt at a crossover be
  
  For what it's worth, it looks like the spatial semantic field, or Linked Geodata (LGD) still has a long way to come befor it is fully mature. There is hardly any semantic data storage type that can be coupled with GeoServer. There is hardly any spatial data storage that can be coupled with Jena or Sesame. These are a few basic steps to be taken for the two fields to really come together.
  
- #Edit, 2015-06-16
+ # Edit, 2015-06-16
  It seems that OpenLink has improved many spatial functions in [Virtuoso version 7.2](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSNews#2015-02-11 -- Virtuoso Open-Source Edition 7.2.0 Released), building towards a fuller geospatial semantic backend. I hope to be able to test it soon. 
