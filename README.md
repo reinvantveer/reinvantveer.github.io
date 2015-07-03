@@ -1,2 +1,2 @@
 # reinvantveer.github.io
-My personal page
+My personal professional pages, on http://reinvantveer.github.io
