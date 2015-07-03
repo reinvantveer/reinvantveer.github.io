@@ -13,7 +13,7 @@ From an [SDI](https://en.wikipedia.org/wiki/Spatial_data_infrastructure)'s and r
 # Enter Socket.IO
 I thought it would be quite hard to get something like that up and running. To think out the communications system, messaging protocol etcetera. But it turns out that has already been done. It turned out that within a day, I was able to get a lightweight experimental map editing system up and running. The basis is the most symplistic proof of concept that can be thought of: have a mapping application in a browser send and receive point markers placed by any client connected to this same mapping app.
  
-![Multimaps screenshot](../images/multimaps.png)
+![Multimaps screenshot](/images/multimaps.png)
 
 *Live, real-time multi-user map editing in two different browsers - Chrome and Chromium*
 
