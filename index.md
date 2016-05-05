@@ -4,9 +4,9 @@ layout: default
 
 <div class="home">
     <h1>Rein van 't Veer</h1>
-    <p><img src="./IMG_0150_25_pct.JPG" height="200px"/></p>
-    <h2>Geospatial and semantic web engineer</h2>
-    <p>Specialised in application and data development, mainly in the heritage sector. He is working both freelance and employed directly, mainly by heritage institutions or organisations directly or indirectly related to them.</p>
+    <p><img src="./images/IMG_0150_25_pct.JPG" height="200px"/></p>
+    <h2>Geospatial and semantic web developer</h2>
+    <p>Specialised in application and data development. Working for a geospatial information systems company in the Netherlands.</p>
     
 
   <h1 class="page-heading">Posts</h1>
