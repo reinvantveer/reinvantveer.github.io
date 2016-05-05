@@ -1,6 +1,6 @@
 ---
 title: Crowdsourcing geospatial government data 
-layout: default
+layout: post
 ---
 
 A big reason why many of us are so enthousiastic about geospatial technology, and some of us about semantic web technology, is its ability to help us with questions that are hard to work with, but highly pertinent to our well-being. I'm convinced that these technologies can and do play an important role and that they provide a clear perspective on working transparently with 'smart data'. Datasets of importance are those regarding air quality, registrations on land parcels, buildings and infrastructure - all registrations that are maintained by the government as open data. It is not hard to see that by combining some of these datasets - where is the quality of air relatively low, how many buildings are there and does it happen to coincide with lots of roads? - can mean a lot in improving the quality of our lives. But they do come at a cost: a huge cost of maintaining the quality and validity of the data. Here I want to propose a strategy that can both mitigate costs, and increase the involvement and use of these data sets with the general public.
