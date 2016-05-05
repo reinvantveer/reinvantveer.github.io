@@ -3,8 +3,7 @@ title: "Rein van 't Veer"
 email: reinvantveer at gmail dot com
 description: > # this means to ignore newlines until "baseurl:"
   The personal pages for Rein van 't Veer, 
-  freelance spatial and semantic web developer,
-  mainly working for the heritage sector 
+  geospatial and semantic web developer
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://bureaudigitaalerfgoed.nl" # the base hostname & protocol for your site
 twitter_username: reinvantveer
