@@ -8,6 +8,7 @@ A big reason why many of us are so enthousiastic about geospatial technology, an
 # Smart data
 
 There term 'Smart data' is, in my opinion, a misnomer. Data is only as smart as the technology it leverages to enable its smartness. This is for two reasons. 
+
 1. If, and only if, expressed in a way that allows machines to reason about them, can data be used in a 'smart' way. This is where the geospatial and the semantic come into view: they allow resources to be compared to each other in terms of space their related meaning. 
 2. The second observation that I think is necessary to be made is that, beyond human interest, there is no machine that can determine the smartness of data inferred. It might be able to analyze interconnectedness and some level of validity, but beyond that is unable to assess its value. Data is simply of no interest to machines so the amount of smartness can only expressed by humans evaluating the value.
 
