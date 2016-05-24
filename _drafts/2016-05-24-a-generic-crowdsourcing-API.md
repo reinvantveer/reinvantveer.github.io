@@ -36,4 +36,31 @@ There can be many intermediary stages to the strategy I'm about to propose, but 
 
 We'll consider this a collection of two documents, each one directly translated from the table. Now I'll show why document stores are gaining so much popularity over traditional database tables: they allow expanding the document to nested information that is not impossible, but very impractical to implement in tables.
 
-More to follow soon.
+Because, we can simply duplicate data in a nested key:
+
+```json
+    {
+        "ID": 2,
+        "name": "Jenny",
+        "occupation": "Tobacco planter"
+        "oldVersion":
+            {
+                "ID": 2,
+                "name": "Jenny",
+                "occupation": "Distiller"
+            }
+    }
+```
+
+Or, we can keep the data of the original document and store the difference:
+```json
+    {
+        "ID": 2,
+        "name": "Jenny",
+        "occupation": "Distiller",
+        "changes":
+            {
+                "occupation": "Tobacco planter"
+            }
+    }
+```
