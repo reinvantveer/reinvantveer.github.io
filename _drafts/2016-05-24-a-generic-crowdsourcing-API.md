@@ -42,7 +42,7 @@ Because, we can simply duplicate data in a nested key:
     {
         "ID": 2,
         "name": "Jenny",
-        "occupation": "Tobacco planter"
+        "occupation": "Tobacco planter",
         "oldVersion":
             {
                 "ID": 2,
