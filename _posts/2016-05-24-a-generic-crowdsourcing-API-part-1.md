@@ -3,9 +3,11 @@ title: A generic crowdsourcing API, part 1
 layout: default
 ---
 
+# Generic crowdsourcing API part 1: Provenance basics
+
 History of the document can be inspected [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2016-05-24-a-generic-crowdsourcing-API-part-1.md)
 
-In crowdsourcing, provenance is everything. For new data to reliably flow back into the canonical source, we need to its origin, when, where and what was added, removed or replaced. Achieving this with an ordinary database can prove to be quite a hassle. You can consider the following database table:
+In crowdsourcing, provenance is everything. For new data to reliably flow back into the canonical source, we need to its origin, when, where and what was added, removed or replaced. Just removing the old data and replacing it with new data provided by anyone isn't a viable approach: what if the new data isn't acceptable and you need to revert to the old state? Achieving this with an ordinary database can prove to be quite a hassle. You can consider the following (overly simplified) database table:
 
 | ID | name | occupation |
 | --- | --- | --- |
@@ -26,16 +28,16 @@ There can be many intermediary stages to the strategy I'm about to propose, but 
  
  ```json
 [
-    { 
-        "ID": 1,
-        "name": "Joe",
-        "occupation": "Beer brewer"
-    },
-    {
-        "ID": 2,
-        "name": "Jenny",
-        "occupation": "Distiller"
-    }
+ { 
+  "ID": 1,
+  "name": "Joe",
+  "occupation": "Beer brewer"
+ },
+ {
+  "ID": 2,
+  "name": "Jenny",
+  "occupation": "Distiller"
+ }
 ]
 ```
 
@@ -45,26 +47,26 @@ Because, we can simply duplicate data in a nested key:
 
 ```json 
 {
-    "ID": 2,
-    "name": "Jenny",
-    "occupation": "Tobacco planter",
-    "oldVersion": {
-        "ID": 2,
-        "name": "Jenny",
-        "occupation": "Distiller"
-    }
+ "ID": 2,
+ "name": "Jenny",
+ "occupation": "Tobacco planter",
+ "oldVersion": {
+  "ID": 2,
+  "name": "Jenny",
+  "occupation": "Distiller"
+ }
 }
 ```
 
 Or, we can keep the data of the original document and store the difference:
 ```json 
 {
-    "ID": 2,
-    "name": "Jenny",
-    "occupation": "Distiller",
-    "changes": {
-        "occupation": "Tobacco planter"
-    }
+ "ID": 2,
+ "name": "Jenny",
+ "occupation": "Distiller",
+ "changes": {
+  "occupation": "Tobacco planter"
+ }
 }
 ```
 
