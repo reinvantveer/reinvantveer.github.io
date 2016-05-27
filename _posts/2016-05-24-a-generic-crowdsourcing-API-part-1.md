@@ -1,3 +1,8 @@
+---
+title: A generic crowdsourcing API, part 1
+layout: default
+---
+
 History of the document can be inspected [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2016-05-24-a-generic-crowdsourcing-API-part-1.md)
 
 In crowdsourcing, provenance is everything. For new data to reliably flow back into the canonical source, we need to its origin, when, where and what was added, removed or replaced. Achieving this with an ordinary database can prove to be quite a hassle. You can consider the following database table:
