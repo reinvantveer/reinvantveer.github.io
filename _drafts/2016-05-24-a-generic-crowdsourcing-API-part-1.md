@@ -1,4 +1,4 @@
-History of the document can be inspected [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2016-05-24-a-generic-crowdsourcing-API.md)
+History of the document can be inspected [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2016-05-24-a-generic-crowdsourcing-API-part-1.md)
 
 In crowdsourcing, provenance is everything. For new data to reliably flow back into the canonical source, we need to its origin, when, where and what was added, removed or replaced. Achieving this with an ordinary database can prove to be quite a hassle. You can consider the following database table:
 
@@ -15,7 +15,7 @@ Each table row contains represents a single person. We can't simply duplicate th
 | 2 | Jenny | Distiller |
 | 2 | Jenny | Tobacco planter |
 
-This will violate a primary key constraint. We can't bump the ID to 3, because there will be two Jennies who are actually one person. 
+This should trigger a violation a primary key constraint (the database wouldn't do proper data management if it wouldn't). We can't bump the ID to 3, because there will be two Jennies who are actually one person. 
 
 There can be many intermediary stages to the strategy I'm about to propose, but for convenience, I'm going to skip them. Instead, I'm going to demonstrate a generic strategy that will allow retaining full history and provenance. We'll start by making an JSON object of the data:
  
@@ -63,12 +63,4 @@ Or, we can keep the data of the original document and store the difference:
 }
 ```
 
-But how can we differentiate between the document and its changes? What if the original document already has a 'changes' key? This is where linked data comes in. Linked data can make explicit what was implicit, by using web-dereferenceable, unique identifiers from established vocabularies. Here, we are using the [provenance ontology](https://www.w3.org/TR/prov-o/). The provenance ontology is a system for describing the origins and life cycle of data. As with many [W3C](https://www.w3.org) standards, it consists of a staggering amount of documentation that is very hard to decipher. But once you get over the mountain, there is a pretty view on the other side. That view is of a complete and sane history of documentation, very useful to our case in point.
-
-We start by adding a context.
-```json
-{
-    "@context": {
-   }
-}
-```
+So, by expanding the document with nested 'changes', we can record its history. But how can we differentiate between the document and its changes? What if the original document already has a 'changes' key? This is where linked data comes in. Linked data can make explicit what was implicit, by using web-dereferenceable, unique identifiers from established vocabularies. How we are to use this, is the subject for [part 2](http://reinvantveer.github.io/2016/05/27/a-generic-crowdsourcing-API-part-2)
