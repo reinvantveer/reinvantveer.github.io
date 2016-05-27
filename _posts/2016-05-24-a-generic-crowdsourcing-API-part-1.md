@@ -26,7 +26,7 @@ This should trigger a violation a primary key constraint (the database wouldn't 
 
 There can be many intermediary stages to the strategy I'm about to propose, but for convenience, I'm going to skip them. Instead, I'm going to demonstrate a generic strategy that will allow retaining full history and provenance. We'll start by making an JSON object of the data:
  
- ```json
+{% highlight json %}
 [{
 	"ID": 1,
 	"name": "Joe",
@@ -36,13 +36,13 @@ There can be many intermediary stages to the strategy I'm about to propose, but 
 	"name": "Jenny",
 	"occupation": "Distiller"
 }]
-```
+{% endhighlight %}
 
 We'll consider this a collection of two documents, each one directly translated from the table. Now I'll show why document stores are gaining so much popularity over traditional database tables: they allow expanding the document to nested information that is not impossible, but very impractical to implement in tables.
 
 Because, we can simply duplicate data in a nested key:
 
-```json 
+{% highlight json %}
 {
  "ID": 2,
  "name": "Jenny",
@@ -53,10 +53,10 @@ Because, we can simply duplicate data in a nested key:
   "occupation": "Distiller"
  }
 }
-```
+{% endhighlight %}
 
 Or, we can keep the data of the original document and store the difference:
-```json 
+{% highlight json %}
 {
  "ID": 2,
  "name": "Jenny",
@@ -65,6 +65,6 @@ Or, we can keep the data of the original document and store the difference:
   "occupation": "Tobacco planter"
  }
 }
-```
+{% endhighlight %}
 
 So, by expanding the document with nested 'changes', we can record its history. But how can we differentiate between the document and its changes? What if the original document already has a 'changes' key? This is where linked data comes in. Linked data can make explicit what was implicit, by using web-dereferenceable, unique identifiers from established vocabularies. How we are to use this, is the subject for [part 2](http://reinvantveer.github.io/2016/05/27/a-generic-crowdsourcing-API-part-2)
