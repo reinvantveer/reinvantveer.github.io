@@ -27,18 +27,15 @@ This should trigger a violation a primary key constraint (the database wouldn't 
 There can be many intermediary stages to the strategy I'm about to propose, but for convenience, I'm going to skip them. Instead, I'm going to demonstrate a generic strategy that will allow retaining full history and provenance. We'll start by making an JSON object of the data:
  
  ```json
-[
- { 
-  "ID": 1,
-  "name": "Joe",
-  "occupation": "Beer brewer"
- },
- {
-  "ID": 2,
-  "name": "Jenny",
-  "occupation": "Distiller"
- }
-]
+[{
+	"ID": 1,
+	"name": "Joe",
+	"occupation": "Beer brewer"
+}, {
+	"ID": 2,
+	"name": "Jenny",
+	"occupation": "Distiller"
+}]
 ```
 
 We'll consider this a collection of two documents, each one directly translated from the table. Now I'll show why document stores are gaining so much popularity over traditional database tables: they allow expanding the document to nested information that is not impossible, but very impractical to implement in tables.
