@@ -3,6 +3,8 @@ title: Why hash URIs should be banned
 layout: default
 ---
 
+Full history of the post [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2016-06-05-why-hash-uris-should-be-banned.md)
+
 # Why hash URIs should be banned
 The Semantic Web excites me in a lot of ways. I love the way it makes network analysis manageable in an easy way. Reasoning is fantastic. Serving documents as well-described data with shared vocabularies is definitely the way to go. One can only admire the expressivity of SPARQL, the interoperability of Linked Data, the open standards and a lot of the open data initiatives that are bound to its use. I can go on for ages, I'm hooked, committed.
 
@@ -18,13 +20,13 @@ Slash URIs should, in my strong opinion, always be preferred over hash URIs. The
 - The (for me) mother of all geospatial vocabularies: [GeoSPARQL](http://www.opengeospatial.org/standards/geosparql), which uses hash URIs
 
 ## The slash URI
-The Dublin Core vocabulary uses slash URIs for its RDF definitions, so the 'creator' definition is [http://purl.org/dc/terms/creator](http://purl.org/dc/terms/creator). However you request this URI (or 'dereference' as the Semantic Webbists like to call it), it will fetch you the contents of this 'creator' definition, and nothing else. Its behaviour is predictable and consistent
+The Dublin Core vocabulary uses slash URIs for its RDF definitions, so the 'creator' definition is [http://purl.org/dc/terms/creator](http://purl.org/dc/terms/creator). However you request this URI (or 'dereference' as the Semantic Webbists like to call it), it will fetch you the contents of this 'creator' definition, and nothing else. Its behaviour is predictable and consistent.
 
 ## The hash URI
 GeoSPARQL, on the other hand uses hash signs in its definitions. So: the definition URI for a geospatial feature is [http://www.opengis.net/ont/geosparql#Feature](http://www.opengis.net/ont/geosparql#Feature). Its behaviour is different from the one of the Dublin Core RDF vocabulary. When requested, the http address of the definition has a hash in it, and by unfortunate design choices, the part after the hash never reaches the server. It was intended, in the HTML specification, as the lookup mechanism of an anchor on a page. So a HTML page `http://mypage.com` with a tag `<a name="my_anchor">` has an anchor 'my_anchor'. This can be looked up by the browser automatically, in a way that visiting `http://mypage.com#my_anchor` will jump to the HTML page section with this aforementioned tag. This is all well for web pages, but what about URIs?
 
 # Unreachable content
-For http clients, such as web browsers, but also for [JavaScript AJAX functions](http://api.jquery.com/jquery.ajax/) and tools such as [cURL](https://curl.haxx.se/), the URI part after the hash sign, cannot possibly be retrieved. So, supposing you want to know the meaning of [http://www.opengis.net/ont/geosparql#Feature](http://www.opengis.net/ont/geosparql#Feature), this cannot be done automatically. Instead, what the server sends you, is [http://www.opengis.net/ont/geosparql](http://www.opengis.net/ont/geosparql), as the #Feature part of the URI will not be sent. 
+For http clients, such as web browsers, but also for [JavaScript AJAX functions](http://api.jquery.com/jquery.ajax/) and tools such as [cURL](https://curl.haxx.se/), the URI part after the hash sign, cannot possibly be retrieved directly. So, supposing you want to know the meaning of [http://www.opengis.net/ont/geosparql#Feature](http://www.opengis.net/ont/geosparql#Feature), this cannot be done automatically. Instead, what the server sends you, is [http://www.opengis.net/ont/geosparql](http://www.opengis.net/ont/geosparql), as the #Feature part of the URI will not be sent. 
 
 # Server side
 The upshot of this is that, some URIs cannot be served. An RDF store may contain the resource `http://www.opengis.net/ont/geosparql#Feature`, but it can never be served individually to a request. Instead, often the entire set of definitions, in this case the full GeoSPARQL vocabulary, will be sent by the server. Drama ensues.
@@ -43,6 +45,7 @@ Now where is the interoperability in that?
 It is time to be done with hash URIs once and for all. Don't use them. Standards that recommend them, such as the [Dutch URI strategy](http://www.pilod.nl/wiki/Boek/URI-strategie), should be altered in favor of better interoperable slash URIs.
  
 # For some light reading
-[https://www.w3.org/wiki/HashVsSlash](https://www.w3.org/wiki/HashVsSlash)
-[https://www.w3.org/wiki/HashURI](https://www.w3.org/wiki/HashURI)
-[http://www.pilod.nl/wiki/Boek/URI-strategie](http://www.pilod.nl/wiki/Boek/URI-strategie)
+
+- [https://www.w3.org/wiki/HashVsSlash](https://www.w3.org/wiki/HashVsSlash)
+- [https://www.w3.org/wiki/HashURI](https://www.w3.org/wiki/HashURI)
+- [http://www.pilod.nl/wiki/Boek/URI-strategie](http://www.pilod.nl/wiki/Boek/URI-strategie)
