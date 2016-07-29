@@ -1,5 +1,5 @@
 ---
-title: Running node.js on a Raspberry Pi
+title: Internet-of-Thingsify your Raspberry Pi with JavaScript!
 layout: default
 ---
 
@@ -9,6 +9,27 @@ Full history for the article [here](https://github.com/reinvantveer/reinvantveer
 Recently, I found good reason to start tinkering with my beloved Raspberry Pi again. It's of course very silly and far more time-consuming than is needed for what really needs to be done, but I do it for the fun. After seeing some of [Matthias Petter Johansson's work on YouTube](https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q) I watched his work on the particle.io button app. There are three: [part 1](https://www.youtube.com/watch?v=NRrgtUJnkIo), [part 2](https://www.youtube.com/watch?v=Gh8u7qXZr_8), and [part 3](https://www.youtube.com/watch?v=HptbRSdv6kg). Now I did think that the three episodes combined a huge amount of work to get something internet-of-thingsy going, especially when compared with something like the Raspberry Pi. So I thought: it would be a nice project for my holiday to install a plant watering system with a low water level sensor, alerting the neighbours when the reservoir needed to be refilled!
 
 I have one of the old versions, the version 1 model B with 512 Mb of RAM and a single core so slow you would hardly think it's even there. This poses even more of a challenge when embarking on a mini-project as I am to describe here, because the dependency installs are monumentally time consuming. Installation of the [ESlint](https://npmjs.com/package/eslint) code quality package and the related [eslint-config-airbnb](https://npmjs.com/package/eslint-config-airbnb) took a whopping 47 minutes, just to do a local `eslint --init`. Still I think it's worth it. Because I do think that Node.js is one of the best strategies to set up IoT stuff. Why? I'll tell ya.
+
+# TL;DR
+It works, even on an old Pi running Wheezy. Install the gpio package using 
+```sh
+sudo apt-get install python-dev python-rpi.gpio
+```
+Install Node.js if you're still operating a v1 Pi with Debian Wheezy through
+```sh
+cd
+wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-armv6l.tar.gz
+cd /usr/local
+sudo tar xzvf ~/node-v4.4.7-linux-armv6l.tar.gz
+rm ~/node-v4.4.7-linux-armv6l.tar.gz
+```
+Clone the repo, install and run:
+```
+git clone https://github.com/reinvantveer/rpi-button-app
+cd rpi-button-app
+npm install
+npm run
+```
 
 # Why, for heaven's sake, Node.js on a Pi?
 
@@ -24,6 +45,7 @@ cd /usr/local
 sudo tar xzvf ~/node-v4.4.7-linux-armv6l.tar.gz
 rm ~/node-v4.4.7-linux-armv6l.tar.gz
 ```
+
 # And then?
 
 Thing is that people often tell you to run scripts on the Pi, being it Python or JavaScript/Node.js, as root. This is because you need to have root permissions by default to access the [General Purpose Input/Output](https://www.raspberrypi.org/documentation/usage/gpio/) pins. That's where the real fun in the Pi lies and where it is so handy as an IoT device. So many programs and scripts accessing the GPIO tell you to run their stuff as root, which is a bad idea. 
