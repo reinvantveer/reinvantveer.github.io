@@ -11,3 +11,7 @@ github_username:  reinvantveer
 
 # Build settings
 markdown: kramdown
+ignore:
+  - node_modules
+exclude:
+  - node_modules

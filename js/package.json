@@ -1,0 +1,22 @@
+{
+  "name": "rdf-transformer",
+  "version": "1.0.0",
+  "description": "Browser-based rdf transformer demo script",
+  "main": "transformer.js",
+  "scripts": {
+    "test": "echo 'No tests defined'; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reinvantveer/reinvantveer.github.io.git"
+  },
+  "author": "Rein van t Veer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reinvantveer/reinvantveer.github.io/issues"
+  },
+  "homepage": "https://github.com/reinvantveer/reinvantveer.github.io#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.16.0"
+  }
+}
