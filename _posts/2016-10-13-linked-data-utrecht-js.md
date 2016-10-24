@@ -57,105 +57,46 @@ So... we're going to do linked data by example. With a twist. Serverless.
     <div style="float:left;"><textarea id="csv" cols="50" rows="20"></textarea></div>
     <div style="float:left;" id="table"></div>
 </div>
-<script type="application/javascript">
-    $('#csv').bind('input propertychange', function() {
-        $( "#table" ).empty();
-        var csvData = d3.csvParse(this.value);
-        console.log('d3 said', csvData);
-
-        if (csvData.length) {
-            var context = JSON.parse($("#context").val());
-            console.log('context', context);
-        }
-
-        // create the table & table head
-        var table = d3.select('#table')
-            .append('table')
-            .attr('class', 'table-striped');
-
-        table.append('thead')
-            .append('tr')
-            .selectAll('th')
-            .data(csvData.columns).enter()
-            .append('th')
-            .attr('style', 'color: #774141;')
-            .text(function(d){return d;});
-        
-        table.append('tbody')
-            .selectAll('tr')
-            .data(csvData).enter()
-            .append('tr')
-            .selectAll('td')
-            .data(function(row, i) {
-                return csvData.columns.map(function(column) {
-                    return row[column];
-                });
-            }).enter()
-            .append('td')
-            .text(function(d){return d;});
-    })
-</script>
+<script type="application/javascript" src="/js/dataCruncher.js"></script>
 <a href="#/5" class="navigate-down" />
 </section>
 
 <section id="semantics-section" markdown="1">
 <h1>Our semantics</h1>
 <div>
-    <div style="float:left;"><textarea id="context" cols="50" rows="15">
+    <pre>
+        <code id="context" cols="80" rows="15" data-trim contenteditable>
 {
     "@subject": "name",
     "@type": "foaf:Person",
     "@context": {
         "foaf": "http://xmlns.com/foaf/0.1/",
-        "@base": "http://mysocialnetwork.org/id/"
+        "@base": "http://mysocialnetwork.org/id/",
+        "name": "foaf:name",
+        "link": {
+            "@id": "foaf:knows",
+            "@type": "@id"
+        }
     }
 }
-    </textarea></div>
-    <div style="float:left;" id="table"></div>
+        </code>
+    </pre>
 </div>
-<script type="application/javascript">
-    $('#semantics-section').bind('input propertychange', function() {
-        $('#semantics-section')
-            .removeAttr('style')
-            .animate({
-                top: 0
-            }, 500, function() {});
-
-        $( "#table" ).empty();
-        var csvData = d3.csvParse(this.value);
-        console.log('d3 said', csvData);
-
-        // create the table & table head
-        var table = d3.select('#table')
-            .append('table')
-            .attr('class', 'table-striped');
-
-        table.append('thead')
-            .append('tr')
-            .selectAll('th')
-            .data(csvData.columns).enter()
-            .append('th')
-            .attr('style', 'color: #774141;')
-            .text(function(d){return d;});
-        
-        table.append('tbody')
-            .selectAll('tr')
-            .data(csvData).enter()
-            .append('tr')
-            .selectAll('td')
-            .data(function(row, i) {
-                console.log(row, i);
-                return csvData.columns.map(function(column) {
-                    return row[column];
-                });
-            }).enter()
-            .append('td')
-            .text(function(d){return d;});
-    })
-</script>
 <a href="#/6" class="navigate-down" />
 </section>
 
 <section markdown="1">
+# Crunching...
+# Converting...
 <a href="#/7" class="navigate-down" />
+</section>
+
+<section markdown="1">
+# The result: Linked Data
+<div>
+    <pre>
+        <code id="nquads" cols="80" rows="15" data-trim contenteditable></code>
+    </pre>
+</div>
+<a href="#/8" class="navigate-down" />
 </section>

@@ -12,6 +12,8 @@ function checkKeys(csvData, context) {
     bootstrapContext[missingKey] = 'prefix:' + missingKey;
   });
   if (missingKeys.length) throw Error('Add ' + JSON.stringify(bootstrapContext, null, 2) + ' to context file.');
+
+  return true;
 }
 
 function checkContext(context) {
@@ -27,12 +29,14 @@ function transformRow(row, context, index) {
     var subjectKey = context['@subject'];
 
     Object.keys(compacted).forEach(function (compactedKey) {
-      if (compacted[compactedKey].toLowerCase() === 'null') {
-        if (compactedKey === subjectKey) {
-          //reject(new Error(`Unable to create rdf subject from NULL value on ${subjectKey} at row line ${index + 2}`));
-          console.warn('Unable to drop rdf subject NULL value on ' + subjectKey + ' at row line ' + (index + 2));
-        } else {
-          delete compacted[compactedKey];
+      if (compacted[compactedKey]) {
+        if (compacted[compactedKey].toLowerCase() === 'null') {
+          if (compactedKey === subjectKey) {
+            //reject(new Error(`Unable to create rdf subject from NULL value on ${subjectKey} at row line ${index + 2}`));
+            console.warn('Unable to drop rdf subject NULL value on ' + subjectKey + ' at row line ' + (index + 2));
+          } else {
+            delete compacted[compactedKey];
+          }
         }
       }
     });
