@@ -41,9 +41,13 @@ $('#csv').bind('input propertychange', function() {
       checkKeys(data, context);
       checkContext(context);
       transform(data, context)
-        .then(function (nquads) { $('#nquads').text(nquads); });
+        .then(function (nquads) {
+          $('#nquads').text(nquads.join(''));
+          $('#nquads').trigger('change');
+        });
     } catch (err) {
       return console.error(err);
     }
   }
+
 });

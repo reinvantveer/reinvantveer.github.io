@@ -5,7 +5,7 @@ layout: presentation
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.min.js"></script>
 <script src="/js/d3-jetpack.js"></script>
-<script src="/js/rdflib.js"></script>
+<script src="/plugin/rdflib/rdflib.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/0.4.2/jsonld.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.4.6/bluebird.core.min.js"></script>
@@ -54,9 +54,18 @@ So... we're going to do linked data by example. With a twist. Serverless.
 <section id="table-section" markdown="1">
 <h1>Our own little social network</h1>
 <div>
-    <div style="float:left;"><textarea id="csv" cols="50" rows="20"></textarea></div>
-    <div style="float:left;" id="table"></div>
+    <div style="float:left;">
+        <h3>People</h3>
+        <h3>(CSV)</h3>
+        <textarea id="csv" cols="20" rows="15">name,link</textarea>
+        </div>
+    <div style="float:left;width:500px;">
+        <h3>Linked Data</h3>
+        <pre><code style="max-height:300px;" id="nquads" data-trim contenteditable></code></pre>
+    </div>
+    <div style="float:left;width:200px;" id="table"></div>
 </div>
+<script type="application/javascript" src="/js/rdf-processor.js"></script>
 <script type="application/javascript" src="/js/dataCruncher.js"></script>
 <a href="#/5" class="navigate-down" />
 </section>
@@ -93,10 +102,5 @@ So... we're going to do linked data by example. With a twist. Serverless.
 
 <section markdown="1">
 # The result: Linked Data
-<div>
-    <pre>
-        <code id="nquads" cols="80" rows="15" data-trim contenteditable></code>
-    </pre>
-</div>
 <a href="#/8" class="navigate-down" />
 </section>
