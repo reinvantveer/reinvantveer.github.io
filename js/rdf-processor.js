@@ -2,15 +2,46 @@
  * Created by reinv on 28-10-2016.
  */
 'use strict';
-
-var uri = 'http://mysocialnetwork.org/graph';
-var store = $rdf.graph();
+var socialNetwork;
 var mimeType = 'text/turtle';
+var graphName = '\<http://mysocialnetwork.org/graph>';
+var sparqlQuery = 'select * where { ' +
+  '?name <http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows> ?name . ' +
+  '}';
+
+rdfstore.create(function(err, store) {
+  if (err) return console.error(err);
+  socialNetwork = store;
+});
 
 $('#nquads').on('change', function() {
+  socialNetwork.load(mimeType, $('#nquads').text(), function (err, result) {
+    if (err) return console.error(err);
+    console.log(result + ' triples loaded');
+    socialNetwork.execute(sparqlQuery, function (status, results) {
+      if (results.length) {
+        // results[0].forEach
+        alert('Hey! You\'re part of a circle!');
+        console.log(results);
+      }
+    });
+  });
+});
+
+/*
+ = $rdf.graph();
+var FOAF = $rdf.Namespace("http://xmlns.com/foaf/0.1/");
+var me = $rdf.sym('http://mysocialnetwork.org/id/rein');
+
   try {
-    $rdf.parse($('#nquads').text(), store, uri, mimeType);
+    $rdf.parse(, store, uri, mimeType);
+    var friend = store.any(me, FOAF('knows'));
+    // console.log(friend);
+    var query = $rdf.SPARQLToQuery(sparqlQuery, true, store);
+    store.query(query, function (result) {
+      console.log(result);
+    });
   } catch (err) {
     console.error(err);
   }
-});
+*/

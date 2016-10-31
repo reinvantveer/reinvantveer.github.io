@@ -1,10 +1,17 @@
 /**
  * Created by reinv on 24-10-2016.
  */
+$('#csv').keypress(function (e) {
+  if (e.which == 13) {
+    $('#nquads').trigger('change');
+    return true;
+  }
+});
+
 $('#csv').bind('input propertychange', function() {
   $( "#table" ).empty();
   var csvData = d3.csvParse(this.value);
-  console.log('d3 said', csvData);
+  // console.log('d3 said', csvData);
 
   // create the table & table head
   var table = d3.select('#table')
@@ -43,7 +50,6 @@ $('#csv').bind('input propertychange', function() {
       transform(data, context)
         .then(function (nquads) {
           $('#nquads').text(nquads.join(''));
-          $('#nquads').trigger('change');
         });
     } catch (err) {
       return console.error(err);
