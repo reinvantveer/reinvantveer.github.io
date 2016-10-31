@@ -1,7 +1,7 @@
 /**
  * Created by reinv on 24-10-2016.
  */
-$('#csv').keypress(function (e) {
+$('#csv').on('keypress', function (e) {
   if (e.which == 13) {
     $('#nquads').trigger('change');
     return true;

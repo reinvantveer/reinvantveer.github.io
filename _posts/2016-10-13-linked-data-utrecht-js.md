@@ -5,11 +5,15 @@ layout: presentation
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.min.js"></script>
 <script src="/js/d3-jetpack.js"></script>
-<script src="/plugin/rdfstore/rdfstore_min.js"></script>
+<script src="/plugin/rdfstore/rdfstore_modified.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/0.4.2/jsonld.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.4.6/bluebird.core.min.js"></script>
 <script src="/js/transformer.js"></script>
+
+<link href='//cdn.jsdelivr.net/yasqe/2.11.4/yasqe.min.css' rel='stylesheet' type='text/css'/>
+<script src='//cdn.jsdelivr.net/yasqe/2.11.4/yasqe.bundled.min.js'></script>
+
 <section markdown="1">
 # Linked Data
 
@@ -23,6 +27,14 @@ layout: presentation
 <div><img src="/images/VU-logo.png" style="height:40px;vertical-align:middle;"> Rein.vant.Veer@vu.nl</div>
 
 <a href="#/1" class="navigate-down" />
+<aside class="notes" markdown="1">
+- Rein van 't Veer
+- Work as pro JS developer for a year, but been hacking away for a few years
+- Brought several identities:
+    - My employer is Geodan
+    - I am seconded to the National Cadastre, where, amongs others, land parcels are registered
+    - I am a researcher at the Free University of Amsterdam, embedded at Cadastre
+</aside>
 </section>
 
 <section markdown="1">
@@ -33,6 +45,14 @@ A movement for changing the web from a collection of documents to a global datab
 
 ## Linked Data?
 The language of the semantic web, highly interoperable, expressed in the Resource Description Framework (RDF)
+
+<aside class="notes" markdown="1">
+- My job at the Cadastre is to build geospatially enabled semantic web infrastructure
+- Today I'm giving a Semantic Web / Linked Data primer, with a twist
+- Most, if not MORE of the semantic web stuff can be done with JS
+- So what's the SW?
+</aside>
+
 <a href="#/2" class="navigate-down" />
 </section>
 
@@ -56,8 +76,9 @@ So... we're going to do linked data by example. With a twist. Serverless.
 <div>
     <div style="float:left;">
         <h3>People</h3>
+        <h3>Links</h3>
         <h3>(CSV)</h3>
-        <textarea id="csv" cols="20" rows="15">name,link</textarea>
+        <textarea id="csv" cols="20" rows="12">name,link</textarea>
         </div>
     <div style="float:left;width:500px;">
         <h3>Linked Data</h3>
@@ -95,8 +116,10 @@ So... we're going to do linked data by example. With a twist. Serverless.
 </section>
 
 <section markdown="1">
-# Crunching...
-# Converting...
+<textarea type="text" class="form-control" id="query" rows="30">select * where { ?name <http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows> ?name . }</textarea>
+<script>
+    var yasqe = YASQE.fromTextArea(document.getElementById("query"));
+</script>
 <a href="#/7" class="navigate-down" />
 </section>
 

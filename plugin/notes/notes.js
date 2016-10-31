@@ -39,7 +39,12 @@ var RevealNotes = (function() {
 			}, 500 );
 
 			window.addEventListener( 'message', function( event ) {
-				var data = JSON.parse( event.data );
+			var data;
+				try {
+					data = JSON.parse( event.data );
+				} catch (err) {
+					// Do nothing
+				}
 				if( data && data.namespace === 'reveal-notes' && data.type === 'connected' ) {
 					clearInterval( connectInterval );
 					onConnected();
