@@ -23,30 +23,34 @@ function checkContext(context) {
   return 'OK';
 }
 
-function transformRow(row, context, index) {
-  return new Promise(function (resolve, reject) {
-    var compacted = row;
-    var subjectKey = context['@subject'];
+function compact(row, context, index) {
+  var compacted = $.extend(true, {}, row);
+  var subjectKey = context['@subject'];
 
-    Object.keys(compacted).forEach(function (compactedKey) {
-      if (compacted[compactedKey]) {
-        if (compacted[compactedKey].toLowerCase() === 'null') {
-          if (compactedKey === subjectKey) {
-            //reject(new Error(`Unable to create rdf subject from NULL value on ${subjectKey} at row line ${index + 2}`));
-            console.warn('Unable to drop rdf subject NULL value on ' + subjectKey + ' at row line ' + (index + 2));
-          } else {
-            delete compacted[compactedKey];
-          }
+  Object.keys(compacted).forEach(function (compactedKey) {
+    if (compacted[compactedKey]) {
+      if (compacted[compactedKey].toLowerCase() === 'null') {
+        if (compactedKey === subjectKey) {
+          //reject(new Error(`Unable to create rdf subject from NULL value on ${subjectKey} at row line ${index + 2}`));
+          console.warn('Unable to drop rdf subject NULL value on ' + subjectKey + ' at row line ' + (index + 2));
+        } else {
+          delete compacted[compactedKey];
         }
       }
-    });
+    }
+  });
 
-    compacted['@context'] = context['@context'];
-    compacted['@type'] = context['@type'];
+  compacted['@context'] = context['@context'];
+  compacted['@type'] = context['@type'];
 
-    if (!compacted[subjectKey]) return reject(new Error('There is no column ' + subjectKey + ' in the table, see row: ' + JSON.stringify(compacted)));
-    compacted['@id'] = compacted[subjectKey];
+  //if (!compacted[subjectKey]) return reject(new Error('There is no column ' + subjectKey + ' in the table, see row: ' + JSON.stringify(compacted)));
+  compacted['@id'] = compacted[subjectKey];
+  return compacted;
+}
 
+function transformRow(row, context, index) {
+  return new Promise(function (resolve, reject) {
+    var compacted = compact(row, context, index);
     return jsonld.toRDF(compacted, { format: 'application/nquads' }, function (rdfErr, rdfSnippet) {
       if (rdfErr) return reject(rdfErr);
       if (rdfSnippet === '') {
