@@ -97,12 +97,17 @@ So... we're going to do linked data by example. With a twist. Serverless.
         <textarea id="csv" cols="20" rows="12">name,link</textarea>
     </div>
     <div style="float:left;width:200px;" id="table"></div>
-    <div style="float:left;width:200px;" id="graph">
+    <div style="float:left;width:400px;" id="graph">
         <style>
 
         .node {
           stroke: #fff;
           stroke-width: 1.5px;
+        }
+
+        .node text {
+          pointer-events: none;
+          font: 30px sans-serif;
         }
 
         .link {
@@ -111,7 +116,7 @@ So... we're going to do linked data by example. With a twist. Serverless.
         }
 
         </style>
-        <svg id="svg" width="960" height="600"></svg>
+        <svg id="svg" width="400" height="600"></svg>
     </div>
 </div>
 <aside class="notes" markdown="1">

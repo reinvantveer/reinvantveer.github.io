@@ -8,10 +8,8 @@ function renderGraph(graph) {
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-  var color = d3.scaleOrdinal(d3.schemeCategory20);
-
   simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().distance(10).strength(0.5))
+    .force("link", d3.forceLink().distance(100).strength(0.5))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -36,10 +34,8 @@ function renderGraph(graph) {
 
   var node = svg.selectAll(".node")
     .data(nodes.filter(function(d) { return d.id; }))
-    .enter().append("circle")
+    .enter().append("g")
     .attr("class", "node")
-    .attr("r", 5)
-    .attr("fill", function(d) { return color(d.group); })
     .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
@@ -47,6 +43,11 @@ function renderGraph(graph) {
 
   node.append("title")
     .text(function(d) { return d.id; });
+
+  node.append("text")
+    .attr("dx", 12)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.id });
 
   simulation
     .nodes(nodes)
