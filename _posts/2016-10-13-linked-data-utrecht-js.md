@@ -4,13 +4,13 @@ layout: presentation
 ---
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.min.js"></script>
-<script src="/js/d3-jetpack.js"></script>
-<script src="/plugin/rdfstore/rdfstore_modified.js"></script>
+<script src="/lib/js/d3-jetpack.js"></script>
+<script src="/plugin/rdfstore/rdfstore_min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonld/0.4.2/jsonld.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.4.6/bluebird.core.min.js"></script>
-<script src="/js/transformer.js"></script>
-<script src="/js/graph.js"></script>
+<script src="/lib/js/transformer.js"></script>
+<script src="/lib/js/graph.js"></script>
 
 <link href='//cdn.jsdelivr.net/yasqe/2.11.4/yasqe.min.css' rel='stylesheet' type='text/css'/>
 <script src='//cdn.jsdelivr.net/yasqe/2.11.4/yasqe.bundled.min.js'></script>
@@ -226,6 +226,6 @@ With the used library, you can't. There's no support (yet, that's only a matter 
 # The result: Linked Data
 <h3>Linked Data</h3>
 <pre><code style="max-height:300px;" id="nquads" data-trim contenteditable></code></pre>
-<script type="application/javascript" src="/js/rdf-processor.js"></script>
-<script type="application/javascript" src="/js/dataCruncher.js"></script>
+<script type="application/javascript" src="/lib/js/rdf-processor.js"></script>
+<script type="application/javascript" src="/lib/js/dataCruncher.js"></script>
 </section>
