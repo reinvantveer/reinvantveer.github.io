@@ -222,10 +222,30 @@ With the used library, you can't. There's no support (yet, that's only a matter 
 </aside>
 </section>
 
-<section id="8" markdown="1">
-# The result: Linked Data
-<h3>Linked Data</h3>
+<section markdown="1">
+
+# The result
+
+## Linked Data
+
 <pre><code style="max-height:300px;" id="nquads" data-trim contenteditable></code></pre>
 <script type="application/javascript" src="/lib/js/rdf-processor.js"></script>
 <script type="application/javascript" src="/lib/js/dataCruncher.js"></script>
 </section>
+
+<section markdown="1">
+
+# Some credits
+
+### This presentation was made using
+
+- [Github](http://reinvantveer.github.io/2016/10/13/linked-data-utrecht-js.html) for the hosting
+- [Reveal.js](https://github.com/hakimel/reveal.js/) for the slides
+- [D3.js](https://d3js.org/) for the table and graph visualization
+- [YASGUI](https://github.com/OpenTriply/YASGUI) for SPARQL Query editor
+- [json-ld](https://github.com/json-ld/json-ld.org) for JSON Linked Data serialization
+- [rdfstore-js](https://github.com/antoniogarrote/rdfstore-js) for graph analysis
+- some other tools like [lodash](https://lodash.com/), [jQuery](https://jquery.com/), [bluebird](http://bluebirdjs.com) you know, stuff.
+
+</section>
+
