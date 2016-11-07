@@ -136,9 +136,36 @@ We did actual network analysis on the graph to make an application feature
 <section markdown="1">
 
 # SPARQL
-<textarea type="text" class="form-control" id="query" rows="30">select ?person where { ?person <http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows>/<http://xmlns.com/foaf/0.1/knows> ?person . }</textarea>
+<textarea type="text" class="form-control" id="query" rows="30">
+select ?person where {
+?person    <http://xmlns.com/foaf/0.1/knows>+    ?person .
+}</textarea>
+
 <script>
     var yasqe = YASQE.fromTextArea(document.getElementById("query"));
+</script>
+
+<aside class="notes" markdown="1">
+1. Who knows him/herself through three degrees {slash} of separation?
+2. This (client side) deviates. SW is usually heavy infrastructure. Multi-node stuff.
+3. Just a start of what you can do. Like SQL you can aggregate, count, subquery. It's even more expressive than SQL.
+4. This JS impl. is limited in the standard. Normally property paths can be expressed through +, * and {}.
+With the used library, you can't. There's no support (yet, that's only a matter of time).
+</aside>
+</section>
+
+<section markdown="1">
+
+# Actual SPARQL
+<textarea type="text" class="form-control" id="actual-query" rows="40">select ?person where {
+    ?person <http://xmlns.com/foaf/0.1/knows>/
+<http://xmlns.com/foaf/0.1/knows>/
+<http://xmlns.com/foaf/0.1/knows>
+?person .
+}
+</textarea>
+<script>
+    var yasqe = YASQE.fromTextArea(document.getElementById("actual-query"));
 </script>
 
 <aside class="notes" markdown="1">
