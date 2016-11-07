@@ -3,3 +3,8 @@ _site
 .idea
 /Gemfile.lock
 /js/node_modules/
+/resources/docs/*.aux
+/resources/docs/*.dvi
+/resources/docs/*.log
+/resources/docs/*.out
+/resources/docs/*.gz
