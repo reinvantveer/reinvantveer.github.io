@@ -33,10 +33,9 @@ layout: presentation
 - Been working as pro JS developer for a year, but been hacking away for a few years
 - Brought several identities:
     - My employer is Geodan
-    - I am seconded to the National Cadastre, where, {they do what?}
+    - I am seconded to the National Cadastre, where, {you do what?}
     - I am a researcher at the Free University of Amsterdam, embedded at Cadastre
-    - My job at the Cadastre is to build geospatially enabled semantic web infrastructure
-    - Today I'm giving a Semantic Web / Linked Data primer, with a twist
+    - Today I'm giving a Semantic Web / Linked Data pres, with a twist
     - Most of the semantic web stuff can be done with JS {most, not all}
     - So what's the SW?
 </aside>
@@ -78,11 +77,11 @@ But then I'd have to... you know
 # Keep you here for several weeks
 So... we're going to do linked data by example. With a twist. Serverless.
 <aside class="notes" markdown="1">
-- So, I'm not going to do a talk where I explain all this stuff. It's dreary.
-- Most of it is interesting, some verbose, some misguided.
+- So, I'm not going to do a talk where I explain all this stuff.
+- Why not: it's a 'framework' - http, vocab/onto, graph analysis;
+- it supports varying use cases, from taxonomies to product SEO
 - So real catch of this talk: no 'classical' impression. It's what I like about the SW
-- We're making our own social network.
-- Its USP: tell in what circle of acquaintances you participate
+- We're making our own social network, with some network analysis.
 </aside>
 </section>
 
@@ -120,6 +119,9 @@ So... we're going to do linked data by example. With a twist. Serverless.
     </div>
 </div>
 <aside class="notes" markdown="1">
+- Actually brings people together
+- The only social network without privacy issues
+- Its USP: tell in what circle of acquaintances you participate
 {fill in first row}
 - Semi-structured data: table
 - It has table headers. It's json parsed from csv to keys and values. Semi-structured.
@@ -142,7 +144,7 @@ select ?person where {
 }</textarea>
 
 <script>
-    var yasqe = YASQE.fromTextArea(document.getElementById("query"));
+    YASQE.fromTextArea(document.getElementById("query"));
 </script>
 
 <aside class="notes" markdown="1">
@@ -165,7 +167,7 @@ With the used library, you can't. There's no support (yet, that's only a matter 
 }
 </textarea>
 <script>
-    var yasqe = YASQE.fromTextArea(document.getElementById("actual-query"));
+    YASQE.fromTextArea(document.getElementById("actual-query"));
 </script>
 
 <aside class="notes" markdown="1">
