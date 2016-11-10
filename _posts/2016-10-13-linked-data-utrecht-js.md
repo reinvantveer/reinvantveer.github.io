@@ -160,7 +160,8 @@ With the used library, you can't. There's no support (yet, that's only a matter 
 
 # Actual SPARQL
 <textarea type="text" class="form-control" id="actual-query" rows="40">select ?person where {
-    ?person <http://xmlns.com/foaf/0.1/knows>/
+    ?person
+<http://xmlns.com/foaf/0.1/knows>/
 <http://xmlns.com/foaf/0.1/knows>/
 <http://xmlns.com/foaf/0.1/knows>
 ?person .
