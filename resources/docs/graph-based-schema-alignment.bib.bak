@@ -1,0 +1,27 @@
+@techreport{michel:hal-00903568,
+  TITLE = {{A survey of RDB to RDF translation approaches and tools}},
+  AUTHOR = {Michel, Franck and Montagnat, Johan and Faron-Zucker, Catherine},
+  URL = {https://hal.archives-ouvertes.fr/hal-00903568},
+  NOTE = {ISRN I3S/RR 2013-04-FR 24 pages},
+  TYPE = {Research Report},
+  INSTITUTION = {{I3S}},
+  YEAR = {2014},
+  MONTH = May,
+  KEYWORDS = {semantic web ; Database semantics ; Database integration ; RDB-to-RDF Mapping},
+  PDF = {https://hal.archives-ouvertes.fr/hal-00903568/file/Rapport\_Rech\_I3S\_v2\_-\_Michel\_et\_al\_2013\_-\_A\_survey\_of\_RDB\_to\_RDF\_translation\_approaches\_and\_tools.pdf},
+  HAL\_ID = {hal-00903568},
+  HAL\_VERSION = {v2},
+}
+
+@misc{5-star-open-data, title={5-star Open Data}, url={http://5stardata.info/en/}, journal={5-star Open Data}}
+
+@Misc{•,
+OPTkey = {•},
+OPTauthor = {•},
+OPTtitle = {•},
+OPThowpublished = {•},
+OPTmonth = {•},
+OPTyear = {•},
+OPTnote = {•},
+OPTannote = {•}
+}
