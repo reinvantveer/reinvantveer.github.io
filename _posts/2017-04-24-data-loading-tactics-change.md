@@ -36,3 +36,6 @@ class CSVparser:
 ```
 
 So now I'm able to have an intelligent CSV parser that really inspects the CSV files for its formatting dialect.
+
+# Update
+It seems like this is enough to load the csv's, but it isn't enough to get it into MongoDB reliably. I'm writing a follow-up [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2017-05-12-first-encounter-with-real-data.md)
