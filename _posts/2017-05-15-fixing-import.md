@@ -3,6 +3,8 @@ layout: default
 title: Bugfixes
 ---
 
+Full history for the article [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2017-05-15-fixing-import.md).
+
 # Starting import fixes
 
 I'm reaching an important stage today: bugfixing the importer. I'm hopefully doin two today. I'm having trouble fixing a pandas pd.read_csv error:
