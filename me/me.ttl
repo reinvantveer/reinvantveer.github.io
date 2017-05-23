@@ -1,5 +1,6 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-<http://reinvantveer.github.io/me.ttl> a foaf:person, prov:Person;
-  foaf:homepage <http://reinvantveer.github.io>;
-  foaf:fullname "Rein van 't Veer".
+<http://reinvantveer.github.io/me.ttl> a foaf:Person, prov:Person ;
+  foaf:homepage <http://reinvantveer.github.io> ;
+  foaf:name "Rein van 't Veer" ;
+  foaf:img <http://reinvantveer.github.io/images/IMG_0150_25_pct.JPG> .
