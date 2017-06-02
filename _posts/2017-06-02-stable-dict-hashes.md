@@ -13,7 +13,10 @@ Things are progressing well on the research data loading task. I solved a number
  ```python
  import hashlib
  import json
- d = hashlib.sha1(json.dumps(data, sort_keys=True).encode())
+
+ def has_dict(dict):
+     d = hashlib.sha1(json.dumps(dict, sort_keys=True).encode())
+     return d.hexdigest()
 ```
 
 This produces stable sha1 hashes.
