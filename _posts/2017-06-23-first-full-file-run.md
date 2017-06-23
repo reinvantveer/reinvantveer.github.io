@@ -2,6 +2,7 @@
 layout: default
 title: First full run on data files
 ---
+History of the document can be inspected [here](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2017-06-23-first-full-file-run.md)
 
 # First successfull run on all files
 Today I ran a full ingest cycle on all data. Well, most of it was ingested earlier so I need to do a re-run on a fresh database. But still. Some statistics.
