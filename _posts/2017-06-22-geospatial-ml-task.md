@@ -18,7 +18,7 @@ Instead of collecting all possible variables and creating a model over it, I'd l
 # The task
 In the Netherlands, we have a lot of base registries for land use. One of these is the [Base Registry for Topography](https://brt.basisregistraties.overheid.nl). We know this data set isn't exactly flawless. Some data is faulty, [such as the height class of some buildings](https://data.labs.pdok.nl/stories/brt-hoogteklasse/). Where a measured height is missing in the data, the height class is automatically (but often erroneously) marked as [low-rise](https://en.wikipedia.org/wiki/Low-rise). Also, there is a hiatus on the amount of mosques in the BRT. OpenStreetMap can tell me the correct type:
 
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=6.198330223560334%2C52.14166168660521%2C6.200840771198274%2C52.14270036478947&amp;layer=mapnik" style="border: 1px solid black"></iframe>
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.198330223560334%2C52.14166168660521%2C6.200840771198274%2C52.14270036478947&amp;layer=mapnik" style="border: 1px solid black"></iframe>
 <br/><small><a href="https://www.openstreetmap.org/#map=19/52.14218/6.19959">Grotere kaart bekijken</a></small>
 
 But the BRT cannot:
