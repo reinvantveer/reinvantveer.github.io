@@ -63,7 +63,7 @@ The list of error types is, fortunately, pretty limited:
 
 The frequency for these error types on all data is as follows:
  
-![Error type frequencies](../images/chart-ingestion-error.png)
+![Error type frequencies](/images/chart-ingestion-error.png)
 
 The source file for this chart is [here](https://github.com/reinvantveer/edna-ld/blob/master/etl/first-full-run.log.txt)
 The chart itself can be accessed [here](https://docs.google.com/spreadsheets/d/1aZk-ikGE52UW5CMbV1KWJ22nCtW9f5TvKEcZPrrWpI4/edit?usp=sharing)
@@ -81,7 +81,7 @@ Possibly these files do not have column headers, then they won't be parsable. Wi
 ## CSV parsing errors
 The biggest exception category is the CSV parsing. Already quite a lot of work has gone into fixing CSV parsing errors. Let's look into those.
 
-![CSV parse error subtype frequencies](../images/chart-csv-parse-error.png)
+![CSV parse error subtype frequencies](/images/chart-csv-parse-error.png)
 
 Again, there is one single dominant error type. In itself, it carries 3,687 / 5,150 = 71.59% of all total error throwing files. These errors are attributable to some kind of delimiter error: files for which no delimiter can be detected:
 
