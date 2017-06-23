@@ -11,7 +11,6 @@ As I wrote earlier, I am investigating the possibilities for doing geospatial ma
 * Is this a good place to start my business? 
 * What is the likelihood of this parcel of land containing an archaeological site? 
 * Is this road intersection a safe one? 
-* What should we alter in this neighborhood to keep people from harassing each other? 
 
 Instead of collecting all possible variables and creating a model over it, I'd like to explore the promise from machine learning, in having a neural net figuring out the parameters. So, we're coming to Big Questions using these techniques:
 * What can we do to (this part of) our country to improve on it? 
