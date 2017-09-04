@@ -14,7 +14,10 @@ It is of utmost importance that data is scaled well so as to ease the optimizati
 The problem with local processing of wide-scale data is that the mean is somewhere in the middle of the data, spanning a potentially huge area. 
 ![x marks the mean spot](/images/spread-and-mean.png)
 
-So, while the learning task operates on a decimeter level, the data set itself spans hundreds of kilometers, a scaling problem of a factor of 1.000.000. Standard data normalization methods that operate on the data set as a whole can't bring down the problem because of the spread of the data: the mean is somewhere in the center of the data of the entire country, the variance is huge.
+So, while the learning task operates on a decimeter level, the data set itself spans hundreds of kilometers, a scaling problem of a factor of 1.000.000. This is the scale on which I do te learning task:
+![local topology](/images/local-topology.png)
+
+Standard data normalization methods that operate on the data set as a whole can't bring down the problem because of the spread of the data: the mean is somewhere in the center of the data of the entire country, the variance is huge.
 
 [Batch normalization](https://arxiv.org/abs/1502.03167) won't help you here, because of the spatial spread of the data. Standard `scikit-learn` [preprocessing methods](http://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html#sphx-glr-auto-examples-preprocessing-plot-all-scaling-py) won't work because of the same reason.
 
