@@ -3,6 +3,8 @@ layout: default
 title: Semantics2017 talk
 ---
 
+# Semantics2017 talk
+
 Yesterday I gave my second PhD talk. On the subject I have been working on for the past few months: trying to make a 'spatially aware' artificial neural net, that can reason over distances, intersections and other relevant properties of geospatial geometries. The slides to my talk are [here](https://docs.google.com/presentation/d/e/2PACX-1vSA72_f8Yc9mPFKMu8yGtGnIFvl6c29bpAtU5UvGzIM3b4Ya4qOPvUy8Qk8Oln8mrmuofJRgH-MrEgx/pub)
 
 The general gist of my talk was as follows. Suppose you wish to build a linkset between two spatial data sets, matching geospatial objects from those two separate data sets. I intended to show that you can leave the determining of tresholds for distance or intersection for what is and what isn't a match to a neural net, rather than figure out those parameters yourself.
