@@ -80,7 +80,7 @@ CHANGED_MODEL_FILES="$(cat $1 | \
   cut -d \: -f 1 | \    # split by ":", select the first column
   grep model | \        # execute only in model dir
   grep py | \           # execute only python scripts
-  grep -v util)"        # don't execut in the util dirs
+  grep -v util)"        # don't execute scripts in the util dirs
 
 echo "Selected files to execute:"
 echo ${CHANGED_MODEL_FILES}
@@ -99,6 +99,7 @@ Ok, this may not the prettiest but it is easy to extend or alter to suit your ow
 
 ## Build triggers
 The whole idea of using this build server setup was to trigger builds on every push event, even if these events contain updates on the same file. This way, we can schedule consecutive builds (training jobs) on different architectures for the same script. For this, we need to enable TeamCity to trigger a build for each check-in. Go to the project and select 'Edit Configuration settings', go to 'Triggers' and edit the VCS trigger settings to trigger builds for every check-in and have no quiet time:
-<a href="/images/vcs-trigger-settings.png"><img alt="vcs trigger settings" src="/images/vcs-trigger-settings.png" style="width: 200px;" /></a>
+
+![vcs trigger settings](/images/vcs-trigger-settings.png)
 
 And you're all set! Test your setup by pushing a python script to your model dir (or however you've set up your project) and see your project execute your training scripts with full history!
