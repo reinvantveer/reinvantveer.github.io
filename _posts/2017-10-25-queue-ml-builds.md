@@ -36,13 +36,6 @@ services:
     ports:
       - "8111:8111"
       
-  teamcity_agent:
-    image: jetbrains/teamcity-agent
-    volumes: 
-      - ./teamcity_agent:/data/teamcity_agent/conf
-    environment:
-      - SERVER_URL=teamcity:8111
-
 ```
 
 This will use the built-in HSQLDB configuration not intended for production, but since I'm the only user of my build server, this doesn't matter. If you want to schedule stuff for a large(r) team, you may want to switch to a PostGreSQL backend, which you can add to the docker-compose configuration, which you will have to figure out for yourself.
