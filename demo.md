@@ -7,7 +7,7 @@ layout: default
 As skills go, there is no better way to show them by giving live demos. They are a living testament to your knowledge and talents. Here goes.
 
 ## Award-winning data journalism
-For a hackathon challenge by the [Platform Linked Data Netherlands](http://www.pldn.nl), together with a few mates I made a demo application on drone strikes, all client side here on [linked data journalism](https://linkeddatajournalism.github.io). This demo was the main inspiration for the [Cadastre data stories](https://data.labs.pdok.nl/stories/)
+For a hackathon challenge by the [Platform Linked Data Netherlands](http://www.pldn.nl), together with a few mates I made a demo application on drone strikes, all client side here on [linked data journalism](https://linkeddatajournalism.github.io). This demo was the main inspiration for the [Cadastre data stories](https://data.labs.pdok.nl/stories/).
 
 ## A spatial semantic web demo
 For [Platform Linked Data Netherlands](http://www.pldn.nl), I developed a research application based on a use case as real as one could imagine, but still on an experimental basis. The reason for exploring is as follows: there is an enormous potential waiting in building semantic web applications that leverage spatial search. For this, we explored the following use case. 
