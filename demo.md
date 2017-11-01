@@ -6,8 +6,11 @@ layout: default
 # The fun of live demos
 As skills go, there is no better way to show them by giving live demos. They are a living testament to your knowledge and talents. Here goes.
 
+## Award-winning data journalism
+For a hackathon challenge by the [Platform Linked Data Netherlands](http://www.pldn.nl), together with a few mates I made a demo application on drone strikes, all client side here on [linked data journalism](https://linkeddatajournalism.github.io). This demo was the main inspiration for the [Cadastre data stories](https://data.labs.pdok.nl/stories/)
+
 ## A spatial semantic web demo
-For [Platform Linked Data Netherlands](http:www.pilod.nl), I developed a research application based on a use case as real as one could imagine, but still on an experimental basis. The reason for exploring is as follows: there is an enormous potential waiting in building semantic web applications that leverage spatial search. For this, we explored the following use case. 
+For [Platform Linked Data Netherlands](http://www.pldn.nl), I developed a research application based on a use case as real as one could imagine, but still on an experimental basis. The reason for exploring is as follows: there is an enormous potential waiting in building semantic web applications that leverage spatial search. For this, we explored the following use case. 
 
 Imagine there are thousands of monuments, buried underground. This is no fiction: our country is riddled with archeological sites that have not been excavated and lie waiting for us to go hunting for. For many of them, we know their exact location. These sites are vulnerable. For instance: we should prevent building activities from destroying them, and we want to keep them as intact as they are. Unfortunately, there are also factors that are not so easily controlled, but they can be monitored. For instance: the ground water level. By keeping tabs on the water level indicators, we can tell if there are significant changes in them. Those changes are bad: they are detrimental for these archaeological because they cause the organic materials to rot. Each time the water level drops and rises, it exposes the remains to oxygen, deteriorating the quality of site. By monitoring the water levels, we can tell which sites are most exposed and maybe need excavating, despite the absence of building activities.
 
