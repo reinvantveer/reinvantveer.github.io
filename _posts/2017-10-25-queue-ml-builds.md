@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Queueing machine learning jobs using a build server
+comments: true
 ---
 
 There's a [history for this post](https://github.com/reinvantveer/reinvantveer.github.io/commits/master/_posts/2017-10-25-queue-ml-builds.md).
