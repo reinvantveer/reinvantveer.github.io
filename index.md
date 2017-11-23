@@ -5,8 +5,8 @@ layout: default
 <div class="home">
     <br/>
     <p><img src="./images/IMG_0150_25_pct.JPG" height="200px"/></p>
-    <h2>Rein van 't Veer, geospatial and semantic web developer</h2>
-    <p>Specialised in application and data development. Working for a geospatial information systems company in the Netherlands.</p>
+    <h2>Rein van 't Veer, geospatial data scientist and semantic web developer</h2>
+    <p>Researcher , specialised in (linked) geo data engineering, and application development. Working for Geodan in the Netherlands, seconded to the National Cadastre and researcher at VU Amsterdam.</p>
     
 
   <h1 class="page-heading">Posts</h1>
