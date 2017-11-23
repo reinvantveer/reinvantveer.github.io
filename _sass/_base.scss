@@ -179,7 +179,7 @@ pre {
   padding-left: $spacing-unit;
   @extend %clearfix;
   background-color: #938877;
-  border-radius: 25px;
+//  border-radius: 25px;
 
   @include media-query($on-laptop) {
     max-width: -webkit-calc(800px - (#{$spacing-unit}));
