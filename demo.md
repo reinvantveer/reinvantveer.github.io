@@ -9,7 +9,7 @@ As skills go, there is no better way to show them by giving live demos. They are
 ## Datathon geostatistics app
 In a four-day datathon co-op event by Centraal Bureau voor de Statistiek (Dutch statistics office) and Kadaster (the national Cadastre) I collaborated with a few colleagues on geostatistical analysis of 'krimpgebieden' ('shrinkage' areas) in the Netherlands. There's some very nice spatial thematic mapping using SPARQL and [YASGUI](https://github.com/OpenTriply/YASGUI) at our demo here: [https://data.labs.pdok.nl/stories/krimp](https://data.labs.pdok.nl/stories/krimp).
 
-## Award-winning data journalism
+## Award-winning data journalism app
 For a hackathon challenge by the [Platform Linked Data Netherlands](http://www.pldn.nl), together with a few mates I made a demo application on drone strikes, all client side here on [linked data journalism](https://linkeddatajournalism.github.io). This demo was the main inspiration for the [Cadastre data stories](https://data.labs.pdok.nl/stories/).
 
 ## A spatial semantic web demo
