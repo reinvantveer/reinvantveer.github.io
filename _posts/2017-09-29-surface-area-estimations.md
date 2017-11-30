@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: post
 title: Machine Learning polygon intersection surface areas
 ---
 
-Trying to construct a 'spatially aware' AI not only teaches me to work with Keras, but also with Python itself. These few months saw my first real introduction to the language (before I had dabbled with some of it, but not much) and its use of list comprehensions and the pythonic way of doing things. I have also learned a lot about a few fundamental tools and frameworks that make things working with multi-dimensional data a lot more convenient and I'm very impressed with frameworks like Numpy and Matplotlib. 
+Trying to construct a 'spatially aware' AI not only teaches me to work with Keras, but also with Python itself. These few months saw my first real introduction to the language (before I had dabbled in some of it, but not much) and its use of list comprehensions and the pythonic way of doing things. I have also learned a lot about a few fundamental tools and frameworks that make things working with multi-dimensional data a lot more convenient and I'm very impressed with frameworks like Numpy and Matplotlib. 
 
 Especially Matplotlib allows me to visualize some of the results I've gotten so far. They show to what extent my model architecture of an [LSTM wrapped with some Dense layers](https://github.com/reinvantveer/Topology-Learning/blob/master/model/intersection_surface.py) is able to cope with estimating surface areas for intersecting polygons. The task is to estimate the intersection surface area in square meter for two intersecting polygons. Some interesting facts:
 

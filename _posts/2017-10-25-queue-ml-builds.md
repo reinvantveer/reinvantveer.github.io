@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Queueing machine learning jobs using a build server
 comments: true
 ---
