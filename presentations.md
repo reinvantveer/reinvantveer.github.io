@@ -3,7 +3,9 @@ title: Presentations
 layout: default
 ---
 
-# Presentations I gave
+# Some presentations I gave
+
+2017-12-01 [Public Querying of Archaeological Data](https://docs.google.com/presentation/d/1Pd9ofGoAN7PYL9HXeEz3RFjCIqn0HSP32b3Vdd97dMc/edit?usp=sharing) for the Netherlands Institute in Turkey
 
 2017-10-30 [Rethinking location intelligence](https://docs.google.com/presentation/d/12UiZT7cCByuDkg4s2uPutwfbVI6Z9-uyAR5-y835yhM/edit?usp=sharing) for CLUE+ meets Network Institute day
 
