@@ -1,4 +1,8 @@
-# Splitting Python arrays into equal parts
+---
+layout: post
+title: Splitting Python arrays into equal parts
+---
+
 Yesterday I worked on prepping my buildings dataset. It was a bit of a hassle to find out how to concatenate several nested arrays coming from different csv files, and then split them into a 1:10 train/test data set split, and then split the training files into numpy zip archives that can be committed to the repository. GitHub has a limit of 50 Mb of data, for which I propose a devious but simple method below.
 
 But: I found a very elegant (if I may say so myself) solution. The train/test split is done by just slicing off the test fraction from the total distribution, but the remaining training file splitting is done differently. It takes strided slices from the non-test bulk, offset by cycling over the range of the number of files:
