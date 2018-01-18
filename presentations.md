@@ -13,3 +13,4 @@ layout: default
 
 2017-09-01 [Knowledge extraction from an abundance of sources](https://docs.google.com/presentation/d/13q3NQ-J6CcEYzuT9jyspjYqksMqw7ZEJDAMttBSttBs/edit?usp=sharing) at European Association for Archaeologists conference 2017
 
+2016-10-13 [UtrechtJS meetup presentation on network analysis using Linked Data](http://reinvantveer.github.io/2016/10/13/linked-data-utrecht-js.html)
