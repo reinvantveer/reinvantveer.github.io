@@ -5,6 +5,8 @@ layout: default
 
 # Some presentations I gave
 
+2018-03-28 [Computational 'understanding' of geometries](https://docs.google.com/presentation/d/e/2PACX-1vS_htfPv1zQwDvAu8y_M00COJgHJc4Bg8Wjl1q2pASP5ohLeGplhycP-5ltZLdYO4vFv6e4_GKTuc3M/pub?start=false&loop=false&delayms=3000) for Kadaster
+
 2017-12-01 [Public Querying of Archaeological Data](https://docs.google.com/presentation/d/1Pd9ofGoAN7PYL9HXeEz3RFjCIqn0HSP32b3Vdd97dMc/edit?usp=sharing) for the Netherlands Institute in Turkey
 
 2017-10-30 [Rethinking location intelligence](https://docs.google.com/presentation/d/12UiZT7cCByuDkg4s2uPutwfbVI6Z9-uyAR5-y835yhM/edit?usp=sharing) for CLUE+ meets Network Institute day
