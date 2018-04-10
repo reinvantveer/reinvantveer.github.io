@@ -1,8 +1,14 @@
 ---
 layout: post
-title: Repeated deep learning training for spread
+title: Repeat your deep learning experiments!
 comments: true
 ---
+
+# UPDATE
+This is part two on automating deep learning training sessions as software builds.
+
+Part [one is here](/2017/10/25/queue-ml-builds.html).
+Part [three is here](/2018/04/10/deep-learning-result-spread.html)
 
 A few months ago, I wrote about the benefits of using a [build server to schedule deep learning training jobs](/2017/10/25/queue-ml-builds.html). The use of a build server greatly reduces the planning strain on doing multiple hyperparameter sweeps or neural net configurations over an extended time (say, the weekend). By fully automating the jobs in a build queue, any set of changes to a script, even the same script in different versions, can be executed and tested for performance without the versions getting in each other's way.
 
@@ -26,4 +32,4 @@ If we run our ten experiments on ten machines, we can run overnight some pretty 
 - The machines should automatically pick up the changes and execute the changed scripts only. [I already implemented this](/2017/10/25/queue-ml-builds.html).
 - The machines should shut down automatically, but only if the execution queue is empty. This prevents collisions between successful training sessions and commits that have been done in between. It doesn't matter if multiple in-between start-up triggers will occur in the meantime, the server doesn't double-boot or something.
 
-In the [next part](), we're going to create the listening script that fires up the machines.
+In the [next part](/2018/04/10/starting-ten-machines.html), we're going to create the listening script that fires up the machines.
