@@ -14,6 +14,9 @@ What's here:
 * setting up a [build agent](#setting-up-the-build-agent)
 * configuring the [command line runner](#the-command-line-runner)
 
+## UPDATE
+There's a [sequel to this post](/2018/04/10/deep-learning-result-spread.html)
+
 ## Disclaimer
 Be careful with exposing services as described below, it's at your own risk. This is a setup that I use on a server that is easily removed and replaced without any loss of work, but if you want to integrate the setup below in a corporate network on a production environment, consult your security officer and deployment specialist on fine-tuning the setup. Many setup details below are based on Debian(-derived such as Ubuntu) systems, assuming that the dependencies for deep learning are already host-installed.
 
