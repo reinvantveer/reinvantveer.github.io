@@ -48,3 +48,8 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting"
 ;
+
+.body-wrapper {
+    max-width: -webkit-calc(900px - (30px * 2));
+    max-width: calc(900px - (30px * 2));
+}
