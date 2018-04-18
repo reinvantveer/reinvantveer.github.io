@@ -17,9 +17,9 @@ Part [one is here](/2017/10/25/queue-ml-builds.html).
 Part [two is here](/2018/04/10/deep-learning-result-spread.html).
 
 # Firing up ten Amazon machines
-Previously, I wrote on the wonders of [using a build server to 'build' models](/2017/10/25/queue-ml-builds.html) as part of a continuous delivery pipeline of sorts. You could even go as far as publish the pre-trained and saved model as a build artifact, a 'release' of your exertions. We will look into that another time, but having a full build trail of a pre-trained model could be part of the answer to the [machine learning reproducibility crisis](https://petewarden.com/2018/03/19/the-machine-learning-reproducibility-crisis/)!
+Previously, I wrote on the wonders of [using a build server to 'build' deep learning models](/2017/10/25/queue-ml-builds.html) as part of a continuous delivery pipeline of sorts. You could even go as far as publish the pre-trained and saved model as a build artifact, a 'release' of your exertions. We will look into that another time, but having a full build trail of a pre-trained model could be part of the answer to the [machine learning reproducibility crisis](https://petewarden.com/2018/03/19/the-machine-learning-reproducibility-crisis/)!
 
-Then, I wrote on why it is important to [repeat the training results]() for a model to get a sense of the spread of the performance of your model. Many experiments in exact sciences hinge on repeated results. The Higgs boson was only confirmed after repeated measurements with a [5-sigma](https://blogs.scientificamerican.com/observations/five-sigmawhats-that/) or one in 3.5 million chance the hypothesis would be false.
+Then, I wrote on why it is important to [repeat the training results](/2018/04/10/deep-learning-result-spread.html) for a model to get a sense of the spread of the performance of your model. Many experiments in exact sciences hinge on repeated results. The Higgs boson was only confirmed after repeated measurements with a [5-sigma](https://blogs.scientificamerican.com/observations/five-sigmawhats-that/) or one in 3.5 million chance the hypothesis would be false.
 
 We're not going to be that stringent, but I did go as far as to say that if you tweak your model to produce a 0.02 point increase in performance (say, accuracy) you can only claim victory if you can reproduce this gain a couple of times, because deep learning most often includes a level of randomness: in the selection of the batch and validation samples, the initialisation of the network. This is not a bad thing: we like our model to generalize as best as possible. We can't select the data we're going to throw at it in production either: it's very probably going to be random.  
 
@@ -36,12 +36,13 @@ ec2:
   - i-333333333
   - etcetera
 ```
-It will contain the ec2 instance ids you are going to use to do your training sessions.
+It will contain the ec2 instance ids you are going to use to do your training sessions. These instance ids you can find in your Amazon EC2 console. You want to start with one machine learning instance to test the correct workings of your automation setup. Then, if everything is working to satisfaction, you can [create a private image](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html) of your machine and create as many 'clones' from the first test machine image.
 
 Secondly, the script is going to read a couple of environment variables:
 - SLACK_API_TOKEN: you can generate this [here](https://api.slack.com/tokens). For more information, see [here](https://get.slack.help/hc/en-us/articles/215770388-Create-and-regenerate-API-tokens). Although this part is not mandatory, I cannot recommend enough the importance of some kind of notification service to follow around the startup and shutdown of your machines. If something goes wrong, you should know. Slack does this brilliantly.
 - SLACK_CHANNEL: the channel name that you designate for messages on starting and stopping machines. I suggest something like `#monitoring` or something. You should create the channel first.
 - SECRET_TOKEN: this is the canonical environment variable name as recommended by [GitHub for the webhook system](https://developer.github.com/webhooks/). You need to set this webhook for the repository you want monitored. You do this by going to https://github.com/{your_username}/{repo_name}/settings/hooks and by clicking `Add webhook`:
+![Webhook configuration](/images/webhook.png)
 You generate the token using `ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'` as suggested [here](https://developer.github.com/webhooks/securing/#setting-your-secret-token)
 
 ## Docker compose
@@ -55,7 +56,7 @@ I made sure these environment variables were set, by Dockerizing the service wit
     volumes:
       - ./:/ml_manager
     ports:
-      - "4000:4000"
+      - "80:4000"
     environment:
       - SLACK_API_TOKEN=my_slack_api_token
       - SLACK_CHANNEL=#some_channel
@@ -64,7 +65,7 @@ I made sure these environment variables were set, by Dockerizing the service wit
       - AWS_ACCESS_KEY_ID=aws_secret_key_id
       - AWS_SECRET_ACCESS_KEY=aws_secret_access_key
 ```
-Which you can run on the listening or master server using `docker-compose up -d` Of course you need to set proper tokens for the placeholder text here, and a web server with a reverse proxy to your listening service, a system which I described earlier [here](/2017/10/25/queue-ml-builds.html#apache-configuration). **Make sure NOT to commit any of this in an open repository. The information will certainly be found and someone will start mining bitcoins, hacking or spambotting using YOUR account on YOUR expenses!**
+Which you can run on the listening or master server using `docker-compose up -d` Of course you need to set proper tokens for the placeholder text here. Also, you need a web server with a reverse proxy with the same route as set in your webhook configuration, pointing to your listening service, a system which I described earlier [here](/2017/10/25/queue-ml-builds.html#apache-configuration). **Make sure NOT to commit any of this in an open repository. The information will certainly be found and someone will start mining bitcoins, hacking or spambotting using YOUR account on YOUR expenses!**
 
 ## Dockerfile
 You now of course need a simple Dockerfile:
@@ -112,7 +113,7 @@ region_name = os.environ['AWS_REGION_NAME']
 ec2_client = boto3.client('ec2', region_name=region_name)
 ec2_res = boto3.resource('ec2', region_name=region_name)
 app = Flask(__name__)  # Standard Flask app
-webhook = Webhook(app, endpoint='/postreceive', secret=secret)  # Defines '/postreceive' endpoint
+webhook = Webhook(app, endpoint='/postreceive', secret=secret)
 
 
 # Slack notification function
