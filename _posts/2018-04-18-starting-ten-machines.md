@@ -134,14 +134,18 @@ def start_instance(instance):
     else:
         try:
             response = ec2_client.start_instances(InstanceIds=[instance])
-            http_status = http.HTTPStatus(response['ResponseMetadata']['HTTPStatusCode']).name
+            http_status = http.HTTPStatus(
+                response['ResponseMetadata']['HTTPStatusCode']).name
             print('Start instance {}: {}'.format(instance, http_status))
-            notify(SCRIPT_NAME, 'started {} with response {}'.format(instance, http_status))
+            notify(SCRIPT_NAME, 
+                   'started {} with response {}'.format(
+                    instance, http_status))
         except Exception as e:
             this_instance = [i for i in ec2_res.instances.filter(
                 Filters=[{'Name': 'instance-id', 'Values': [instance]}])][0]
-            notify(SCRIPT_NAME, 'Error starting instance {}, status {} with {}'.format(
-                instance, this_instance.state, e))
+            notify(SCRIPT_NAME, 
+                   'Error starting instance {}, status {} with {}'.format(
+                        instance, this_instance.state, e))
 
 
 # Read list of instances
