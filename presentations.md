@@ -5,14 +5,58 @@ layout: default
 
 # Some presentations I gave
 
-2018-03-28 [Computational 'understanding' of geometries](https://docs.google.com/presentation/d/e/2PACX-1vS_htfPv1zQwDvAu8y_M00COJgHJc4Bg8Wjl1q2pASP5ohLeGplhycP-5ltZLdYO4vFv6e4_GKTuc3M/pub?start=false&loop=false&delayms=3000) for Kadaster
 
-2017-12-01 [Public Querying of Archaeological Data](https://docs.google.com/presentation/d/1Pd9ofGoAN7PYL9HXeEz3RFjCIqn0HSP32b3Vdd97dMc/edit?usp=sharing) for the Netherlands Institute in Turkey
+## INSPIRE energy session
+2018-08-20 [Estimating energy performance of buildings](https://docs.google.com/presentation/d/e/2PACX-1vQqUCKAyKbLdp7u4HI56kA-rsmS8DgyKcQZrkUKilz8A3ELE0tA4PpescG9WKRBGXu6l5yS2LaXRZsk/pub?start=false&loop=false&delayms=60000)
 
-2017-10-30 [Rethinking location intelligence](https://docs.google.com/presentation/d/12UiZT7cCByuDkg4s2uPutwfbVI6Z9-uyAR5-y835yhM/edit?usp=sharing) for CLUE+ meets Network Institute day
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQqUCKAyKbLdp7u4HI56kA-rsmS8DgyKcQZrkUKilz8A3ELE0tA4PpescG9WKRBGXu6l5yS2LaXRZsk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
 
-2017-10-14 [Geospatial Linked Data quality assessment using machine learning](https://docs.google.com/presentation/d/1hAekTh6hiGaXx0B--O7msm9vQ9veQrzFll7dU8au8WM/edit?usp=sharing) at Sematics2017
+## Open Geospatial Consortium GeoAI session
+2018-08-12 ['Shape recognition'](https://docs.google.com/presentation/d/e/2PACX-1vQu_QYLKVLahANfUgybW1t7bSX_RLbV_sIgA8hhpRSdm2OeLqXMNcWu8WzdVKvFcR5JtE4cwunkTWRg/pub?start=false&loop=false&delayms=60000)
 
-2017-09-01 [Knowledge extraction from an abundance of sources](https://docs.google.com/presentation/d/13q3NQ-J6CcEYzuT9jyspjYqksMqw7ZEJDAMttBSttBs/edit?usp=sharing) at European Association for Archaeologists conference 2017
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQu_QYLKVLahANfUgybW1t7bSX_RLbV_sIgA8hhpRSdm2OeLqXMNcWu8WzdVKvFcR5JtE4cwunkTWRg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
 
-2016-10-13 [UtrechtJS meetup presentation on network analysis using Linked Data](http://reinvantveer.github.io/2016/10/13/linked-data-utrecht-js.html)
+## Cadastre research session
+2018-03-28 [Computational 'understanding' of geometries](https://docs.google.com/presentation/d/e/2PACX-1vS_htfPv1zQwDvAu8y_M00COJgHJc4Bg8Wjl1q2pASP5ohLeGplhycP-5ltZLdYO4vFv6e4_GKTuc3M/pub?start=false&loop=false&delayms=60000) for Kadaster
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS_htfPv1zQwDvAu8y_M00COJgHJc4Bg8Wjl1q2pASP5ohLeGplhycP-5ltZLdYO4vFv6e4_GKTuc3M/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
+
+## Netherlands Institute in Turkey archaeological data management symposium
+2017-12-01 [Public Querying of Archaeological Data](https://docs.google.com/presentation/d/e/2PACX-1vSyx21fX6beZXBopLjxfgp6P_EO-dfYW_qpQQoNU-FKe0qPa5OwHYSbTMCB5hwI0L0WH0nQcEJhCKoH/pub?start=false&loop=false&delayms=60000) for the Netherlands Institute in Turkey
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSyx21fX6beZXBopLjxfgp6P_EO-dfYW_qpQQoNU-FKe0qPa5OwHYSbTMCB5hwI0L0WH0nQcEJhCKoH/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
+
+## VU Network Institute day
+2017-10-30 [Rethinking location intelligence](https://docs.google.com/presentation/d/e/2PACX-1vT3ngEfv6QooZn1XRdrA08YRM7XkK0mh_u0aJ9ghkL_-bJNxKo7pn3WPTK66pjvGxONnzw0Z7WtEneE/pub?start=false&loop=false&delayms=60000) for CLUE+ meets Network Institute day
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT3ngEfv6QooZn1XRdrA08YRM7XkK0mh_u0aJ9ghkL_-bJNxKo7pn3WPTK66pjvGxONnzw0Z7WtEneE/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
+
+## Semantics 2017
+2017-10-14 [Geospatial Linked Data quality assessment using machine learning](https://docs.google.com/presentation/d/e/2PACX-1vSA72_f8Yc9mPFKMu8yGtGnIFvl6c29bpAtU5UvGzIM3b4Ya4qOPvUy8Qk8Oln8mrmuofJRgH-MrEgx/pub?start=false&loop=false&delayms=60000) at Sematics2017
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSA72_f8Yc9mPFKMu8yGtGnIFvl6c29bpAtU5UvGzIM3b4Ya4qOPvUy8Qk8Oln8mrmuofJRgH-MrEgx/embed?start=false&loop=false&delayms=60000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
+
+## European Association for Archaeologists conference 2017 
+2017-09-01 [Knowledge extraction from an abundance of sources](https://docs.google.com/presentation/d/e/2PACX-1vQot2onVWZIp8AaJNm29dqDzc6zfkEaegaJmpRjFVBpFFPsv9VipLZkOmYUXCNw2MOArSalDCvrRI3k/pub?start=false&loop=false&delayms=60000) at European Association for Archaeologists conference 2017
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQot2onVWZIp8AaJNm29dqDzc6zfkEaegaJmpRjFVBpFFPsv9VipLZkOmYUXCNw2MOArSalDCvrRI3k/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
+
+## Utrecht JavaScript meetup
+2016-10-13 [UtrechtJS meetup presentation on network analysis using Linked Data](https://reinvantveer.github.io/2016/10/13/linked-data-utrecht-js.html)
+
+<iframe src="https://reinvantveer.github.io/2016/10/13/linked-data-utrecht-js.html" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
