@@ -5,6 +5,12 @@ layout: default
 
 # Some presentations I gave
 
+## Geo Gebruikersfestival 2018 
+2018-10-31 ["Slimme" energielabels met "Artificial Intelligence" (in Dutch)](https://docs.google.com/presentation/d/e/2PACX-1vQ69Abzw8fv9qv4jEZMZx9-XoF3EdYAwrLJXi-yJ2GOS6sm2X-K693qqJ1y14SkgJIPA0vX5R9Wl62W/pub?start=false&loop=false&delayms=60000)
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ69Abzw8fv9qv4jEZMZx9-XoF3EdYAwrLJXi-yJ2GOS6sm2X-K693qqJ1y14SkgJIPA0vX5R9Wl62W/pub?start=false&loop=false&delayms=60000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<br>
 
 ## INSPIRE energy session
 2018-09-20 [Estimating energy performance of buildings](https://docs.google.com/presentation/d/e/2PACX-1vQqUCKAyKbLdp7u4HI56kA-rsmS8DgyKcQZrkUKilz8A3ELE0tA4PpescG9WKRBGXu6l5yS2LaXRZsk/pub?start=false&loop=false&delayms=60000)
@@ -12,6 +18,7 @@ layout: default
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQqUCKAyKbLdp7u4HI56kA-rsmS8DgyKcQZrkUKilz8A3ELE0tA4PpescG9WKRBGXu6l5yS2LaXRZsk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <br>
+
 
 ## Open Geospatial Consortium GeoAI session
 2018-09-12 ['Shape recognition'](https://docs.google.com/presentation/d/e/2PACX-1vQu_QYLKVLahANfUgybW1t7bSX_RLbV_sIgA8hhpRSdm2OeLqXMNcWu8WzdVKvFcR5JtE4cwunkTWRg/pub?start=false&loop=false&delayms=60000)
