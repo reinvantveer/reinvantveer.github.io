@@ -8,7 +8,7 @@ layout: default
 ## Geo Gebruikersfestival 2018 
 2018-10-31 ["Slimme" energielabels met "Artificial Intelligence" (in Dutch)](https://docs.google.com/presentation/d/e/2PACX-1vQ69Abzw8fv9qv4jEZMZx9-XoF3EdYAwrLJXi-yJ2GOS6sm2X-K693qqJ1y14SkgJIPA0vX5R9Wl62W/pub?start=false&loop=false&delayms=60000)
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ69Abzw8fv9qv4jEZMZx9-XoF3EdYAwrLJXi-yJ2GOS6sm2X-K693qqJ1y14SkgJIPA0vX5R9Wl62W/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ69Abzw8fv9qv4jEZMZx9-XoF3EdYAwrLJXi-yJ2GOS6sm2X-K693qqJ1y14SkgJIPA0vX5R9Wl62W/embed?start=false&loop=false&delayms=60000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <br>
 
