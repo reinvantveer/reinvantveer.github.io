@@ -34,12 +34,15 @@ The second hurdle to overcome is that you need special Samsung-issued certificat
 
 Once you have the certificates installed, you need to declare the features and privileges your app needs. For example, if your app needs to access stuff from around the web (and who doesn't?), you need to edit the config.xml file of your project in Tizen Studio. Add the `http://tizen.org/feature/network.internet` feature and the `http://tizen.org/privilege/internet` privilege. 
 
-Setting these features and privileges isn't enough by itself, though. The user needs to grant permissions to these privileges. Fortunately, the application itself can ask the user for these privileges itself, allowing the user to opt in for a default setting/'remember this choice' that prevents the application to ask permission every time the application starts. However, the watch will ask permission each time you re-deploy a newer version of your app, though.
+Setting these features and privileges isn't enough by itself, though. The user needs to grant permissions to these privileges through JavaScript `tizen.ppm.requestPermission()` calls. Fortunately through this method, the application itself can ask the user for these privileges itself, allowing the user to opt in for a default setting/'remember this choice' that prevents the application to ask permission every time the application starts. However, the watch will ask permission each time you re-deploy a newer version of your app, though.
 
-In order to ask the user for the required privileges, you need some code. Since we are making a Tizen web app, this is done in JavaScript. The Tizen web apps a fairly recent JavaScript engine available. The command `navigator.userAgent` gives the following useful information:
+# Setting up the app and permissions
+In order to ask the user for the required privileges, you need some code, which we will cover in some more detail. Since we are making a Tizen web app, this is done in JavaScript. The Tizen web apps a fairly recent JavaScript engine available. The command `navigator.userAgent` gives the following useful information:
 `"Mozilla/5.0 (Linux; Tizen 4.0; SAMSUNG SM-R760) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.0 Mobile Safari/537.36"`
 So although it isn't exactly the most recent version (I have Chrome v.74 running at the moment, [56 was issued January 2017](https://developers.google.com/web/updates/2017/01/nic56) so over 2 years ago), it has support for ES6 language features, including [`class`es](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`Symbol`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and [fat arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). In a nutshell: every language feature that makes JavaScript into a great modern-age functional programming language. 
 
-Not so pretty is the fact that Tizen Studio has not yet figured out the existence of ES6. It still assumes ES5 syntax. I would recommend, therefore, that at this point, we drop Tizen Studio as a development tool, and to use it just as a build tool. Instead, we are building our app in [Visual Studio Code](). 
+
+
+Not so pretty is the fact that Tizen Studio has not yet figured out the existence of ES6. It still assumes ES5 syntax. I would recommend, therefore, that at this point, we drop Tizen Studio as a development tool, and to use it just as a build tool. Instead, we are building our app in [Visual Studio Code](https://code.visualstudio.com/Download) and the [node.js/npm](https://nodejs.org/en/download/)/[WebPack](https://www.npmjs.com/package/webpack) toolchain. 
 
 To be continued...
