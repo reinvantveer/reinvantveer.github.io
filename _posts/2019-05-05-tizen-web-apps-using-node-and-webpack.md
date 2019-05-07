@@ -13,15 +13,17 @@ The S3 Frontier doesn't have WiFi, so you connect it to Tizen Studio through a t
 
 Also, I found that connecting the watch through [Galaxy Watch Designer](https://developer.samsung.com/galaxy-watch/design/watch-designer/) was the most stable way. You click the 'Run on device' button on the top right (also reached through shortcut F9) which allows you to scan for the S3 Frontier, which will take some more patience. All in all, it's a pretty meagre development experience, but it works. That's just getting it connected, though. You'll have to persevere some more, if you have a non-WiFi watch. The workflow that seems to work in a repeatable fashion is like:
 
-- Connect the Android phone to your dev laptop. Make sure the watch is paired with the phone in use and that the phone is in developer mode.
-- Have the Samsung Wear app running
-- Reset the watch by powering down and up again
-- Open the Galaxy Watch Designer application on the dev laptop. Hit F9, which will open up a menu box.
-- Select the Android phone listed there by clicking on it.
-- This will open up the `sdboverbt` app on your phone. Connect the watch over bluetooth by hitting the 'connect' button and selecting the watch item in the list.
-- The Galaxy Watch Designer application will appear to do nothing. Click the phone item in the Run on Device menu again. Click on "Scan devices".
-- Develop a vague sense of "this isn't working" and select the phone item again. Click "Scan devices again".
-- The Galaxy Watch Designer application seems to get stuck for a split second, then shows a popup informing you that having the watch connected over bluetooth over a prolonged period can drain the battery on the watch.
+1. Connect the Android phone to your dev laptop. Make sure the watch is paired with the phone in use and that the phone is in developer mode.
+1. Have the Samsung Wear app running on your phone
+1. Reset the watch by powering down and up again
+1. Open the Galaxy Watch Designer application on the dev laptop. Hit F9, which will open up a menu box.
+1. Select the Android phone listed there by clicking on it.
+1. This will open up the `sdboverbt` app on your phone. Connect the watch over bluetooth by hitting the 'SELECT DEVICE FOR DEBUGGING' button and selecting the watch item in the list.
+1. The Galaxy Watch Designer application will appear to do nothing. Click the phone item in the Run on Device menu again. Click on "Scan devices".
+1. Develop a vague sense of "this isn't working" and select the phone item again. Click "Scan devices again".
+1. The Galaxy Watch Designer application seems to get stuck for a split second, then shows a popup informing you that having the watch connected over bluetooth over a prolonged period can drain the battery on the watch.
+1. If the above steps fail to produce a working connection, reiterate from 1.  
+
 - You're in!
 
 
@@ -34,6 +36,10 @@ Once you have the certificates installed, you need to declare the features and p
 
 Setting these features and privileges isn't enough by itself, though. The user needs to grant permissions to these privileges. Fortunately, the application itself can ask the user for these privileges itself, allowing the user to opt in for a default setting/'remember this choice' that prevents the application to ask permission every time the application starts. However, the watch will ask permission each time you re-deploy a newer version of your app, though.
 
-In order to ask the user for the required privileges, you need some code. Since we are making a Tizen web app, this is done in JavaScript. The Tizen web apps do not have a very up-to-date JavaScript engine, it is rather backwards, so although there are some 
+In order to ask the user for the required privileges, you need some code. Since we are making a Tizen web app, this is done in JavaScript. The Tizen web apps a fairly recent JavaScript engine available. The command `navigator.userAgent` gives the following useful information:
+`"Mozilla/5.0 (Linux; Tizen 4.0; SAMSUNG SM-R760) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.0 Mobile Safari/537.36"`
+So although it isn't exactly the most recent version (I have Chrome v.74 running at the moment, [56 was issued January 2017](https://developers.google.com/web/updates/2017/01/nic56) so over 2 years ago), it has support for ES6 language features, including [`class`es](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`Symbol`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and [fat arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). In a nutshell: every language feature that makes JavaScript into a great modern-age functional programming language. 
+
+Not so pretty is the fact that Tizen Studio has not yet figured out the existence of ES6. It still assumes ES5 syntax. I would recommend, therefore, that at this point, we drop Tizen Studio as a development tool, and to use it just as a build tool. Instead, we are building our app in [Visual Studio Code](). 
 
 To be continued...
