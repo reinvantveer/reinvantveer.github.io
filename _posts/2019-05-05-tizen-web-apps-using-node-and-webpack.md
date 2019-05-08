@@ -1,4 +1,8 @@
-# Tizen web app development using node.js, NPM and WebPack
+---
+layout: post
+title: Tizen web app development using node.js, NPM and WebPack
+---
+
 A lot of people at my work are showing up with smartwatches. I don't expect the smartwatch having such an impact on daily life as the smartphone did for mobile phones, it has much more the feel of a gadget. To fidget with. 
 
 However, I took the step of buying one myself as well. I didn't want to invest a lot, so I purchased a 'second chance' model (basically a returned item) under € 200, just to see what all the fuss is about. Are my colleagues just being silly, showing off oversized, clunky watches, or is there actually something useful to the smartwatch? I decided to find out for myself.
@@ -40,8 +44,6 @@ Setting these features and privileges isn't enough by itself, though. The user n
 In order to ask the user for the required privileges, you need some code, which we will cover in some more detail. Since we are making a Tizen web app, this is done in JavaScript. The Tizen web apps a fairly recent JavaScript engine available. The command `navigator.userAgent` gives the following useful information:
 `"Mozilla/5.0 (Linux; Tizen 4.0; SAMSUNG SM-R760) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.0 Mobile Safari/537.36"`
 So although it isn't exactly the most recent version (I have Chrome v.74 running at the moment, [56 was issued January 2017](https://developers.google.com/web/updates/2017/01/nic56) so over 2 years ago), it has support for ES6 language features, including [`class`es](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`Symbol`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and [fat arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). In a nutshell: every language feature that makes JavaScript into a great modern-age functional programming language. 
-
-
 
 Not so pretty is the fact that Tizen Studio has not yet figured out the existence of ES6. It still assumes ES5 syntax. I would recommend, therefore, that at this point, we drop Tizen Studio as a development tool, and to use it just as a build tool. Instead, we are building our app in [Visual Studio Code](https://code.visualstudio.com/Download) and the [node.js/npm](https://nodejs.org/en/download/)/[WebPack](https://www.npmjs.com/package/webpack) toolchain. 
 
