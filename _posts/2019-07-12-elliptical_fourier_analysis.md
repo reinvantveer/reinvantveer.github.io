@@ -3,10 +3,11 @@ title: Elliptical Fourier analysis
 layout: post
 ---
 
-Recently, I've become quite interested in Fourier series for the purposes of geospatial analysis. In particular, I've spent quite some time getting to grips with an elliptical variant of the well-known Fourier transform family, a variant of based on calculating the coefficients of ellipses. 
+Recently, I've become quite interested in Fourier series for the purposes of geospatial shape analysis. In particular, I've spent quite some time getting to grips with an elliptical variant of the well-known Fourier transform family, a variant based on calculating the coefficients of ellipses. Using a predefined number of ellipses, any closed contour can be described using the parameters of these ellipses. Once created, the parameters can be used to reconstruct an approximation of the original shape.
 
-I also included a web demo to demonstrate its workings:
-<iframe src="https://spinlab.github.io/neighborhoods-autoencoder/js/dist/index.html" style="height: 600px; width: 100%"></iframe>
+I created a web demo to demonstrate its workings. The demo is primarily based on [leaflet](https://leafletjs.com/) for the geospatial part, and [tensorflow.js](https://www.tensorflow.org/js) for the coefficient operations. That these libraries exist in free, open source form is truly marvellous. The demo is best viewed on a desktop environment.
+
+<iframe src="https://spinlab.github.io/neighborhoods-autoencoder/js/dist/index.html" style="height: 700px; width: 100%"></iframe>
 
 # How did we get here?
 Fourier transformation is the deconstruction of a signal into its main constituent frequencies. Or in other words: mapping from (often) a time or space domain to a frequency domain, as in the following animation:
