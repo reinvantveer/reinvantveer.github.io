@@ -3,11 +3,9 @@ title: SQL as programming language? Better not.
 layout: post
 ---
 
-# SQL as application programming language? Better not.
-
 The past few months I have been given the opportunity to work with a prototype built in and around PostGreSQL. In this post, I intend to share some of the experiences with application programming in SQL and the accompanying procedural languages for use inside a database (such as pl/pgsql). In short: don't use SQL for application logic. 
 
-## TL;DR:
+# TL;DR:
 It's perfectly fine to prototype your application in any kind of programming language, including SQL. SQL has some extremely concise expressivity that can make a data transformation pipeline very compact. However, be wise and 
 * Provide every bit of information on **why** each SQL statement or clause is doing what it's doing
 * **Drop the prototype as soon as you start thinking about going to production**. It will not be worth the effort to put a prototype into production. Don't ever be tempted into thinking it will perform, be stable or even work in the first place: it is unlikely to work out in your (financial) benefit.
@@ -17,7 +15,7 @@ It's perfectly fine to prototype your application in any kind of programming lan
     * Most importantly of all: testing. Testing application logic in SQL is hard and expensive because it **has no built-in testing framework**. Use a generic programming language instead for any application logic you need. 
     * proper dependency/package management to specify what your application logic needs to work in production.
 
-## A very short introduction into the purpose of SQL
+# A very short introduction into the purpose of SQL
 SQL is a language for interacting with a database. It is a set-based language that operates primarily on table-level. In this sense, the set that a SQL query operates on, is an entire set of records in one or more tables over which the SQL 'loops' automatically. Especially in querying different data tables, SQL is very good at integrating, filtering and summarizing data. It is then also very good at writing the results of this operation back into a new table. This is often referred to as an ETL process: an Extract (load data from tables), Transform (filter the data, summarize), and Load (write results into a new table). 
 
 The database here acts as a strategy for "persistence": a way to store data that is not lost when a machine restarts. It is a popular method, because the way a database organizes lots of data is much more performant than the default persistence method, namely a file system. A file system generally is a tree-like system of folders that contain either subfolders and/or file. You may have a "Documents" folder, containing "Projects". This "Projects" folder may have a "Git" folder, to designate project documents that are tracked in a version control system called Git. This "Git" folder then may then contain the subfolder "web_app_for_incredible_solutions" or some other project, etcetera. The file system therefore often expresses a tree of "things" that go from generic to specific, but this tends to gets swamped if you have a lot of fine-grained data. 
@@ -26,10 +24,10 @@ Databases have a lot fewer levels than paths in your filesystem do. There is (su
 
 This is why simple SQL queries often make a lot of sense. `SELECT customer_name FROM customers;` will evidently get you all names of your customers from a set containing all customers for a given schema (the name of which is not included here). The SQL statement ends with a semicolon to designate the end of the SELECT statement.
 
-## Where the trouble starts
+# Where the trouble starts
 There's trouble with SQL on many fronts that hamper production application development.
 
-### Readability
+## Readability
 This simplicity of `SELECT {attribute} FROM {thing_type};` has earned SQL its reputation as an easy to read language. This is more than just a nice idea. Programming is primarily of use as a method for communication: from humans to other humans, that is. It gets read by programmers after you write it, so people after you need to know what and why your program does what it does. This is no different for SQL.  
 
 However, the readability of SQL quickly evaporates when the SQL query gets longer and more syntax is used. There is very little readable left in queries that 
@@ -41,7 +39,7 @@ Instead, use a programming language to write out the application logic in an eas
 
 So, the supposed readability benefit for SQL is mostly voided once you get to more advanced SQL queries. It is a language with a lot of syntax, just as most other programming languages. Readability automatically brings us to perhaps the most difficult part of programming in general: complexity and testing.
 
-### Complexity and testing
+## Complexity and testing
 Once SQL queries start to get longer, an uncanny feeling starts to creep up on me. Why is there so much code needed to get some stuff from the database? Is the structure of the database that complex?
 
 Often, however, I see that the SQL code is not only fetching things from the backend or writing data to it. Often, it applies some kind of transformation. It performs part of the application logic that the client code is supposed to do. I hear my colleagues explain: "It's much easier this way." 
@@ -70,7 +68,7 @@ It gets worse for SQL. Many SQL scripts are _stateful_, containing action querie
  
 In short: test your queries in a test database. Testing `SELECT * FROM customers;` is hardly necessary. This is no longer the case once you start moving application logic inside of your queries, because now you *will* have to write tests for them. Make sure you do. Saying "last month my query was fine," is useless because last month doesn't matter if your application crashes now. Having test means making sure that under any circumstance and at any time, you are able to validate the correct workings of your code. Doing some manual testing now and again and calling "But it worked on my machine!" is a recipe for disaster. Therefore: put as little application or 'business' logic in your queries as possible, because testing for meeting all the requirements is costly for SQL. Instead, write you application logic in a proper programming language: it's much easier and therefore cheaper to write unit tests for 'generic' programming languages.   
 
-### Dependency management
+## Dependency management
 Every self-respecting programming language nowadays has a dependency management system. JavaScript has NPM, Java has Maven, C# has NuGet, and Python has Pipenv. No programming language is complete without some kind of package management system. **SQL has none**. You cannot express in a suite of SQL scripts, a SQL project if you like, what dependencies it should or shouldn't require. That means that the code is possibly going to break in unknown places  once (and at some time you will) upgrade your database.
 
 The more usage of database extensions and procedural logic there is in your SQL, the higher the chance that your SQL will break. There are at least 3 current versions of PostGIS, the geospatial extension for PostGIS, with one major version difference, from major version 2 to 3. Multiply this by about 4 major PostGreSQL database versions and you have a combination of backend components for which your query may or may not work. There is a special [legacy FAQ](https://postgis.net/docs/manual-3.0/PostGIS_FAQ.html#legacy_faq) for the trouble that upgrading from major version 1 to 2 gave. There are many dependency pitfalls in PostGIS - consider the [SFCGAL functions](https://postgis.net/docs/manual-3.0/reference.html#reference_sfcgal) that require CGAL to be present at build-time. That means that if you upgrade your database but forget to install CGAL, part of your code is going to break.
