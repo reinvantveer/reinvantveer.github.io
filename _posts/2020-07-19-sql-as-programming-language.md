@@ -3,10 +3,12 @@ title: SQL as programming language? Better not.
 layout: post
 ---
 
-The past few months I have been given the opportunity to work with a prototype built in and around PostGreSQL. In this post, I intend to share some of the experiences with application programming in SQL and the accompanying procedural languages for use inside a database (such as pl/pgsql). In short: don't use SQL for application logic. 
+The past few months I have been given the opportunity to work with a prototype built in and around PostGreSQL. In this post, I intend to share some of the experiences with application programming in SQL and the accompanying procedural languages for use inside a database (such as pl/pgsql). I'd like to stress that the opinion expressed here in no way is pointed toward any individual. Instead, it's about technology and how I feel towards its implementations.
 
 # TL;DR:
-It's perfectly fine to prototype your application in any kind of programming language, including SQL. SQL has some extremely concise expressivity that can make a data transformation pipeline very compact. However, be wise and 
+In short: use SQL for persistence: fetching data from, or writing to a database, but don't use it for application logic.
+
+It's perfectly fine to prototype your application in any kind of programming language, including SQL. SQL has some extremely concise expressivity that can make a data transformation pipeline very compact. However, be wise and:
 * Provide every bit of information on **why** each SQL statement or clause is doing what it's doing
 * **Drop the prototype as soon as you start thinking about going to production**. It will not be worth the effort to put a prototype into production. Don't ever be tempted into thinking it will perform, be stable or even work in the first place: it is unlikely to work out in your (financial) benefit.
 * Use a **generic programming language**, such as Python, Java, JavaScript, C#, for your application logic and **don't** stick any of it in SQL. Use any programming language that lets you: 
@@ -28,16 +30,25 @@ This is why simple SQL queries often make a lot of sense. `SELECT customer_name 
 There's trouble with SQL on many fronts that hamper production application development.
 
 ## Readability
-This simplicity of `SELECT {attribute} FROM {thing_type};` has earned SQL its reputation as an easy to read language. This is more than just a nice idea. Programming is primarily of use as a method for communication: from humans to other humans, that is. It gets read by programmers after you write it, so people after you need to know what and why your program does what it does. This is no different for SQL.  
+### SQL as a human-readable language
+The simplicity of `SELECT {attribute} FROM {thing_type};` has earned SQL its reputation as an easy to read language. This is more than just a nice idea. Programming is primarily of use as a method for communication: from humans to other humans, that is. It gets read by programmers after you write it, so people after you need to know what and why your program does what it does. This is no different for SQL.
 
 However, the readability of SQL quickly evaporates when the SQL query gets longer and more syntax is used. There is very little readable left in queries that 
+
 * Use complicated and multiple join types such as [`FULL OUTER JOIN`](https://www.postgresqltutorial.com/postgresql-full-outer-join/), or [`CROSS JOIN`](https://www.postgresqltutorial.com/postgresql-cross-join/). Even after reading the tutorials, I don't know whether a `FULL JOIN` will return something different than a `FULL OUTER JOIN`. If it's optional and if it does return the same result set, then why is it even there? If the `CROSS JOIN` doesn't do anything than just the cartesian product of tables, then why does it exist? What exactly is "crossy" about a cross join?
+
 * Mimic control flow, such as [`COALESCE`](https://www.postgresqltutorial.com/postgresql-coalesce/). To "coalesce" means to merge or grow into one another. But that is not what this function does: it takes the first non-null value from a list of values passed to the function. What is wrong about having called this function just `FIRST_NON_NULL()`?
+
 * Use many, many nested functions. This is often the case, since you can't assign to an intermediate or temporary variable. You can use `WITH` clauses to work around this, but this will generally reward the reader with an endless stream of WITH blocks that only vaguely resemble a procedural flow.
 
 Instead, use a programming language to write out the application logic in an easy to understand way. I find Python to be ideal for this purpose. Yes, it's possible to make an unreadable mess in any programming language, but Python enables you to write readable code unlike any other programming language does. It doesn't `COALESCE` or `CROSS JOIN` and so shouldn't you. Write readable code and douse with plenty of comments **why** you do it that particular way. Don't us endless nesting of functions that SQL pushes you towards, but break up meaningful pieces of procedural code into functions and execute them one after another. Use classes if they improve the readability of your code: SQL can't.
 
 So, the supposed readability benefit for SQL is mostly voided once you get to more advanced SQL queries. It is a language with a lot of syntax, just as most other programming languages. Readability automatically brings us to perhaps the most difficult part of programming in general: complexity and testing.
+
+### Code style
+Unlike other commonly used programming languages, SQL does not have a generally agreed upon code style. Generally, programming languages make heavy use of style guides to keep code legible. JavaScript coders often use something like the [Google style standard](https://google.github.io/styleguide/jsguide.html) or the [AirBnB standard](https://github.com/airbnb/javascript), There's [PEP 8](https://www.python.org/dev/peps/pep-0008/) for Python, Java also has a [Google style guide](https://google.github.io/styleguide/javaguide.html) and the list goes on. Every single one of these style guides comes with some kind of tool that helps you check for style errors: a [linter](https://en.wikipedia.org/wiki/Lint_(software)). Usage of these linters is essential to keep track of all style errors in your code, because it's generally impossible to keep track of all the different kinds of style rules.
+
+There's a [few websites out there](https://duckduckgo.com/?q=sql+code+style) that propose SQL formatting, but it's also clear that there is no SQL style formatter or checker - a linter. The [GitLab SQL style guide](https://about.gitlab.com/handbook/business-ops/data-team/platform/sql-style-guide/) stresses this point succinctly. The lack of SQL style linters is a little surprising, seeing the vast amount of programming being done in SQL. Generally, most programming languages are used in IDEs that provide style hints that prevent you from typing errors and typos, but I have little evidence so far that these are in any frequent use. This means that a SQL programmer can apply basically any kind of formatting or lack thereof to sql. There's no agreed upon standard for using CAPITALIZATION (a practice that seems quite old-fashioned to me, and rather shouty). But also, since SQL often makes extensive use of function call nesting, this is detrimental to the readability of longer SQL code blocks. This, to me, very much points to SQL as being a pseudo-programming language.
 
 ## Complexity and testing
 Once SQL queries start to get longer, an uncanny feeling starts to creep up on me. Why is there so much code needed to get some stuff from the database? Is the structure of the database that complex?
