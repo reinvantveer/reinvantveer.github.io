@@ -196,3 +196,34 @@ So, this script will not only verify that we have a _real_ `iface` object instea
 also instantiate our plugin (called `namari`) to hook directly into the QGIS application. For comparison: you can
 import `iface` from `qgis.utils` at any time from any python script, but the `iface` object will be `None` unless you
 import it inside a running QGIS application - or from this  `qgis_testrunner.sh`.
+
+Now that we have the beginnings of our Python integration test script, we can call it using `qgis_testrunner.sh`.
+
+We expand our Dockerfile by:
+- copying our plugin, 
+- using [`pb_tool`](https://pypi.org/project/pb-tool/) to deploy the plugin files to the QGIS plugins dir, 
+- add the plugins dir to the PYTHONPATH and 
+- call the test script 
+
+```dockerfile
+FROM qgis/qgis:release-3_18
+# You should consider using pipenv for dependency management
+RUN pip install pb_tool
+
+WORKDIR plugin
+# Copy all your plugin files to the plugin working directory
+COPY . ./
+
+# Put the rather long path to the standard plugins dir in a PLUGIN_DIR environment variable for re-use
+ENV PLUGIN_DIR=/QGIS/build/output/python/plugins
+
+# Deploy plugin to standard plugins dir using pb_tool
+RUN pb_tool deploy --config_file pb_tool_docker.cfg --plugin_path $PLUGIN_DIR --no-confirm
+
+# Run the integration tests by using the test script
+ENV PYTHONPATH=$PYTHONPATH:/namari/test:$PLUGIN_DIR
+RUN xvfb-run qgis_testrunner.sh integration_test
+
+```
+
+And `qgis_testrunner.sh` will run your integration tests!
