@@ -1,5 +1,6 @@
 ---
-title: QGIS plugin development layout: post
+title: QGIS plugin development 
+layout: post
 ---
 
 # TL;DR:
