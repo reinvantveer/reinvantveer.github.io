@@ -192,4 +192,7 @@ def run_all() -> None:
 
 ```
 
-So, this script will not only verify that we have a _real_ `iface` object instead of a stubbed or empty one, but it will also instantiate our plugin (called `namari`) to hook directly into the QGIS application. For comparison: you can import `iface` from `qgis.utils` at any time, but unless you import it from this special script using the test runner method described 
+So, this script will not only verify that we have a _real_ `iface` object instead of a stubbed or empty one, but it will
+also instantiate our plugin (called `namari`) to hook directly into the QGIS application. For comparison: you can
+import `iface` from `qgis.utils` at any time from any python script, but the `iface` object will be `None` unless you
+import it inside a running QGIS application - or from this  `qgis_testrunner.sh`.
