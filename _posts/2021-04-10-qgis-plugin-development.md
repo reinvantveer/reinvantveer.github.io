@@ -41,7 +41,7 @@ useful tool for the job. Particularly helpful for example is
 the [setting where new polygon parts overlapping with already present objects can be automatically clipped (see tutorial part 15-17)](https://www.qgistutorials.com/en/docs/3/digitizing_basics.html#procedure)
 , then select "Avoid overlap on active layer":
 
-![Avoid overlap on active layer digitizing settings](../images/qgis/qgis-avoid-overlap-on-active-layer.png)
+![Avoid overlap on active layer digitizing settings](/images/qgis/qgis-avoid-overlap-on-active-layer.png)
 
 For heavy digitigers, this option will save you hours of work and delivers clean maps with non-overlapping polygons.
 
@@ -96,7 +96,7 @@ Central in the understanding of the connection between the Python `qgis` namespa
 the `iface`. This `iface` object can be accessed from a running QGIS Python console (just press Ctrl-Alt-P to start
 one):
 
-![The `iface` object in a running QGIS Python console](../images/qgis-python-console-iface-object.png)
+![The `iface` object in a running QGIS Python console](/images/qgis-python-console-iface-object.png)
 
 This `iface` object gives you an instance of a `qgis.gui.QgisInterface`, which kind of is the bridge between a plugin and
 events in QGIS. This is why practically all QGIS Python plugins are instantiated by passing (or you could say
