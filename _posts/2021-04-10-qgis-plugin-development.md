@@ -5,10 +5,15 @@ layout: post
 
 # TL;DR:
 
-This post discusses how to design integration tests for python plugin scripts that target QGIS version something like
-3.18. They were tested on 3.18. If you're targeting a newer version, things may not work as explained here.
+This isn't a beginners' guide to QGIS plugin development, there
+are [other](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#writing-a-plugin)
+excellent [resources](https://medium.com/@abesingh1/writing-qgis-plugin-using-python-3-a-beginners-guide-ddf0be7e5357)
+out [there](https://snorfalorpagus.net/blog/2014/01/04/writing-unit-tests-for-qgis-python-plugins/) (although some of
+them may be somewhat dated, as this post will some day be as well). This post discusses how to design integration tests
+for python plugin scripts that target QGIS version something like 3.18. They were tested on 3.18. If you're targeting a
+newer version, things may not work as explained here.
 
-1. Use [this Docker image](https://hub.docker.com/layers/qgis/qgis/latest/images/sha256-31926216a3bea81550a63accd5787592ddd602386ac5355a8e0a32e3b69c7385?context=explore)
+1. Use [this QGIS Docker image](https://hub.docker.com/layers/qgis/qgis/latest/images/sha256-31926216a3bea81550a63accd5787592ddd602386ac5355a8e0a32e3b69c7385?context=explore)
 to run your integration tests
 1. Derive your own Dockerfile from this image, copy your plugin and tests into the image
 1. Install the plugin to `/QGIS/build/output/python/plugins` (possibly subject to future change)
@@ -26,15 +31,14 @@ to run your integration tests
 
 # QGIS is awesome
 
-QGIS, as a (the?) premier GIS client software - is one of my favorite open source projects. Not just because I'm a
-geospatial developer/researcher but also because it's both well-maintained and I have seen the fantastic development it
-has gone through over the previous years. It gained a ton of features and a lot more stability along the way. Not that
-there's no rough edges, but rough edges are in _any_ piece of software basically, it's why software (like art, a quote
-attributed to Da Vinci) is never truly finished (it just gets abandoned at some point).
+[QGIS](https://qgis.org/), as a (the?) premier GIS client software - is one of my favorite open source projects. Not
+just because I'm a geospatial developer/researcher but also because I have seen the fantastic development it has gone
+through over the years. It gained a ton of features and a lot more stability along the way. Not that there's no rough
+edges, but rough edges are in _any_ piece of software if you dig deep enough.
 
-I have been a long-term user of QGIS although I never acquainted myself with all the nooks and crannies of the package.
-However I recently followed an (internal) masterclass on using the
-fancy [Atlas](https://www.qgistutorials.com/en/docs/automating_map_creation.html) feature that lets you auto-generate
+Although I have been a QGIS user for quite some time, although I never acquainted myself with all the nooks and crannies
+of the package. However I recently followed an (internal) masterclass on using the
+[Atlas](https://www.qgistutorials.com/en/docs/automating_map_creation.html) feature that lets you auto-generate
 templated fancy cartographic layouts of your data. Nowadays I'm more of a "what did I actually produce using this
 {script,query,export}?" user of QGIS, but I did extensive mapping and editing previously and I found it an extremely
 useful tool for the job. Particularly helpful for example is
@@ -43,7 +47,7 @@ the [setting where new polygon parts overlapping with already present objects ca
 
 ![Avoid overlap on active layer digitizing settings](/images/qgis/qgis-avoid-overlap-on-active-layer.png)
 
-For heavy digitigers, this option will save you hours of work and delivers clean maps with non-overlapping polygons.
+For heavy digitisers, this option will save you hours of work and delivers clean maps with non-overlapping polygons.
 
 But I digress.
 
