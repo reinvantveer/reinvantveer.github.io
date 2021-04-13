@@ -13,6 +13,10 @@ them may be somewhat dated, as this post will some day be as well). This post di
 for python plugin scripts that target QGIS version something like 3.18. They were tested on 3.18. If you're targeting a
 newer version, things may not work as explained here.
 
+My take on the approach is [all open here](https://github.com/reinvantveer/namari)
+
+My [Dockerfile is here](https://github.com/reinvantveer/namari/blob/main/Dockerfile), and the [integration test is here](https://github.com/reinvantveer/namari/blob/main/test/integration_test.py). The test is run using this [GitHub Actions spec](https://github.com/reinvantveer/namari/blob/main/.github/workflows/build.yml).
+
 1. Use [this QGIS Docker image](https://hub.docker.com/layers/qgis/qgis/latest/images/sha256-31926216a3bea81550a63accd5787592ddd602386ac5355a8e0a32e3b69c7385?context=explore)
 to run your integration tests
 1. Derive your own Dockerfile from this image, copy your plugin and tests into the image
@@ -23,7 +27,15 @@ to run your integration tests
    normally call as well to instantiate your plugin and it should be part of the integration test to verify it's working
    correctly.
 1. Put your (calls to) integration tests in this function.
-1. Add a `print('Ran OK')` line in your test, otherwise the integration script will not recognize the test as successful.
+1. If you use the standard lib `unittest` module and define a `class MyTestCase(unittest.TestCase), and execute it using
+   something like
+    ```python
+    def run_all() -> None:
+        suite = unittest.TestLoader().loadTestsFromTestCase(MyTestCase)
+        assert unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful()
+
+    ```   
+1. If you want to write `pytest` tests, add a `print('Ran OK')` line in your `run_all` function, otherwise the integration script will not recognize the test as successful.
 1. `COPY` over the integration test to the image
 1. `RUN` the test using `RUN xvfb-run qgis_testrunner.sh {insert_your_test_script_filename}` _without_ the .py
    file extension!
