@@ -36,7 +36,9 @@ aspects:
 - It uses _no programmable chips_ anywhere except for the ROMs of course. That means that all the address decoding logic, 
   power-on reset circuitry and data acknowledgement circuitry is implemented in TTL logic. The chip count is, 
   expectedly, on the large size with 36 (!) chips on a pretty sizeable board. The upside is, of course, the cost: the 
-  TS2 board was supposedly a lot cheaper to build than Motorola's own Educational Computer Board.
+  TS2 board was supposedly a lot cheaper to build than [Motorola's own Educational Computer 
+  Board](http://www.easy68k.com/paulrsm/mecb/mecb.htm) that went for a [rather pricey $495
+  ](http://www.s100computers.com/My%20System%20Pages/68000%20Board/The%20M68000%20Educational%20Computer%20Board.pdf.)
 - Despite the chip count, only 32kb of ROM and 32kb of RAM are available. This makes sense from an educational point of
   view: there's no requirement for large software packages to run on this kind of hardware.
 - It has a "single-stepping" (or more aptly a single-bus-cycle-stepping) circuit that can be operated using physical 
