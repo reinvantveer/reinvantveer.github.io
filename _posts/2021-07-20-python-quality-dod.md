@@ -93,11 +93,10 @@ well. Often, there's little time involved in type-checking your code. If you nee
 [here](https://flake8.pycqa.org/en/latest/user/configuration.html)):
 ```ini
 [flake8]
-exclude =
-    # The .git folder only holds version control information
-    .git,
-    # Cached directories only hold compiled Python files that can't be checked
-    __pycache__,
+# The .git folder only holds version control information
+# Cached directories only hold compiled Python files that can't be checked
+# Build and dist directories contain derived artifacts
+exclude = .git, __pycache__, build, dist
 max-complexity = 10
 # Use modern IDE line length settings as default. We're not in teletype-age anymore
 max-line-length = 121
