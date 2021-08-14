@@ -1,11 +1,11 @@
 # Site settings
 title: "Rein van 't Veer"
 email: rein @at@ vantveer dot me
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   Rein van 't Veer, geospatial and semantic web developer.
   All content copyright Rein van 't Veer CC-BY-SA
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://reinvantveer.github.io" # the base hostname & protocol for your site
+url: "https://reinvantveer.github.io" # the base hostname & protocol for your site
 twitter_username: reinvantveer
 github_username:  reinvantveer
 repository: reinvantveer/reinvantveer.github.io
