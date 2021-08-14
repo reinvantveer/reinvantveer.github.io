@@ -119,9 +119,9 @@ Use mypy and add to your `setup.cfg`:
 ```ini
 [mypy]
 # Don't allow the `Any` type
-disallow_any_expr: True
+disallow_any_expr = True
 # Skip checking site packages for typing
-no_site_packages: True
+no_site_packages = True
 # Require type hints on all functions and methods
 disallow_untyped_defs = True
 ```
