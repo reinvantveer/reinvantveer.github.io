@@ -118,12 +118,18 @@ python helps for no less than three quality aspects:
 Use mypy and add to your `setup.cfg`:
 ```ini
 [mypy]
+# Ignore dependencies that do not have typings - otherwise this renders many libraries useless
+ignore_missing_imports = True
 # Don't allow the `Any` type
-disallow_any_expr = True
+disallow_any_explicit = True
 # Skip checking site packages for typing
 no_site_packages = True
 # Require type hints on all functions and methods
 disallow_untyped_defs = True
+# Disallows defining functions with incomplete type annotations.
+disallow_incomplete_defs = True
+# Type-checks the interior of functions without type annotations.
+check_untyped_defs = True
 ```
 
 ### Use a dependency manager for your installed libraries
