@@ -13,7 +13,7 @@ published: false
 ## Kubernetes Operators
 
 In the past few weeks or so, I followed up on an idea I had that had been lingering in my mind for a while. Something
-that showed particular promise, but I hadn't found the time to dig into. I have been developing operators for a few
+that showed particular promise, but I hadn't found the time to dig into. I had been Operator development for a few
 months and had the distinct feeling that things could be improved significantly. But more on that later, first we look
 into operators for a short
 moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are central to doing
@@ -59,7 +59,7 @@ Important to know is that:
 
 ## Your own operator
 
-So, why would you want to develop your own operator? Well, let's imagine that your organisation offers a particular
+So, why would you want to develop your own operator? Well, maybe your organisation offers a particular
 product, let's say some kind of communications service. Once your organisation chooses to use Kubernetes to deploy this
 application, you can define your own resource type that describes the deployment of this application. You can define
 security parameters, the way it is exposed to the outside world, the data storage it uses to persist information, the
