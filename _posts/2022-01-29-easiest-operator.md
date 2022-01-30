@@ -3,6 +3,12 @@ layout: post
 title: The easiest road to operator development
 published: false
 ---
+<figure>
+  <img src="/images/generated-k8s-operator-using-argo-events.png" alt="Kubernetes Operator using Argo Events. An AI impression."/>
+  <figcaption>"Kubernetes Operator using Argo Events". An AI impression. Source: 
+    <a href="https://vision-explorer.allenai.org/text_to_image_generation">Allen Institute for AI Computer Vision Explorer</a>
+  </figcaption>
+</figure>
 
 ## Kubernetes Operators
 
@@ -16,6 +22,13 @@ application or something else, is the way that you intended it to be. In kuberne
 reconciliation of the state of a particular resource type. 
 
 ## Why Operators exist
+
+<figure>
+  <img src="/images/generated-extending-k8s-api.jpg">
+  <figcaption>"Extending the Kubernetes API", an AI-generated impression. Source:
+    <a href="https://vision-explorer.allenai.org/text_to_image_generation">DeepAI.org Text To Image API</a>
+  </figcaption>
+</figure>
 
 In practice it means that an operator is responsible for the life cycle of a resource type of your own design. For
 example a particular database type, say [PostgreSQL](https://www.postgresql.org/), or something completely different. Of
@@ -50,10 +63,19 @@ So, why would you want to develop your own operator? Well, let's imagine that yo
 product, let's say some kind of communications service. Once your organisation chooses to use Kubernetes to deploy this
 application, you can define your own resource type that describes the deployment of this application. You can define
 security parameters, the way it is exposed to the outside world, the data storage it uses to persist information, the
-amount of resources like memory and CPU it is allowed to take up, etcetera. If your application is relatively simple,
-you may use Helm to translate this application definition to Kubernetes resources and if you can you probably should.
-But if your self-defined application definition requires more complicated logic, Helm is not such a good idea. Trying to
-put lots of "business logic" inside Helm templates results in very hard to maintain Helm charts - Helm is without a
+amount of resources like memory and CPU it is allowed to take up, etcetera. 
+
+<figure>
+  <img src="/images/generated-curly-braces-all-over-the-place.png"/>
+  <figcaption>"Curly braces all over the place". An AI-generated impression. Source:
+    <a href="https://vision-explorer.allenai.org/text_to_image_generation">DeepAI.org Text To Image API</a>
+  </figcaption>
+</figure>
+
+If your application is relatively simple, you may use [Helm](https://helm.sh/) so you don't need a custom resource to
+describe your application to Kubernetes resources. If you can, you probably should. But if your self-defined application
+definition requires more complicated logic, Helm is not such a good idea. Trying to put lots of "business logic" inside
+Helm templates results in very hard to maintain Helm charts with curly braces all over the place. - Helm is without a
 doubt a very useful tool and it will stay being a very useful tool even when you decide to write your own operator: you
 can use Helm to deploy the operator! We'll see this in a moment.
 
