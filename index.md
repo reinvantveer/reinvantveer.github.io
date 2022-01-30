@@ -6,7 +6,11 @@ layout: default
     <br/>
     <p><img src="./images/IMG_0150_25_pct.JPG" height="200px"/></p>
     <h2>Rein van 't Veer, geospatial data scientist</h2>
-    <p>Geospatial data scientist, specialised in geodata engineering, geospatial machine learning, and geodata application development. Working for <a href="https://geodan.nl">Geodan</a> in the Netherlands.</p>
+    <p>
+        Geospatial data scientist, specialised in geodata engineering, Kubernetes or otherwise, geospatial machine 
+        learning, and Python and Rust application development. Self-employed/freelancer at 
+        <a href="https://antfield.nl">Antfield Creations</a> in the Netherlands.
+    </p>
     
 
   <h1 class="page-heading">Posts</h1>
