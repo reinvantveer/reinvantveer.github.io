@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The easiest road to operator development
+title: The easiest road to K8s Operator development using Argo Events
 published: false
 ---
 <figure>
@@ -24,7 +24,7 @@ reconciliation of the state of a particular resource type.
 ## Why Operators exist
 
 <figure>
-  <img src="/images/generated-extending-k8s-api.jpg">
+  <img src="/images/generated-extending-k8s-api.jpg" alt="Extending the Kubernetes API, an AI-generated impression">
   <figcaption>"Extending the Kubernetes API", an AI-generated impression. Source:
     <a href="https://vision-explorer.allenai.org/text_to_image_generation">DeepAI.org Text To Image API</a>
   </figcaption>
@@ -66,7 +66,7 @@ security parameters, the way it is exposed to the outside world, the data storag
 amount of resources like memory and CPU it is allowed to take up, etcetera. 
 
 <figure>
-  <img src="/images/generated-curly-braces-all-over-the-place.png"/>
+  <img src="/images/generated-curly-braces-all-over-the-place.png" alt="Curly braces all over the place. An AI-generated impression."/>
   <figcaption>"Curly braces all over the place". An AI-generated impression. Source:
     <a href="https://vision-explorer.allenai.org/text_to_image_generation">DeepAI.org Text To Image API</a>
   </figcaption>
