@@ -100,14 +100,14 @@ some state changes occured, such as completing the ingestion of a data set. Argo
 that it can listen to, and if that isn't enough you can even define your own. Argo Events splits event handling into
 consituent parts:
 
-- an EventBus, which will keep event messages until handled,
-- an EventSource, which will put a message on an event bus for a particular state change,
-- a Sensor, which will listen on the event bus for particular messages and translate these into actions
+- an [EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/), which will keep event messages until handled,
+- an [EventSource](https://argoproj.github.io/argo-events/concepts/event_source/), which will put a message on an event bus for a particular state change,
+- a [Sensor](https://argoproj.github.io/argo-events/concepts/sensor/), which will listen on the event bus for particular messages and translate these into actions
 
-This system alone is a very nice "multi-producer/multi-consumer" kind of message bus that you may compare with products
-like RabbitMQ (with which I had favourable experience) and Kafka (with which I have no experience). The big difference
-is that Argo Events is, like all Argo ecosystem products, tightly integrated with Kubernetes. This means that it is much
-more "cloud native".
+This system alone is a very nice message bus that you may compare with products
+like [RabbitMQ](https://www.rabbitmq.com/) (with which I had favourable experience)
+and [Kafka](https://kafka.apache.org/) (with which I have no experience). The big difference is that Argo Events is,
+like all Argo ecosystem products, built to work with Kubernetes. This means that it is much more "cloud native".
 
 One thing that struck me is that EventSources can put a message on the bus on the appearance, change or disapperance
 of _any_ resource kind in the cluster. Sounds familiar? It's exactly the same role as the main responsibility of
