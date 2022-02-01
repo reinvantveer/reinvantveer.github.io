@@ -109,7 +109,7 @@ like [RabbitMQ](https://www.rabbitmq.com/) (with which I had favourable experien
 and [Kafka](https://kafka.apache.org/) (with which I have no experience). The big difference is that Argo Events is,
 like all Argo ecosystem products, built to work with Kubernetes. This means that it is much more "cloud native".
 
-One thing that struck me is that EventSources can put a message on the bus on the appearance, change or disapperance
+One thing that struck me is that EventSources can put a message on the bus on the creation, change or deletion
 of _any_ resource kind in the cluster. Sounds familiar? It's exactly the same role as the main responsibility of
 Operators: to listen to particular custom resources and act on them. So, what if you could use Argo Events to define
 your Operator, using just that or maybe a few scripts to handle the "business logic" part of the custom resource
