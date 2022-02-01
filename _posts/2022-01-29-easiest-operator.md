@@ -152,4 +152,14 @@ install the `argo` command line tool, I found it to be of little use.
 
 ### 3. Install the Memcached custom resource definition
 
-This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible.
+This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible. 
+
+```yaml
+{% include crd.yaml %}
+```
+
+You can simply install this with 
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/crd.yaml
+```
