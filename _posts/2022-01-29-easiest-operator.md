@@ -120,3 +120,36 @@ learning curve. But once I saw on how to combine Argo Events and Argo Workflows,
 better than _any_ current special-purpose operator framework and at the same time, it is useful for _a lot more_ as
 well!
 
+## Let's dig in
+
+So to see this experiment in action, we are going
+to [replicate a tutorial from the Operator SDK](https://sdk.operatorframework.io/docs/building-operators/ansible/tutorial/)
+and create an operator that handles [Memcached](https://www.memcached.org/) deployments. Since I have not used Memcached
+for anything myself, I can offer little information on its purpose other than that you can use it to take load of your
+web services by caching http requests, for example. The idea is that, if your http gateway has handled a particular http
+request, Memcached can keep a copy of the response and serve it much faster because the web service or database the
+response originated from does not have to go through the operation of assembling the response. This does leave you with
+the classic hard question on when to invalidate the cache - one of the
+purportedly ["two hard things in Computer Science"](https://www.martinfowler.com/bliki/TwoHardThings.html).
+
+### 1. Install Argo Events
+
+The simple solution:
+follow [these steps](https://argoproj.github.io/argo-events/installation/#cluster-wide-installation). To keep things
+very simple, we'll go with the cluster-wide installation for now. 
+
+### 2. Install Argo Workflows, mainly for Argo Server
+
+Follow [these steps](https://argoproj.github.io/argo-workflows/quick-start/). Why do we
+need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Well, technically we don't but you really, really do
+want this extraordinarily fine piece of software. Think of Workflows as much, much better versions
+of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/). 
+
+The most important part here is that the
+installation comes with [Argo Server](https://argoproj.github.io/argo-workflows/argo-server/), the UI that allows you to
+inspect both EventSources, Sensors and, if you generate them from the Sensor triggers, Workflows. I'd skip the step to
+install the `argo` command line tool, I found it to be of little use.
+
+### 3. Install the Memcached custom resource definition
+
+This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible.
