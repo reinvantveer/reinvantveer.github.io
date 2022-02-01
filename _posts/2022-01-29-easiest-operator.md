@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The easiest road to K8s Operator development using Argo Events
+title: The "easy" way to K8s Operator development using Argo Events
 published: false
 ---
 <figure>
