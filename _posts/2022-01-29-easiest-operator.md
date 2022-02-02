@@ -155,11 +155,11 @@ install the `argo` command line tool, I found it to be of little use.
 This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible. 
 
 ```yaml
-{% include crd.yaml %}
+{% include memcached/crd.yaml %}
 ```
 
 You can simply install this with 
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 ```
