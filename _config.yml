@@ -18,3 +18,4 @@ exclude:
   - node_modules
   - plugin/markdown/example.md
   - css/theme/README.md
+  - .github
