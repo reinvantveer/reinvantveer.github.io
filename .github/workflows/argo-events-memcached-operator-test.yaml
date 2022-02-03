@@ -1,0 +1,33 @@
+on: workflow_dispatch
+
+jobs:
+  testInstallation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install k3s
+        uses: debianmaster/actions-k3s@master
+        id: k3s
+        with:
+          version: 'latest'
+
+      - name: Create namespaces
+        run: |
+          for ns in "argo-events argo-workflows memcached"
+          do 
+              kubectl create ns ${ns}
+          done
+
+      - name: Install Argo Events cluster-wide (don't do this in production)
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install.yaml
+          # Install with a validating admission controller
+          kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install-validating-webhook.yaml
+
+      - name: Install EventBus
+        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
+
+      - name: Install Argo Workflows
+        run: kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
+
+      - name: Install the Memcached custom resource definition
+        run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
