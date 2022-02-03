@@ -1,7 +1,7 @@
 on: workflow_dispatch
 
 jobs:
-  testInstallation:
+  test-operator-installation:
     runs-on: ubuntu-latest
     steps:
       - name: Install k3s
@@ -12,9 +12,9 @@ jobs:
 
       - name: Create namespaces
         run: |
-          for ns in "argo-events argo memcached";
+          for ns in argo-events argo memcached
           do 
-              kubectl create ns ${ns};
+              kubectl create ns ${ns}
           done
 
       - name: Install Argo Events cluster-wide (don't do this in production)
