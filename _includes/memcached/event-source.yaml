@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: memcached-source
+spec:
+  template:
+    serviceAccountName: argo-events-sa # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+  resource:
+    memcached:
+      namespace: memcached
+      group: memcacheds.example.com
+      version: v1alpha1
+      resource: memcacheds
+      eventTypes:
+        - ADD
+        - UPDATE
+      filter:
+        afterStart: true
