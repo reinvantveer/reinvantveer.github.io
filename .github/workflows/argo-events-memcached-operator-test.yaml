@@ -37,3 +37,6 @@ jobs:
 
       - name: Install the Sensor in the argo-events namespace
         run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
+
+      - name: Deploy our Memcached resource
+        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml

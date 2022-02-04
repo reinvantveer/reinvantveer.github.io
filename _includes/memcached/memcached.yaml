@@ -1,0 +1,6 @@
+---
+apiVersion: cache.example.com/v1alpha1
+kind: Memcached
+spec:
+  # Let's try it out!
+  size: 3

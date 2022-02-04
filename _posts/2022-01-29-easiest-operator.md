@@ -187,3 +187,15 @@ You can install this with
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
 ```
+
+### 6. Let's go!
+
+```yaml
+{% include memcached/memcached.yaml %}
+```
+
+Or
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+```
