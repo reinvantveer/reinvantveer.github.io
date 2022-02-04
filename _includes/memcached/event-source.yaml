@@ -8,7 +8,7 @@ spec:
   resource:
     memcached:
       namespace: memcached
-      group: memcacheds.example.com
+      group: cache.example.com
       version: v1alpha1
       resource: memcacheds
       eventTypes:
