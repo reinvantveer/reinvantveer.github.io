@@ -179,11 +179,11 @@ kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.git
 ### 5. Install the Sensor
 
 ```yaml
-{% include memcached/event-source.yaml %}
+{% include memcached/sensor.yaml %}
 ```
 
 You can install this with
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
 ```
