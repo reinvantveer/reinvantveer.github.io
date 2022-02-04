@@ -163,3 +163,15 @@ You can simply install this with
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 ```
+
+### 4. Install the EventSource
+
+```yaml
+{% include memcached/event-source.yaml %}
+```
+
+You can install this with 
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+```
