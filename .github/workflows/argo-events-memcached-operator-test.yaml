@@ -32,5 +32,8 @@ jobs:
       - name: Install the Memcached custom resource definition
         run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 
-      - name: Install the EventSource
-        run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+      - name: Install the EventSource in the argo-events namespace
+        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+
+      - name: Install the Sensor in the argo-events namespace
+        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
