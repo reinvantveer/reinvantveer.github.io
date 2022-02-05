@@ -198,7 +198,7 @@ kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.git
 You can install this with
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
 ```
 
 ### 6. Let's go!
@@ -210,5 +210,5 @@ kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.git
 Or
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
 ```
