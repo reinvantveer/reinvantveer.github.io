@@ -22,6 +22,8 @@ rules:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
+metadata:
+  name: memcached-rb
 roleRef:
   name: memcached-role
   apiGroup: cache.example.com
