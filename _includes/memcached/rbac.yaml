@@ -26,5 +26,5 @@ metadata:
   name: memcached-rb
 roleRef:
   name: memcached-role
-  apiGroup: cache.example.com
-  kind: Memcached
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
