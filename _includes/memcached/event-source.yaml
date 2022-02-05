@@ -4,7 +4,8 @@ metadata:
   name: memcached-source
 spec:
   template:
-    serviceAccountName: argo-events-sa # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+    # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+    serviceAccountName: memcached-sa
   resource:
     memcached:
       group: cache.example.com
