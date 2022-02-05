@@ -7,7 +7,6 @@ spec:
     serviceAccountName: argo-events-sa # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
   resource:
     memcached:
-      namespace: memcached
       group: cache.example.com
       version: v1alpha1
       resource: memcacheds
