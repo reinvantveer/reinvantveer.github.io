@@ -164,6 +164,19 @@ You can simply install this with
 kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 ```
 
+### 4. Create the service account and access rights
+By default, the Kubernetes API doesn't allow access to our newly devised custom resource. By basically anything - we
+need to tell the Kubernetes API that it's OK, provided a special service account is used to access it. Like the custom 
+resource definition, this is basic Operator engineering 101. This will be our `memcached-sa` service account, that comes
+with the associated rights:
+
+{% include memcached/rbac.yaml %}
+
+Install with:
+```shell
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
+```
+
 ### 4. Install the EventSource
 
 ```yaml

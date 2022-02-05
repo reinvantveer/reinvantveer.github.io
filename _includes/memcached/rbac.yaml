@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: memcached-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: memcached-role
+kind: Role
+rules:
+  - verbs:
+      - get
+      - patch
+      - post
+      - put
+      - delete
+    resources:
+      - memcacheds
+    apiGroups:
+      - cache.example.com
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+roleRef:
+  name: memcached-role
+  apiGroup: cache.example.com
+  kind: Memcached
