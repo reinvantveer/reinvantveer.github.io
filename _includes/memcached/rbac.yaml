@@ -1,17 +1,15 @@
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: memcached-sa
----
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: memcached-role
-kind: Role
+kind: ClusterRole
 rules:
   - verbs:
       - get
+      - list
+      - watch
       - patch
+      - update
       - post
       - put
       - delete
@@ -21,10 +19,20 @@ rules:
       - cache.example.com
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: memcached-rb
 roleRef:
   name: memcached-role
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
+subjects:
+  - kind: ServiceAccount
+    name: memcached-sa
+    namespace: argo-events
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: memcached-sa
+  namespace: argo-events
