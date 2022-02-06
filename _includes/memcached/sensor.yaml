@@ -5,7 +5,7 @@ metadata:
   name: memcached-sensor
 spec:
   template:
-    serviceAccountName: argo-events-sa
+    serviceAccountName: memcached-sa
   dependencies:
     - name: source-dependency
       # References the metadata.name in the event source
