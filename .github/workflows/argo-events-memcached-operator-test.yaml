@@ -35,8 +35,14 @@ jobs:
       - name: Install the rule-based access control (RBAC) config
         run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
 
-      - name: Validate that the rules allow deploying Memcached resources
-        run: kubectl -n operators auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:operators:memcached-sa
+      - name: Validate that the rules allow watching Memcached resources
+        run: kubectl -n argo-events auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:operators:memcached-sa
+
+      - name: Validate that the rules allow creating Deployments
+        run: kubectl -n argo-events auth can-i create deployments --as=system:serviceaccount:operators:memcached-sa
+
+      - name: Validate that the rules allow creating Workflows
+        run: kubectl -n argo-events auth can-i create workflows.argoproj.io/workflows --as=system:serviceaccount:operators:memcached-sa
 
       - name: Install the EventSource in the argo-events namespace
         run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
