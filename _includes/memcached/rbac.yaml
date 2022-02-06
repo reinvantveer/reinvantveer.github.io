@@ -7,6 +7,7 @@ rules:
   - verbs:
       - get
       - list
+      - create
       - watch
       - patch
       - update
@@ -15,8 +16,14 @@ rules:
       - delete
     resources:
       - memcacheds
+      - workflows
+      - deployments
+      - pods
     apiGroups:
-      - cache.example.com
+      - memcached.cache.example.com
+      - argoproj.io
+      - apps
+      - ""  # Core API group: for pods
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
