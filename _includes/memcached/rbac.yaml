@@ -20,7 +20,7 @@ rules:
       - deployments
       - pods
     apiGroups:
-      - memcached.cache.example.com
+      - cache.example.com
       - argoproj.io
       - apps
       - ""  # Core API group: for pods
