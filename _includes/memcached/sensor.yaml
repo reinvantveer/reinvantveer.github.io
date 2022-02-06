@@ -14,9 +14,9 @@ spec:
       eventName: memcached
   triggers:
     - template:
-        name: deploy-trigger
-        k8s:
-          operation: create
+        name: argo-workflow-trigger
+        argoWorkflow:
+          operation: submit
           source:
             resource:
               apiVersion: apps/v1
