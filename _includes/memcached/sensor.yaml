@@ -19,10 +19,10 @@ spec:
           operation: submit
           source:
             resource:
-              apiVersion: apps/v1
-              kind: Deployment
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
               metadata:
-                name: memcached
+                generateName: deploy-memcached-workflow-
               spec:
                 serviceAccountName: argo-events-sa
                 # This value gets overridden, see the template.k8s.parameter below
