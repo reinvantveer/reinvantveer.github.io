@@ -38,17 +38,12 @@ jobs:
       - name: Install the rule-based access control (RBAC) config
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
 
-      - name: Validate that the rules allow watching Memcached resources
-        run: kubectl -n ${EVENTS_NS} auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
-
-      - name: Validate that the rules allow creating Deployments
-        run: kubectl -n ${EVENTS_NS} auth can-i create deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
-
-      - name: Validate that the rules allow creating Pods
-        run: kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
-
-      - name: Validate that the rules allow creating Workflows
-        run: kubectl -n ${EVENTS_NS} auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+      - name: Validate that the rules allow watching Memcached resources, create Deployments, Pods, Workflows
+        run: |
+          kubectl -n ${EVENTS_NS} auth can-i list   memcached.cache.example.com/memcacheds --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+          kubectl -n ${EVENTS_NS} auth can-i create deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+          kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+          kubectl -n ${EVENTS_NS} auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Install the EventSource in the events namespace
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
