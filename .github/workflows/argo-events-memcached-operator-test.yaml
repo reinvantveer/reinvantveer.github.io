@@ -53,3 +53,8 @@ jobs:
 
       - name: Deploy our Memcached resource
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+
+      - name: Validate that a Workflow was created
+        run: |
+          sleep 10
+          kubectl get -n ${EVENTS_NS} workflows
