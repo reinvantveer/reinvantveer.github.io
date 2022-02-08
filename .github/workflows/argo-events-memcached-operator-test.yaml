@@ -42,7 +42,7 @@ jobs:
         run: kubectl -n ${EVENTS_NS} auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Validate that the rules allow creating Deployments
-        run: kubectl -n ${EVENTS_NS} auth can-i create apps/deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+        run: kubectl -n ${EVENTS_NS} auth can-i create deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Validate that the rules allow creating Pods
         run: kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
