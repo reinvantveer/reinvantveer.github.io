@@ -3,6 +3,9 @@ on: workflow_dispatch
 jobs:
   test-operator-installation:
     runs-on: ubuntu-latest
+    env:
+      EVENTS_NS: argo-events
+
     steps:
       - name: Install k3s
         uses: debianmaster/actions-k3s@master
@@ -24,7 +27,7 @@ jobs:
           kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install-validating-webhook.yaml
 
       - name: Install EventBus
-        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
+        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
 
       - name: Install Argo Workflows
         run: kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
@@ -33,25 +36,25 @@ jobs:
         run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 
       - name: Install the rule-based access control (RBAC) config
-        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
+        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
 
       - name: Validate that the rules allow watching Memcached resources
-        run: kubectl -n argo-events auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:operators:memcached-sa
+        run: kubectl -n ${EVENTS_NS} auth can-i list memcached.cache.example.com/memcacheds --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Validate that the rules allow creating Deployments
-        run: kubectl -n argo-events auth can-i create apps/deployments --as=system:serviceaccount:operators:memcached-sa
+        run: kubectl -n ${EVENTS_NS} auth can-i create apps/deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Validate that the rules allow creating Pods
-        run: kubectl -n argo-events auth can-i create pods --as=system:serviceaccount:operators:memcached-sa
+        run: kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
       - name: Validate that the rules allow creating Workflows
-        run: kubectl -n argo-events auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:operators:memcached-sa
+        run: kubectl -n ${EVENTS_NS} auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
 
-      - name: Install the EventSource in the argo-events namespace
-        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+      - name: Install the EventSource in the events namespace
+        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
 
-      - name: Install the Sensor in the argo-events namespace
-        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
+      - name: Install the Sensor in the events namespace
+        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
 
       - name: Deploy our Memcached resource
-        run: kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
