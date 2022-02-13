@@ -1,0 +1,87 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: memcached-deploy-workflow-template
+spec:
+  templates:
+    - name: main
+      steps:
+        - - name: parameterize-replicas
+            template: operator-logic
+            arguments:
+              parameters:
+                - name: replicas
+                  value: '1'
+                - name: manifest
+                  value: |
+                    apiVersion: apps/v1
+                    kind: Deployment
+                    metadata:
+                      name: memcached-deployment
+                      labels:
+                        app: memcached
+                    spec:
+                      replicas: 1
+                      selector:
+                        matchLabels:
+                          app: memcached
+                      template:
+                        metadata:
+                          labels:
+                            app: memcached
+                        spec:
+                          containers:
+                            - name: memcached
+                              command:
+                                - memcached
+                                - -m=64
+                                - -o
+                                - modern
+                                - -v
+                              image: "docker.io/memcached:1.4.36-alpine"
+                              ports:
+                                - containerPort: 11211
+
+        - - name: print-result
+            template: print
+            arguments:
+              parameters:
+                - name: manifest
+                  value: "{{steps.parameterize-replicas.outputs.result}}"
+
+    - name: operator-logic
+      inputs:
+        parameters:
+          - name: replicas
+          - name: manifest
+      script:
+        name: set-replicas
+        image: quay.io/ansible/ansible-runner
+        command:
+          - python3
+        source: |
+          import yaml
+
+          manifest = yaml.load("""
+          {{inputs.parameters.manifest}}
+          """)
+          manifest['spec']['replicas'] = int({{inputs.parameters.replicas}})
+          result = yaml.dump(manifest)
+          print(result)
+    - name: print
+      inputs:
+        parameters:
+          - name: manifest
+      container:
+        name: print-manifest
+        image: ubuntu:latest
+        command:
+          - echo
+          - "{{inputs.parameters.manifest}}"
+
+  entrypoint: main
+  serviceAccountName: memcached-sa
+  ttlStrategy:
+    secondsAfterCompletion: 300
+  podGC:
+    strategy: OnPodCompletion
