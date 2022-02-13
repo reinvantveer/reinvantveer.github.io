@@ -17,6 +17,7 @@ rules:
     resources:
       - memcacheds
       - workflows
+      - workflowtemplates
       - deployments
       - pods
     apiGroups:
