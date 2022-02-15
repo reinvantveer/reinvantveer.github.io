@@ -94,7 +94,6 @@ spec:
         parameters:
           - name: manifest
       script:
-        name: set-replicas
         image: quay.io/ansible/ansible-runner
         command:
           - python3
