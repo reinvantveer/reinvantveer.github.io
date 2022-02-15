@@ -19,6 +19,13 @@ spec:
                 - name: content
                   value: "{{workflow.parameters.message}}"
 
+        - - name: log-operation
+            template: log
+            arguments:
+              parameters:
+                - name: content
+                  value: "{{workflow.parameters.operation}}"
+
         - - name: parameterize-replicas
             template: operator-logic
             arguments:
