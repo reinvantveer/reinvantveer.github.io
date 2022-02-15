@@ -12,6 +12,13 @@ spec:
   templates:
     - name: main
       steps:
+        - - name: log-message
+            template: log
+            arguments:
+              parameters:
+                - name: message
+                  value: "{{workflow.parameters.message}}"
+
         - - name: parameterize-replicas
             template: operator-logic
             arguments:
@@ -54,6 +61,18 @@ spec:
               parameters:
                 - name: manifest
                   value: "{{steps.parameterize-replicas.outputs.result}}"
+
+    - name: log
+      inputs:
+        parameters:
+          - name: message
+      container:
+        name: simple-logger
+        image: ubuntu:latest
+        command:
+          - echo
+        args:
+          - "{{inputs.parameters.message}}"
 
     - name: operator-logic
       inputs:
