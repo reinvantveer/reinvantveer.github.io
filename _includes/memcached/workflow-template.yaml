@@ -23,8 +23,6 @@ spec:
             template: operator-logic
             arguments:
               parameters:
-                - name: replicas
-                  value: '1'
                 - name: manifest
                   value: |
                     apiVersion: apps/v1
@@ -77,7 +75,6 @@ spec:
     - name: operator-logic
       inputs:
         parameters:
-          - name: replicas
           - name: manifest
       script:
         name: set-replicas
@@ -90,7 +87,7 @@ spec:
           manifest = yaml.load("""
           {{inputs.parameters.manifest}}
           """)
-          manifest['spec']['replicas'] = int({{inputs.parameters.replicas}})
+          manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
           result = yaml.dump(manifest)
           print(result)
     - name: print
