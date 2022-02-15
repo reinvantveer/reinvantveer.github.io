@@ -67,6 +67,16 @@ spec:
                 - name: content
                   value: "{{steps.parameterize-replicas.outputs.result}}"
 
+        - - name: map-operation-to-action
+            template: operation-mapping
+
+        - - name: log-action
+            template: log
+            arguments:
+              parameters:
+                - name: content
+                  value: "{{steps.map-operation-to-action.outputs.result}}"
+
     - name: log
       inputs:
         parameters:
@@ -98,17 +108,19 @@ spec:
           result = yaml.dump(manifest)
           print(result)
 
-    - name: print
-      inputs:
-        parameters:
-          - name: manifest
-      container:
-        name: print-manifest
-        image: ubuntu:latest
+    - name: operation-mapping
+      script:
+        image: quay.io/ansible/ansible-runner
         command:
-          - echo
-        args:
-          - "{{inputs.parameters.manifest}}"
+          - python3
+        source: |
+          mapping = {
+            "ADD": "apply",
+            "UPDATE": "apply",
+            "DELETE": "delete",
+          }
+          print(mapping["{{workflow.parameters.operation}}"])
+          
 
   entrypoint: main
   serviceAccountName: memcached-sa
