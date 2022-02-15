@@ -13,5 +13,7 @@ spec:
       resource: memcacheds
       eventTypes:
         - ADD
+        - UPDATE
+        - DELETE
       filter:
         afterStart: true
