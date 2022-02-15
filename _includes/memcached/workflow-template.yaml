@@ -90,6 +90,7 @@ spec:
           manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
           result = yaml.dump(manifest)
           print(result)
+
     - name: print
       inputs:
         parameters:
@@ -99,6 +100,7 @@ spec:
         image: ubuntu:latest
         command:
           - echo
+        args:
           - "{{inputs.parameters.manifest}}"
 
   entrypoint: main
