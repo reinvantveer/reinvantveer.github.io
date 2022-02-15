@@ -13,6 +13,7 @@ spec:
       resource: memcacheds
       eventTypes:
         # Types: https://github.com/argoproj/argo-events/blob/00e2ae801addcd362a22613a745ae424932efa40/pkg/apis/eventsource/v1alpha1/types.go#L280
+        # Listen to all lifecycle events of the specified custom resource
         - ADD
         - UPDATE
         - DELETE
