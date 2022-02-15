@@ -77,6 +77,15 @@ spec:
                 - name: content
                   value: "{{steps.map-operation-to-action.outputs.result}}"
 
+        - - name: deploy-memcached
+            template: deploy
+            arguments:
+              parameters:
+                - name: action
+                  value: "{{steps.map-operation-to-action.outputs.result}}"
+                - name: manifest
+                  value: "{{steps.parameterize-replicas.outputs.result}}"
+
     - name: log
       inputs:
         parameters:
@@ -119,7 +128,15 @@ spec:
             "DELETE": "delete",
           }
           print(mapping["{{workflow.parameters.operation}}"])
-          
+
+    - name: deploy
+      inputs:
+        parameters:
+          - name: action
+          - name: manifest
+      resource:
+        action: "{{inputs.parameters.action}}"
+        manifest: "{{inputs.parameters.manifest}}"
 
   entrypoint: main
   serviceAccountName: memcached-sa
