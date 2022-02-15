@@ -60,11 +60,11 @@ spec:
                               ports:
                                 - containerPort: 11211
 
-        - - name: print-result
-            template: print
+        - - name: log-result
+            template: log
             arguments:
               parameters:
-                - name: manifest
+                - name: content
                   value: "{{steps.parameterize-replicas.outputs.result}}"
 
     - name: log
