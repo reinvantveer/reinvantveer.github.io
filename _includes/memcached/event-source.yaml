@@ -12,6 +12,7 @@ spec:
       version: v1alpha1
       resource: memcacheds
       eventTypes:
+        # Types: https://github.com/argoproj/argo-events/blob/00e2ae801addcd362a22613a745ae424932efa40/pkg/apis/eventsource/v1alpha1/types.go#L280
         - ADD
         - UPDATE
         - DELETE
