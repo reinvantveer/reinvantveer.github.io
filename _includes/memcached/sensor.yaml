@@ -28,10 +28,10 @@ spec:
                 entrypoint: deploy-memcached-template
                 arguments:
                   parameters:
+                    # These values gets overridden, see the parameters below
                     - name: message
                       value: ""
                     - name: replicas
-                      # This value gets overridden, see the parameters below
                       value: "1"
                 templates:
                   - name: deploy-memcached-template
