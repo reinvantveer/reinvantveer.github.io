@@ -3,6 +3,12 @@ kind: WorkflowTemplate
 metadata:
   name: memcached-deploy-workflow-template
 spec:
+  arguments:
+    parameters:
+      - name: message
+        value: ""  # Overridden by Sensor workflow
+      - name: replicas
+        value: "1" # Overridden by Sensor workflow
   templates:
     - name: main
       steps:

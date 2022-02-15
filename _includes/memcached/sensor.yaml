@@ -28,9 +28,11 @@ spec:
                 entrypoint: deploy-memcached-template
                 arguments:
                   parameters:
+                    - name: message
+                      value: ""
                     - name: replicas
-                      # This value gets overridden, see the template.k8s.parameter below
-                      value: 1
+                      # This value gets overridden, see the parameters below
+                      value: "1"
                 templates:
                   - name: deploy-memcached-template
                     steps:
@@ -44,5 +46,10 @@ spec:
             - src:
                 dependencyName: source-dependency
                 # This is the `size` parameter, see the custom resource definition
-                dataKey: body.spec.size
+                dataKey: body
               dest: spec.arguments.parameters.0.value
+            - src:
+                dependencyName: source-dependency
+                # This is the `size` parameter, see the custom resource definition
+                dataKey: body.spec.size
+              dest: spec.arguments.parameters.1.value
