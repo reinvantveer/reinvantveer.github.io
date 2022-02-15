@@ -33,6 +33,8 @@ spec:
                       value: ""
                     - name: replicas
                       value: "1"
+                    - name: operation
+                      value: ""
                 templates:
                   - name: deploy-memcached-template
                     steps:
@@ -53,3 +55,9 @@ spec:
                 # This is the `size` parameter, see the custom resource definition
                 dataKey: body.spec.size
               dest: spec.arguments.parameters.1.value
+            - src:
+                dependencyName: source-dependency
+                # This is the operation parameter to the workflow, one from {ADD, UPDATE, DELETE}
+                dataKey: type
+              dest: spec.arguments.parameters.2.value
+
