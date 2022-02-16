@@ -21,7 +21,7 @@ and had the distinct feeling that things could be improved significantly. But be
 operators for a moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are
 central to doing anything in Kubernetes. Operators are controllers that make sure that a
 particular [kinds of Kubernetes "things"](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
-, be it an application or something else, ends up the way that you specified it to be. In kubernetes speak: operators
+, be it an application or something else, end up the way that you specified it to be. In kubernetes speak: operators
 are responsible for reconciliation of the desired state with the actual state for a particular 
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) type that 
 extend the Kubenetes API. Kubernetes comes with its own controllers
