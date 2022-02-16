@@ -15,7 +15,7 @@ published: true
 ## Intro: Kubernetes Operators
 
 In the past few weeks or so, I followed up on an idea I had that had been lingering in my mind for a while. Something
-that showed particular promise, but I hadn't found the time to dig into. I had been involved
+that showed particular promise, but I hadn't found the time to dig into, until now. I had been involved
 in [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) development for a few months
 and had the distinct feeling that things could be improved significantly. But before we go into detail, let's look at
 operators for a moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are
