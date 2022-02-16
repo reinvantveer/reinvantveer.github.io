@@ -152,7 +152,7 @@ The simple solution:
 follow [these steps](https://argoproj.github.io/argo-events/installation/#cluster-wide-installation). To keep things
 very simple, we'll go with the cluster-wide installation for now. 
 
-### 2. Install Argo Workflows, mainly for Argo Server
+### 2. Install Argo Workflows
 
 Follow [these steps](https://argoproj.github.io/argo-workflows/quick-start/). Why do we
 need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Well, technically we don't but you really, really do
