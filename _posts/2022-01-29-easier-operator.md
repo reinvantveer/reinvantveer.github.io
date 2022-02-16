@@ -105,19 +105,23 @@ satisfaction. We used it to ingest data from external and internal sources, most
 the data to. It has been working very nicely, and we created an operator and accompanying "custom resource definition"
 that allowed us to describe a dataset ingestion operation, which worked very well for us.
 
-Then, we started looking into Argo Events. It's a great system for letting other infrastructure components know that
-some state changes occurred, such as completing the ingestion of a data set. Argo Events has a fantastic set of sources
-that it can listen to, and if that isn't enough you can even define your own. Argo Events splits event handling into
-constituent parts:
+Then, we started looking into [Argo Events](https://argoproj.github.io/argo-events/). It's a great system for letting
+other infrastructure components know that some state changes occurred, such as completing the ingestion of a data set.
+Argo Events has a fantastic set of sources that it can listen to, and if that isn't enough you can even define your own.
+Argo Events splits event handling into nicely and cleanly separated parts with each its own responsibilities:
 
-- an [EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/), which will keep event messages until handled,
-- an [EventSource](https://argoproj.github.io/argo-events/concepts/event_source/), which will put a message on an event bus for a particular state change,
-- a [Sensor](https://argoproj.github.io/argo-events/concepts/sensor/), which will listen on the event bus for particular messages and translate these into actions
+- an [EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/), which will keep event messages until
+  handled,
+- an [EventSource](https://argoproj.github.io/argo-events/concepts/event_source/), which will put a message on an event
+  bus for a particular state change,
+- a [Sensor](https://argoproj.github.io/argo-events/concepts/sensor/), which will listen on the event bus for particular
+  messages and translate these into actions
 
 This system alone is a very nice message bus that you may compare with products
 like [RabbitMQ](https://www.rabbitmq.com/) (with which I had favourable experience)
 and [Kafka](https://kafka.apache.org/) (with which I have no experience). The big difference is that Argo Events is,
-like all Argo ecosystem products, built to work with Kubernetes. This means that it is much more "cloud native".
+like all Argo ecosystem products, built to work with Kubernetes. This means that it is probably more "cloud native" than
+other event handling systems.
 
 One thing that struck me is that EventSources can put a message on the bus on the creation, change or deletion
 of _any_ resource kind in the cluster. Sounds familiar? It's exactly the same role as the main responsibility of
