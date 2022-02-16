@@ -90,8 +90,8 @@ we're going to take a look at when you want to implement your own operator.
 
 ## Operator development and operator frameworks
 
-The current state of operator development is complex to say the least. The framework we used was the exact opposite of _
-everything_ you would want from an operator framework. The framework was complex, clunky, buggy, the framework enormous,
+The current state of operator development is complex to say the least. The framework we used was the exact opposite of 
+_everything_ you would want from an operator framework. The framework was complex, clunky, buggy, enormous,
 the operator images we made were huge, the operator itself slow and heavy on resources, and hard to maintain. Which
 framework we used doesn't matter here, this is not a framework bashing post. All I will say is that _all_ of the options
 listed under the operator frameworks to use for operator development are more complex than the one I'm about to show
@@ -100,15 +100,15 @@ it!
 
 ## Argo Events as an operator framework
 
-For about a year now, I had been using Argo Workflows to much satisfaction. We used it to ingest data from external and
-internal sources, mostly targeting PostGIS databases to pipe the data to. It has been working very nicely, and we
-created an operator and accompanying "custom resource definition" that allowed us to describe a dataset ingestion
-operation, which worked very well for us.
+For about a year now, I had been using [Argo Workflows](https://argoproj.github.io/argo-workflows/) to much
+satisfaction. We used it to ingest data from external and internal sources, mostly targeting PostGIS databases to pipe
+the data to. It has been working very nicely, and we created an operator and accompanying "custom resource definition"
+that allowed us to describe a dataset ingestion operation, which worked very well for us.
 
 Then, we started looking into Argo Events. It's a great system for letting other infrastructure components know that
-some state changes occured, such as completing the ingestion of a data set. Argo Events has a fantastic set of events
+some state changes occurred, such as completing the ingestion of a data set. Argo Events has a fantastic set of sources
 that it can listen to, and if that isn't enough you can even define your own. Argo Events splits event handling into
-consituent parts:
+constituent parts:
 
 - an [EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/), which will keep event messages until handled,
 - an [EventSource](https://argoproj.github.io/argo-events/concepts/event_source/), which will put a message on an event bus for a particular state change,
