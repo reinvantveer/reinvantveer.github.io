@@ -117,7 +117,7 @@ Argo Events splits event handling into nicely and cleanly separated parts with e
 - a [Sensor](https://argoproj.github.io/argo-events/concepts/sensor/), which will listen on the event bus for particular
   messages and translate these into actions
 
-This system alone is a very nice message bus that you may compare with products
+This system alone is a very nice message bus that you may compare with (but is quite distinct from) products
 like [RabbitMQ](https://www.rabbitmq.com/) (with which I had favourable experience)
 and [Kafka](https://kafka.apache.org/) (with which I have no experience). The big difference is that Argo Events is,
 like all Argo ecosystem products, built to work with Kubernetes. This means that it is probably more "cloud native" than
