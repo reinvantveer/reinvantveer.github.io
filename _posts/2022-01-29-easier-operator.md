@@ -12,16 +12,22 @@ published: true
   </figcaption>
 </figure>
 
-## Kubernetes Operators
+## Intro: Kubernetes Operators
 
 In the past few weeks or so, I followed up on an idea I had that had been lingering in my mind for a while. Something
-that showed particular promise, but I hadn't found the time to dig into. I had been Operator development for a few
-months and had the distinct feeling that things could be improved significantly. But more on that later, first we look
-into operators for a short
-moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are central to doing
-anything in Kubernetes. Operators are controllers that make sure that a particular kind of Kubernetes "thing", be it an
-application or something else, is the way that you intended it to be. In kubernetes speak: operators are responsible for
-reconciliation of the state of a particular resource type. 
+that showed particular promise, but I hadn't found the time to dig into. I had been involved
+in [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) development for a few months
+and had the distinct feeling that things could be improved significantly. But before we go into detail, let's look at
+operators for a moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are
+central to doing anything in Kubernetes. Operators are controllers that make sure that a
+particular [kinds of Kubernetes "things"](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+, be it an application or something else, ends up the way that you specified it to be. In kubernetes speak: operators
+are responsible for reconciliation of the state of a particular resource type, specifically resource types that extend
+the Kubenetes API. Kubernetes comes with its own controllers
+for [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+, [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+, [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) and what have you - these you don't need to build
+yourself. But once you want to extend the Kubernetes system with your own types, you get to Operators.
 
 ## Why Operators exist
 
@@ -33,14 +39,13 @@ reconciliation of the state of a particular resource type.
 </figure>
 
 In practice it means that an operator is responsible for the life cycle of a resource type of your own design. For
-example a particular database type, say [PostgreSQL](https://www.postgresql.org/), or something completely different. Of
-course there is are perfectly
+example a particular database type, say [PostgreSQL](https://www.postgresql.org/), or something else entirely. Of
+course there already are perfectly
 fine [operators available for PostgreSQL](https://operatorhub.io/operator/postgres-operator), so you don't need to
 design your own. The reason this operator exists, is because deploying a production-grade PostgreSQL database _cluster_
-including a backup strategy is far from trivial. Operators like these help you set up complex infrastructure, taking
-some of the cognitive load off your plate. There are operators that deploy applications, manage storage, or even
-interface with something outside the Kubernetes cluster. Operators and controllers are vital in Kubernetes because 
-_any resource_ in the Kubernetes cluster is reconciled using a controller.
+including a backup strategy, is far from trivial. Operators like these help you declare the layout and settings of your
+PostgreSQL cluster, set up complex infrastructure, taking most cognitive load off your plate. There are operators that
+deploy applications, manage storage, or even interface with something outside the Kubernetes cluster.
 
 Two articles of vital importance if you really want to sink your teeth in:
  - The ["Operator pattern" article](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
