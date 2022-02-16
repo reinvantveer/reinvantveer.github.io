@@ -20,14 +20,14 @@ in [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/o
 and had the distinct feeling that things could be improved significantly. But before we go into detail, let's look at
 operators for a moment. [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/) are
 central to doing anything in Kubernetes. Operators are controllers that make sure that a
-particular [kinds of Kubernetes "things"](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
-, be it an application or something else, end up the way that you specified it to be. In kubernetes speak: operators
+particular [kinds of Kubernetes "things"](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/), 
+be it an application or something else, end up the way that you specified it to be. In kubernetes speak: operators
 are responsible for reconciliation of the desired state with the actual state for a particular 
 [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) type that 
 extend the Kubenetes API. Kubernetes comes with its own controllers
-for [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-, [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-, [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) and what have you - these you don't need to build
+for [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), 
+[Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/), 
+[Pods](https://kubernetes.io/docs/concepts/workloads/pods/) and what have you - these you don't need to build
 yourself. But once you want to extend the Kubernetes system with your own types, you get to Operators.
 
 ## Why Operators exist
