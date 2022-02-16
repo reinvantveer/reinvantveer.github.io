@@ -83,18 +83,20 @@ amount of resources like memory and CPU it is allowed to take up, etcetera.
 If your application is relatively simple, you may use [Helm](https://helm.sh/) so you don't need a custom resource to
 describe your application to Kubernetes resources. If you can, you probably should. But if your self-defined application
 definition requires more complicated logic, Helm is not such a good idea. Trying to put lots of "business logic" inside
-Helm templates results in very hard to maintain Helm charts with curly braces all over the place. - Helm is without a
-doubt a very useful tool and it will stay being a very useful tool even when you decide to write your own operator: you
-can use Helm to deploy the operator! We'll see this in a moment.
+Helm templates results in very hard to maintain Helm charts with curly braces all over the place. Helm is without a
+doubt a very useful tool, and it will stay being a very useful tool even when you decide to write your own operator: you
+can use Helm to deploy the operator! We won't go into Helm in this tutorial, there are plenty of those around. Instead,
+we're going to take a look at when you want to implement your own operator.
 
 ## Operator development and operator frameworks
 
-The framework we used was the exact opposite of _everything_ you would want from an operator framework. The framework
-was complex, clunky, buggy, the framework enormous, the operator images we made were huge, the operator itself slow and
-heavy on resources, and hard to maintain. Which framework we used doesn't matter here, this is not a framework bashing
-post. All I will say is that _all_ of the options listed under the operator frameworks to use for operator development
-are more complex than the one I'm about to show you. Furthermore, all of them suffer from visibility problems that we'll
-discuss in some detail below. So, let's get to it!
+The current state of operator development is complex to say the least. The framework we used was the exact opposite of _
+everything_ you would want from an operator framework. The framework was complex, clunky, buggy, the framework enormous,
+the operator images we made were huge, the operator itself slow and heavy on resources, and hard to maintain. Which
+framework we used doesn't matter here, this is not a framework bashing post. All I will say is that _all_ of the options
+listed under the operator frameworks to use for operator development are more complex than the one I'm about to show
+you. Furthermore, all of them suffer from visibility problems that we'll discuss in some detail below. So, let's get to
+it!
 
 ## Argo Events as an operator framework
 
