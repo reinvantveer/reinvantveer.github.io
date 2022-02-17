@@ -1,4 +1,6 @@
 ---
+# This is just a tutorial setup - adapt
+# to your access control requirements
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: memcached-role
@@ -38,6 +40,8 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: memcached-sa
+    # In case you installed Argo Events in a different namespace:
+    # adapt namespace here
     namespace: argo-events
 ---
 apiVersion: v1
