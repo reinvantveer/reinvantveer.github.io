@@ -12,6 +12,25 @@ published: true
   </figcaption>
 </figure>
 
+## TL;DR (or the "management summary" if you like)
+
+If your organisation uses Kubernetes, chances are that you're using 
+[operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/). Once you get to the point that you want to
+develop your own operators, there comes the choice in how to develop them. Most people go with one of the major operator
+frameworks, but this isn't necessarily the right track if you just start out: many frameworks are bulky and hard to set
+up. What I found out, is that using [Argo Events](https://argoproj.github.io/argo-events/) 
+and [Argo Workflows](https://argoproj.github.io/argo-workflows/), you can
+ 
+- have fully functional operators using just a handful of files (manifests);
+- have much, much improved inspection into your operators' handling of resources thanks to the Argo UI.
+- you can use ***any*** programming language you like, not just the ones supported by the "official" frameworks
+
+### However
+
+The example given below is set up as a tutorial. Make sure you don't simply copy-paste it into production: let your
+dev team set things up properly and have your infrastructure security advisor go through it. The tutorial below is just
+for instruction purposes.
+
 ## Intro: Kubernetes Operators
 
 In the past few weeks or so, I followed up on an idea I had that had been lingering in my mind for a while. Something
