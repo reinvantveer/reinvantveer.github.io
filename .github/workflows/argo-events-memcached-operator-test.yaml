@@ -37,7 +37,7 @@ jobs:
       - name: Install Argo Workflows
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
-          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=120s deployment/argo-server
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=240s deployment/argo-server
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/workflow-controller
 
       - name: Install the Memcached custom resource definition
