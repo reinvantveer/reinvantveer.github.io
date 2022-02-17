@@ -53,6 +53,10 @@ jobs:
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
 
+      - name: Install the workflow template
+        run: |
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/workflow-template.yaml
+
       - name: Validate availability of the Sensor
         run: |
           kubectl wait -n ${EVENTS_NS} --for=condition=Deployed --timeout=60s sensor/memcached-sensor
