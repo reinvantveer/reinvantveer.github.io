@@ -60,4 +60,3 @@ spec:
                 # This is the operation parameter to the workflow, one from {ADD, UPDATE, DELETE}
                 dataKey: type
               dest: spec.arguments.parameters.2.value
-
