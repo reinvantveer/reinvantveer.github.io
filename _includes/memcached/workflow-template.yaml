@@ -5,16 +5,98 @@ kind: WorkflowTemplate
 metadata:
   name: memcached-deploy-workflow-template
 spec:
+  # See the `main` template below: this gets executed
+  entrypoint: main
+  # Use the service account with sufficient rights to deploy
+  serviceAccountName: memcached-sa
+  ttlStrategy:
+    secondsAfterCompletion: 300
+  # Garbage collection settings for clearing up old pods
+  podGC:
+    strategy: OnPodCompletion
+
+  # Global Workflow parameters, passed/overridden from the Sensor
   arguments:
     parameters:
       - name: message
         value: ""  # Overridden by Sensor workflow
       - name: replicas
         value: "1" # Overridden by Sensor workflow
+
   templates:
+    # A simple logging container template - we'll use this to debug
+    - name: log
+      inputs:
+        parameters:
+          - name: content
+      container:
+        name: simple-logger
+        image: ubuntu:latest
+        command:
+          - echo
+        args:
+          - "{{inputs.parameters.content}}"
+
+    # The actual "business logic" for our operator.
+    # As tutorials go, it's a bit contrived - there's very
+    - name: operator-logic
+      inputs:
+        parameters:
+          - name: manifest
+      # A `script` template is special: the output to stdout automatically
+      # gets stored into an `outputs.result` workflow variable
+      script:
+        # We're using the ansible-runner, but without using Ansible!
+        # This is simply a Python for which I'm sure that there is a
+        # YAML parser included in the dependencies
+        image: quay.io/ansible/ansible-runner
+        command:
+          - python3
+        # This is typical tutorial stuff: you wouldn't put inline
+        # code like this in a workflow. Either pull it from a repo or
+        # include it using a ConfigMap
+        source: |
+          import yaml
+
+          manifest = yaml.load("""
+          {{inputs.parameters.manifest}}
+          """)
+          manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
+          result = yaml.dump(manifest)
+
+          # Printed output goes into outputs.result workflow variable
+          print(result)
+
+    - name: operation-mapping
+      script:
+        image: quay.io/ansible/ansible-runner
+        command:
+          - python3
+        # The "operations" from our event source differ from the ones used in the
+        # deployment syntax - we need to map from one to the other
+        source: |
+          mapping = {
+            "ADD": "apply",
+            "UPDATE": "apply",
+            "DELETE": "delete",
+          }
+          print(mapping["{{workflow.parameters.operation}}"])
+
+    - name: deploy
+      inputs:
+        parameters:
+          - name: action
+          - name: manifest
+      resource:
+        action: "{{inputs.parameters.action}}"
+        manifest: "{{inputs.parameters.manifest}}"
+
+    # This is the actual entrypoint for our workflow
+    # It takes care of the execution flow
     - name: main
       steps:
         - - name: log-message
+            # Uses the "log" template below
             template: log
             arguments:
               parameters:
@@ -22,6 +104,7 @@ spec:
                   value: "{{workflow.parameters.message}}"
 
         - - name: log-operation
+            # Again: uses the "log" template below so we only need to define once
             template: log
             arguments:
               parameters:
@@ -33,6 +116,8 @@ spec:
             arguments:
               parameters:
                 - name: manifest
+                  # Since the value of a parameter is always a string:
+                  # the "pipe" | symbol denotes yaml multi-line text
                   value: |
                     apiVersion: apps/v1
                     kind: Deployment
@@ -41,6 +126,7 @@ spec:
                       labels:
                         app: memcached
                     spec:
+                      # This setting will be reconfigured by our operator!
                       replicas: 1
                       selector:
                         matchLabels:
@@ -70,6 +156,7 @@ spec:
                   value: "{{steps.parameterize-replicas.outputs.result}}"
 
         - - name: map-operation-to-action
+            # Calls the actual operator "business logic" part
             template: operation-mapping
 
         - - name: log-action
@@ -87,63 +174,4 @@ spec:
                   value: "{{steps.map-operation-to-action.outputs.result}}"
                 - name: manifest
                   value: "{{steps.parameterize-replicas.outputs.result}}"
-
-    - name: log
-      inputs:
-        parameters:
-          - name: content
-      container:
-        name: simple-logger
-        image: ubuntu:latest
-        command:
-          - echo
-        args:
-          - "{{inputs.parameters.content}}"
-
-    - name: operator-logic
-      inputs:
-        parameters:
-          - name: manifest
-      script:
-        image: quay.io/ansible/ansible-runner
-        command:
-          - python3
-        source: |
-          import yaml
-
-          manifest = yaml.load("""
-          {{inputs.parameters.manifest}}
-          """)
-          manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
-          result = yaml.dump(manifest)
-          print(result)
-
-    - name: operation-mapping
-      script:
-        image: quay.io/ansible/ansible-runner
-        command:
-          - python3
-        source: |
-          mapping = {
-            "ADD": "apply",
-            "UPDATE": "apply",
-            "DELETE": "delete",
-          }
-          print(mapping["{{workflow.parameters.operation}}"])
-
-    - name: deploy
-      inputs:
-        parameters:
-          - name: action
-          - name: manifest
-      resource:
-        action: "{{inputs.parameters.action}}"
-        manifest: "{{inputs.parameters.manifest}}"
-
-  entrypoint: main
-  serviceAccountName: memcached-sa
-  ttlStrategy:
-    secondsAfterCompletion: 300
-  podGC:
-    strategy: OnPodCompletion
-# {% endraw %}
+# Done! {% endraw %}
