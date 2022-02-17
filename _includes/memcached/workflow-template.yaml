@@ -38,7 +38,8 @@ spec:
           - "{{inputs.parameters.content}}"
 
     # The actual "business logic" for our operator.
-    # As tutorials go, it's a bit contrived - there's very
+    # As tutorials go, it's a bit contrived - there's very little
+    # action going on
     - name: operator-logic
       inputs:
         parameters:
