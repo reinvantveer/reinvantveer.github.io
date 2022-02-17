@@ -1,4 +1,5 @@
 ---
+# {% raw %} The workflow template that does the "heavy lifting"
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
@@ -145,3 +146,4 @@ spec:
     secondsAfterCompletion: 300
   podGC:
     strategy: OnPodCompletion
+# {% endraw %}
