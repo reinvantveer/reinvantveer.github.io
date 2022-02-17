@@ -66,6 +66,6 @@ spec:
             - src:
                 dependencyName: source-dependency
                 # This is the `operation` parameter to the workflow,
-                # one from {ADD, UPDATE, DELETE}, covering the entire life cycle
+                # one of ADD, UPDATE, or DELETE, covering the entire life cycle
                 dataKey: type
               dest: spec.arguments.parameters.2.value
