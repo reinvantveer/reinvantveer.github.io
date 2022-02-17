@@ -51,7 +51,7 @@ jobs:
       - name: Install the Sensor in the events namespace
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
-          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s sensor/memcached-sensor
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s sensor.argoproj.io/memcached-sensor
 
       - name: Deploy our Memcached resource
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
