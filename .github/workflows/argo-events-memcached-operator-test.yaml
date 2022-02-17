@@ -74,6 +74,8 @@ jobs:
           kubectl wait -n ${EVENTS_NS} --for=condition=Deployed --timeout=60s sensor/memcached-sensor
           kubectl wait -n ${EVENTS_NS} --for=condition=DependenciesProvided --timeout=60s sensor/memcached-sensor
           kubectl wait -n ${EVENTS_NS} --for=condition=TriggersProvided --timeout=60s sensor/memcached-sensor
+          # Give the sensor just a few more seconds
+          sleep 10
 
       - name: Deploy our Memcached resource
         run: |
