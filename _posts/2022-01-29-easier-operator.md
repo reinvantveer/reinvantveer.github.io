@@ -184,7 +184,9 @@ need to tell the Kubernetes API that it's OK, provided a special service account
 resource definition, this is basic Operator engineering 101. This will be our `memcached-sa` service account, that comes
 with the associated rights:
 
+```yaml
 {% include memcached/rbac.yaml %}
+```
 
 Install with:
 ```shell
