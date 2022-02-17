@@ -80,7 +80,7 @@ jobs:
       - name: Deploy our Memcached resource
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
-          sleep 1
+          sleep 5
 
       - name: Log the sensor output
         run: |
