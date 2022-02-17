@@ -44,6 +44,7 @@ jobs:
           kubectl -n ${EVENTS_NS} auth can-i create deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
           kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
           kubectl -n ${EVENTS_NS} auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
+          sleep 10
 
       - name: Install the EventSource in the events namespace
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
