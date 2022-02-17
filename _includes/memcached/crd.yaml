@@ -15,7 +15,7 @@ spec:
     plural: memcacheds
   # Either Namespaced or Cluster-scoped.
   scope: Namespaced
-  # version is mandatory:
+  # `versions` is mandatory:
   # there should be at least one version that is served and stored.
   versions:
     # You usually start out with some kind of alpha version.
