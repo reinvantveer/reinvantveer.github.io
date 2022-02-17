@@ -49,6 +49,11 @@ jobs:
       - name: Install the EventSource in the events namespace
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
 
+      - name: Validate availability of the Sensor
+        run: |
+          kubectl wait -n ${EVENTS_NS} --for=condition=Deployed --timeout=60s eventsource/memcached-source
+          kubectl wait -n ${EVENTS_NS} --for=condition=SourcesProvided --timeout=60s eventsource/memcached-source
+
       - name: Install the Sensor in the events namespace
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
