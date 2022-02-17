@@ -5,7 +5,8 @@ metadata:
   name: memcached-source
 spec:
   template:
-    # assign a service account with `get`, `list` and `watch` permissions on the resource being watched.
+    # Assign a service account with `get`, `list` and `watch` permissions
+    # on the resource being listened to.
     serviceAccountName: memcached-sa
   resource:
     memcached:
