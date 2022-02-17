@@ -23,14 +23,22 @@ jobs:
       - name: Install Argo Events cluster-wide (don't do this in production)
         run: |
           kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install.yaml
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/eventsource-controller
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/sensor-controller
           # Install with a validating admission controller
           kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install-validating-webhook.yaml
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/events-webhook
 
       - name: Install EventBus
-        run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
+        run: |
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/eventbus-controller
 
       - name: Install Argo Workflows
-        run: kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
+        run: |
+          kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/argo-argo-workflows-server
+          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/argo-argo-workflows-workflow-controller
 
       - name: Install the Memcached custom resource definition
         run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
@@ -44,12 +52,11 @@ jobs:
           kubectl -n ${EVENTS_NS} auth can-i create deployments --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
           kubectl -n ${EVENTS_NS} auth can-i create pods --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
           kubectl -n ${EVENTS_NS} auth can-i create workflow.argoproj.io/workflows --as=system:serviceaccount:${EVENTS_NS}:memcached-sa
-          sleep 10
 
       - name: Install the EventSource in the events namespace
         run: kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
 
-      - name: Validate availability of the Sensor
+      - name: Validate availability of the event source
         run: |
           kubectl wait -n ${EVENTS_NS} --for=condition=Deployed --timeout=60s eventsource/memcached-source
           kubectl wait -n ${EVENTS_NS} --for=condition=SourcesProvided --timeout=60s eventsource/memcached-source
