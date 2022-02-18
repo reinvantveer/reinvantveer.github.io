@@ -90,7 +90,8 @@ jobs:
       - name: Validate that a Workflow was created
         run: |
           sleep 10
-          kubectl get -n ${EVENTS_NS} workflows
+          WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
+          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=60s workflow/${WORKFLOW}
 
       - name: Validate that the deployment was created
         run: kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/memcached-deployment
