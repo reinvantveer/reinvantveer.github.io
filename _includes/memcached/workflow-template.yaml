@@ -59,7 +59,7 @@ spec:
         source: |
           import yaml
 
-          manifest = yaml.load("""
+          manifest = yaml.safe_load("""
           {{inputs.parameters.manifest}}
           """)
           manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
