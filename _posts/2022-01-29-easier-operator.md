@@ -20,7 +20,6 @@ develop your own operators, there comes the choice in how to develop them. Most 
 frameworks, but this isn't necessarily the right track if you just start out: many frameworks are bulky and hard to set
 up. What I found out, is that using [Argo Events](https://argoproj.github.io/argo-events/) 
 and [Argo Workflows](https://argoproj.github.io/argo-workflows/), you can
- 
 - have fully functional operators using just a handful of files (manifests);
 - have much, much improved inspection into your operators' handling of resources thanks to the Argo UI.
 - you can use ***any*** programming language you like, not just the ones supported by the "official" frameworks
