@@ -83,7 +83,6 @@ Two articles of vital importance if you really want to sink your teeth in:
    CNCF stands for the ["Cloud Native Computing Foundation"](https://www.cncf.io/) and is the main organisation backing the design and development of Kubernetes.
 
 Important to know is that:
-
 - Operators listen to your self-designed "custom resource definitions", instances of which
   are ["custom resources"](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/), so
   you can extend the Kubernetes API itself.
@@ -138,7 +137,6 @@ Then, we started looking into [Argo Events](https://argoproj.github.io/argo-even
 other infrastructure components know that some state changes occurred, such as completing the ingestion of a data set.
 Argo Events has a fantastic set of sources that it can listen to, and if that isn't enough you can even define your own.
 Argo Events splits event handling into nicely and cleanly separated parts with each its own responsibilities:
-
 - an [EventBus](https://argoproj.github.io/argo-events/concepts/eventbus/), which will keep event messages until
   handled,
 - an [EventSource](https://argoproj.github.io/argo-events/concepts/event_source/), which will put a message on an event
