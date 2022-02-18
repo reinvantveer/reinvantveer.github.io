@@ -126,10 +126,12 @@ jobs:
           #   kubectl describe -n ${EVENTS_NS} pods/${pod}
           # done
           
-          until kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Succeeded
+          argo watch @latest
+          
+          while kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Running
           do
-            echo "Waiting for workflow/${WORKFLOW} to finish"
-            sleep 5
+            kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW}
+            sleep 10
           done
 
           # Log the workflow output
