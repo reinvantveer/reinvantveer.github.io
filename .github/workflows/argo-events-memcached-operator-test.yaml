@@ -143,7 +143,7 @@ jobs:
           sleep 60
           PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
 
-          for pod in PODS
+          for pod in ${PODS}
           do
             kubectl get -n ${EVENTS_NS} pods/${pod} -o yaml
           done
