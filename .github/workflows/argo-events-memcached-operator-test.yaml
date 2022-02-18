@@ -118,7 +118,6 @@ jobs:
       - name: Log the Workflow
         run: |
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
-          sleep 20
 
           # PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
           # for pod in ${PODS}
@@ -127,10 +126,15 @@ jobs:
           #   kubectl describe -n ${EVENTS_NS} pods/${pod}
           # done
           
+          # Track and log the workflow output
           ./argo -n ${EVENTS_NS} logs ${WORKFLOW} --follow
           # Allow the first workflow a few minutes: it needs to pull all the images for the first run!
           kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=4m workflow/${WORKFLOW}
 
+          # Allow some time for the deployment to show up
+          sleep 10
+
       - name: Validate that the deployment was created
         run: |
+          kubectl get -A deployments
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/memcached-deployment
