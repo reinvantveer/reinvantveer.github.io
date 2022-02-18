@@ -42,7 +42,7 @@ jobs:
           # Use "pns" executor instead of Docker:
           # See https://github.com/argoproj/argo-workflows/issues/826#issuecomment-872426083
           kubectl patch -n argo configmap workflow-controller-configmap --patch '{"data":{"containerRuntimeExecutor":"pns"}}'
-          sleep 20
+          sleep 10
 
           kubectl wait -n argo --for=condition=available --timeout=240s deployment/argo-server
           kubectl wait -n argo --for=condition=available --timeout=60s deployment/workflow-controller
@@ -58,12 +58,10 @@ jobs:
       - name: Install the Memcached custom resource definition
         run: |
           kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
-          sleep 10
 
       - name: Install the rule-based access control (RBAC) config
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
-          sleep 10
 
       - name: Validate that the rules allow watching Memcached resources, create Deployments, Pods, Workflows
         run: |
@@ -110,9 +108,7 @@ jobs:
 
       - name: Validate that a Workflow was created
         run: |
-          sleep 10
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
-          sleep 20
           kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} -o yaml
 
       - name: Log the Workflow
@@ -126,7 +122,7 @@ jobs:
           #   kubectl describe -n ${EVENTS_NS} pods/${pod}
           # done
           
-          argo watch @latest
+          ./argo watch @latest
           
           while kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Running
           do
