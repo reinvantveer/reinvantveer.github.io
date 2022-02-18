@@ -28,7 +28,15 @@ and [Argo Workflows](https://argoproj.github.io/argo-workflows/), you can
 
 The example given below is set up as a tutorial. Make sure you don't simply copy-paste it into production: let your
 dev team set things up properly and have your infrastructure security advisor go through it. The tutorial below is just
-for instruction purposes.
+for instruction purposes. It is a serious proposal though. You can have fully functional operators without pushing a
+single Docker image, or without using a single Operator SDK and have a scalable solution. Bear in mind that:
+- The setup in this tutorial uses quite a few containers, mostly for debugging. This can be compressed into a single
+  container however, with a bit of refactoring. This, I didn't put into the tutorial.
+- This method isn't the fastest. It uses an Argo Workflow, which takes a few seconds to instantiate, for each time you 
+  create, update or delete a custom resource. For the vast majority of purposes, this is fine. If you really must
+  scale your operator to deploy hundreds of applications per hour, then this method can still work, but it might not be
+  the most efficient solution. Then again, few companies need to build an operator from scratch that needs to scale to
+  this level immediately. For starting out, this method is excellent because it gives you so much more transparency.
 
 ## Intro: Kubernetes Operators
 
