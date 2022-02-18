@@ -28,13 +28,11 @@ jobs:
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/sensor-controller
           # Install with a validating admission controller
           kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install-validating-webhook.yaml
-          sleep 10
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/events-webhook
 
       - name: Install EventBus
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
-          sleep 10
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/eventbus-controller
 
       - name: Install Argo Workflows
