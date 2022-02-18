@@ -119,7 +119,7 @@ jobs:
           #   kubectl describe -n ${EVENTS_NS} pods/${pod}
           # done
           
-          ./argo watch @latest
+          ./argo -n ${EVENTS_NS} watch @latest
           
           while kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Running
           do
