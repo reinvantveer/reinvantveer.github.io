@@ -91,7 +91,8 @@ jobs:
         run: |
           sleep 10
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
-          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=60s workflow/${WORKFLOW}
+          # Allow the first workflow 5 minutes: it needs to pull all the images for the first run!
+          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=300s workflow/${WORKFLOW}
 
       - name: Validate that the deployment was created
         run: kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/memcached-deployment
