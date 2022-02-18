@@ -126,13 +126,14 @@ jobs:
           #   kubectl describe -n ${EVENTS_NS} pods/${pod}
           # done
           
-          # Track and log the workflow output
-          ./argo -n ${EVENTS_NS} logs ${WORKFLOW} --follow
-          # Allow the first workflow a few minutes: it needs to pull all the images for the first run!
-          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=4m workflow/${WORKFLOW}
+          until kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Succeeded
+          do
+            echo "Waiting for workflow/${WORKFLOW} to finish"
+            sleep 5
+          done
 
-          # Allow some time for the deployment to show up
-          sleep 10
+          # Log the workflow output
+          ./argo -n ${EVENTS_NS} logs ${WORKFLOW}
 
       - name: Validate that the deployment was created
         run: |
