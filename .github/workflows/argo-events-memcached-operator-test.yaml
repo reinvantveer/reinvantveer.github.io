@@ -141,6 +141,13 @@ jobs:
           sleep 60
           kubectl get -n ${EVENTS_NS} pods | grep ${WORKFLOW}
           sleep 60
+          PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
+
+          for pod in PODS
+          do
+            kubectl get -n ${EVENTS_NS} pods/${pod} -o yaml
+          done
+          sleep 60
           
           kubectl wait -n ${EVENTS_NS} --for=condition=PodRunning --timeout=4m workflow/${WORKFLOW}
 
