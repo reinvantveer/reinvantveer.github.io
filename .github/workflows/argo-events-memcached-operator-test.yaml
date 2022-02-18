@@ -116,6 +116,10 @@ jobs:
       - name: Log the Workflow
         run: |
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
+          
+          # Get the pods associated with the workflow
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          
           kubectl wait -n ${EVENTS_NS} --for=condition=PodRunning --timeout=4m workflow/${WORKFLOW}
 
           ./argo -n ${EVENTS_NS} logs ${WORKFLOW} --follow
