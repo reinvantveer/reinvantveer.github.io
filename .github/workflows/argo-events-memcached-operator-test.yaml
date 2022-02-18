@@ -112,13 +112,6 @@ jobs:
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
           kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} -o yaml
 
-          # PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
-          # for pod in ${PODS}
-          # do
-          #   kubectl get -n ${EVENTS_NS} pods/${pod} -o yaml
-          #   kubectl describe -n ${EVENTS_NS} pods/${pod}
-          # done
-          
           ./argo -n ${EVENTS_NS} watch @latest
           
           while kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} | grep Running
