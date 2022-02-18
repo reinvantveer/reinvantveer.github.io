@@ -22,6 +22,8 @@ rules:
       - workflowtemplates
       - deployments
       - pods
+      - pods/logs
+      - pods/exec
     apiGroups:
       - cache.example.com
       - argoproj.io
