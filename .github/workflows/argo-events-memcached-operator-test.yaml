@@ -40,6 +40,14 @@ jobs:
           kubectl wait -n argo --for=condition=available --timeout=240s deployment/argo-server
           kubectl wait -n argo --for=condition=available --timeout=60s deployment/workflow-controller
 
+      - name: Install the Argo CLI
+        run: |
+          curl -sLO https://github.com/argoproj/argo-workflows/releases/download/v3.2.8/argo-linux-amd64.gz
+          gunzip argo-linux-amd64.gz
+          chmod +x argo-linux-amd64
+          mv ./argo-linux-amd64 ~/.local/bin/argo
+          argo version
+
       - name: Install the Memcached custom resource definition
         run: kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
 
@@ -92,7 +100,7 @@ jobs:
           sleep 10
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
           # Allow the first workflow 5 minutes: it needs to pull all the images for the first run!
-          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=300s workflow/${WORKFLOW}
+          kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=300s workflow/${WORKFLOW} || argo -n ${EVENTS_NS} logs ${WORKFLOW}
 
       - name: Validate that the deployment was created
         run: kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/memcached-deployment
