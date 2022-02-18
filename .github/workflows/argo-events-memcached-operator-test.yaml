@@ -105,15 +105,12 @@ jobs:
         run: |
           SENSOR_DEPLOYMENT=$(kubectl get -n ${EVENTS_NS} --no-headers deployment -o custom-columns=":metadata.name" | grep memcached-sensor-)
           kubectl logs -n ${EVENTS_NS} deployment/${SENSOR_DEPLOYMENT}
+          sleep 5
 
       - name: Validate that a Workflow was created
         run: |
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
           kubectl get -n ${EVENTS_NS} workflow/${WORKFLOW} -o yaml
-
-      - name: Log the Workflow
-        run: |
-          WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
 
           # PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
           # for pod in ${PODS}
