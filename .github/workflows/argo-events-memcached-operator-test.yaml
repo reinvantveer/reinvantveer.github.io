@@ -94,7 +94,6 @@ jobs:
       - name: Install the workflow template
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/workflow-template.yaml
-          sleep 10
 
       - name: Deploy our Memcached resource
         run: |
