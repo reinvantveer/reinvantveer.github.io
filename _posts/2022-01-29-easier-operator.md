@@ -186,6 +186,17 @@ need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Well, technic
 want this extraordinarily fine piece of software. Think of Workflows as much, much better versions
 of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/). 
 
+By default, Argo uses the Docker runtime executor. If you're on Azure, or you use Podman or some other runtime execution  
+engine, be sure to patch the Argo Workflow executor:
+```shell
+# Use "pns" executor instead of Docker:
+# See https://github.com/argoproj/argo-workflows/issues/826#issuecomment-872426083
+kubectl patch -n argo configmap workflow-controller-configmap --patch '{"data":{"containerRuntimeExecutor":"pns"}}'
+```
+
+If your workflow pods fail to start or Argo gives you errors reaching the pods, then switching to a different runtime
+executor will probably help.
+
 The most important part here is that the installation comes
 with [Argo Server](https://argoproj.github.io/argo-workflows/argo-server/), the UI that allows you to inspect both
 EventSources, Sensors and, if you generate them from the Sensor triggers, Workflows. Personally, I'd skip the step to
