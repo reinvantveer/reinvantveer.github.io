@@ -120,15 +120,13 @@ jobs:
           WORKFLOW=$(kubectl get -n ${EVENTS_NS} workflows --no-headers -o custom-columns=":metadata.name" | grep memcached-workflow-)
           sleep 20
 
-          PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
-          for pod in ${PODS}
-          do
-            kubectl get -n ${EVENTS_NS} pods/${pod} -o yaml
-            kubectl describe -n ${EVENTS_NS} pods/${pod}
-          done
+          # PODS=$(kubectl get -n ${EVENTS_NS} pods --no-headers -o custom-columns=":metadata.name" | grep ${WORKFLOW})
+          # for pod in ${PODS}
+          # do
+          #   kubectl get -n ${EVENTS_NS} pods/${pod} -o yaml
+          #   kubectl describe -n ${EVENTS_NS} pods/${pod}
+          # done
           
-          kubectl wait -n ${EVENTS_NS} --for=condition=PodRunning --timeout=4m workflow/${WORKFLOW}
-
           ./argo -n ${EVENTS_NS} logs ${WORKFLOW} --follow
           # Allow the first workflow a few minutes: it needs to pull all the images for the first run!
           kubectl wait -n ${EVENTS_NS} --for=condition=Completed --timeout=4m workflow/${WORKFLOW}
