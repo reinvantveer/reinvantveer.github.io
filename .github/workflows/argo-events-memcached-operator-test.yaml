@@ -118,6 +118,21 @@ jobs:
           
           # Get the pods associated with the workflow
           kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
+          kubectl get -n ${EVENTS_NS} pods | grep deploy-memcached-workflow-
+          sleep 60
           
           kubectl wait -n ${EVENTS_NS} --for=condition=PodRunning --timeout=4m workflow/${WORKFLOW}
 
