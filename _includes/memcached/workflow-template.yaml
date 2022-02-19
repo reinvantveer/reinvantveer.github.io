@@ -20,7 +20,11 @@ spec:
     parameters:
       - name: message
         value: ""  # Overridden by Sensor workflow
+      - name: operation
+        # Clear any default operation
+        value: ""
       - name: replicas
+        # Default: a single replica
         value: "1" # Overridden by Sensor workflow
       - name: manifest
         # Since the value of a parameter is always a string:
