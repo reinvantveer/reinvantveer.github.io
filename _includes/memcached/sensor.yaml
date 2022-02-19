@@ -36,6 +36,9 @@ spec:
                       value: "1"
                     - name: operation
                       value: ""
+                    # There will be a thing called "manifest", but it's a template,
+                    # so we don't store it here
+                    - name: manifest
                 templates:
                   - name: deploy-memcached-template
                     steps:
