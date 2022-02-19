@@ -18,10 +18,15 @@ spec:
   # Global Workflow parameters, passed/overridden from the Sensor
   arguments:
     parameters:
+      # Injected by Sensor workflow
       - name: message
-        value: ""  # Overridden by Sensor workflow
+        default: ""
+      # Injected by Sensor workflow
+      - name: operation
+        default: ADD
+      # Overridden by Sensor workflow
       - name: replicas
-        value: "1" # Overridden by Sensor workflow
+        value: "1"
 
   templates:
     # A simple logging container template - we'll use this to debug
