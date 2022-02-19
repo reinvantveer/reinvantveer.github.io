@@ -22,6 +22,8 @@ up. What I found out, is that using [Argo Events](https://argoproj.github.io/arg
 and [Argo Workflows](https://argoproj.github.io/argo-workflows/), you can
 - have fully functional operators using just a handful of files (manifests);
 - have much, much improved inspection into your operators' handling of resources thanks to the Argo UI.
+- you can develop and test the operator logic in the Argo workflow template _independently_ from the operator itself, 
+  using the Argo UI. 
 - you can use ***any*** programming language you like, not just the ones supported by the "official" frameworks
 
 ### However
