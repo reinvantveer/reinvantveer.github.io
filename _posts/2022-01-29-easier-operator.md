@@ -37,6 +37,9 @@ single Docker image, or without using a single Operator SDK and have a scalable 
   scale your operator to deploy hundreds of applications per hour, then this method can still work, but it might not be
   the most efficient solution. Then again, few companies need to build an operator from scratch that needs to scale to
   this level immediately. For starting out, this method is excellent because it gives you so much more transparency.
+- Operator development is never easy. And with this approach, you will probably need to learn quite a bit of Argo 
+  domain-specific language. Like most k8s frameworks it's huge, but it's useful for learning it in its own right, as
+  Argo is useful for a _lot more than Operator development_. And: it's very well documented.
 
 ## Intro: Kubernetes Operators
 
