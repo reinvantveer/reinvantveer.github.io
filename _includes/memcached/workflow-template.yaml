@@ -22,38 +22,7 @@ spec:
         value: ""  # Overridden by Sensor workflow
       - name: replicas
         value: "1" # Overridden by Sensor workflow
-      - name: manifest
-        # Since the value of a parameter is always a string:
-        # the "pipe" | symbol denotes yaml multi-line text
-        value: |
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: memcached-deployment
-            labels:
-              app: memcached
-          spec:
-            # This setting will be reconfigured by our operator!
-            replicas: 1
-            selector:
-              matchLabels:
-                app: memcached
-            template:
-              metadata:
-                labels:
-                  app: memcached
-              spec:
-                containers:
-                  - name: memcached
-                    command:
-                      - memcached
-                      - -m=64
-                      - -o
-                      - modern
-                      - -v
-                    image: "docker.io/memcached:1.4.36-alpine"
-                    ports:
-                      - containerPort: 11211
+
   templates:
     # A simple logging container template - we'll use this to debug
     - name: log
@@ -72,6 +41,9 @@ spec:
     # As tutorials go, it's a bit contrived - there's very little
     # action going on
     - name: operator-logic
+      inputs:
+        parameters:
+          - name: manifest
       # A `script` template is special: the output to stdout automatically
       # gets stored into an `outputs.result` workflow variable
       script:
@@ -88,7 +60,7 @@ spec:
           import yaml
 
           manifest = yaml.safe_load("""
-          {{workflow.parameters.manifest}}
+          {{inputs.parameters.manifest}}
           """)
           manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
           result = yaml.dump(manifest)
@@ -142,6 +114,40 @@ spec:
 
         - - name: parameterize-replicas
             template: operator-logic
+            arguments:
+              parameters:
+                - name: manifest
+                  # Since the value of a parameter is always a string:
+                  # the "pipe" | symbol denotes yaml multi-line text
+                  value: |
+                    apiVersion: apps/v1
+                    kind: Deployment
+                    metadata:
+                      name: memcached-deployment
+                      labels:
+                        app: memcached
+                    spec:
+                      # This setting will be reconfigured by our operator!
+                      replicas: 1
+                      selector:
+                        matchLabels:
+                          app: memcached
+                      template:
+                        metadata:
+                          labels:
+                            app: memcached
+                        spec:
+                          containers:
+                            - name: memcached
+                              command:
+                                - memcached
+                                - -m=64
+                                - -o
+                                - modern
+                                - -v
+                              image: "docker.io/memcached:1.4.36-alpine"
+                              ports:
+                                - containerPort: 11211
 
         - - name: log-result
             template: log
