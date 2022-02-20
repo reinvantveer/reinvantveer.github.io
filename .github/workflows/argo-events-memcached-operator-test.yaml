@@ -42,6 +42,9 @@ jobs:
           # Use "pns" executor instead of Docker:
           # See https://github.com/argoproj/argo-workflows/issues/826#issuecomment-872426083
           kubectl patch -n argo configmap workflow-controller-configmap --patch '{"data":{"containerRuntimeExecutor":"pns"}}'
+          # Disable default login
+          kubectl patch -n argo deployment argo-server --patch='{"spec":{"template":{"spec":{"containers":[{"name":"argo-server","args":["server","--auth-mode=server"]}]}}}}'
+
           sleep 10
 
           kubectl wait -n argo --for=condition=available --timeout=240s deployment/argo-server
