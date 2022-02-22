@@ -35,9 +35,9 @@ jobs:
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/argoproj/argo-events/stable/examples/eventbus/native.yaml
           kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/eventbus-controller
 
-      - name: Install Argo Workflows
+      - name: Install Argo Workflows cluster-wide
         run: |
-          kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.2.7/install.yaml
+          kubectl -n argo apply -k github.com/argoproj/argo-workflows/manifests/cluster-install?ref=master
 
           # Use "pns" executor instead of Docker:
           # See https://github.com/argoproj/argo-workflows/issues/826#issuecomment-872426083
