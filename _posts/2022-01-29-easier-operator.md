@@ -234,7 +234,8 @@ the [one I made for this tutorial](https://github.com/reinvantveer/reinvantveer.
 
 ### 3. Install the Memcached custom resource definition
 
-This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible. 
+Installing the Argo components can take like a minute to start up. Once it's up and running, we can start deploying our
+custom resources. This is not intended to be a full Operator tutorial, so I'll try to keep things as simple as possible. 
 
 ```yaml
 {% include memcached/crd.yaml %}
