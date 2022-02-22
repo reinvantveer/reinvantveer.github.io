@@ -226,7 +226,10 @@ below.
 The most important part here is that the installation comes
 with [Argo Server](https://argoproj.github.io/argo-workflows/argo-server/), the UI that allows you to inspect both
 EventSources, Sensors and, if you generate them from the Sensor triggers, Workflows. Personally, I'd skip the step to
-install the `argo` command line tool, I found it to be of little use.
+install the `argo` command line tool, I found it to be of little use. It is, however, very useful in CI test setups,
+such as
+the [one I made for this tutorial](https://github.com/reinvantveer/reinvantveer.github.io/blob/master/.github/workflows/argo-events-memcached-operator-test.yaml)
+.
 
 ### 3. Install the Memcached custom resource definition
 
