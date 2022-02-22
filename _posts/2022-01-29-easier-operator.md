@@ -193,6 +193,11 @@ Why do we need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Bec
 going to be handled in a Workflow. Think of Workflows as much, much better versions
 of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/).
 
+Let's start with installing Argo server and Workflows cluster-wide:
+```shell
+kubectl -n argo apply -k github.com/argoproj/argo-workflows/manifests/cluster-install?ref=master
+```
+
 By default, Argo uses the Docker runtime executor. If you're on Azure, or you use Podman or some other runtime execution  
 engine, be sure to patch the Argo Workflow executor:
 ```shell
