@@ -213,8 +213,15 @@ kubectl patch -n argo deployment argo-server --patch \
   '{"spec":{"template":{"spec":{"containers":[{"name":"argo-server","args":["server","--auth-mode=server"]}]}}}}'
 ```
 
-If your workflow pods fail to start or Argo gives you errors reaching the pods, then switching to a different runtime
-executor will probably help.
+Once you have this set up, you can tunnel to the Argo UI using:
+```shell
+kubectl -n argo port-forward svc/argo-server 2746:2746
+```
+
+You can access the UI on [https://localhost:2746](https://localhost:2746). The default for the server is to run over
+https, so you will get a self-signed certificate warning. As the `port-forward` option claims the terminal (the tunnel
+is active until you disconnect using ctrl-c), you will have to open a new terminal for the commands following down
+below.
 
 The most important part here is that the installation comes
 with [Argo Server](https://argoproj.github.io/argo-workflows/argo-server/), the UI that allows you to inspect both
