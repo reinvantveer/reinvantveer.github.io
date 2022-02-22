@@ -206,7 +206,8 @@ engine, be sure to patch the Argo Workflow executor:
 kubectl patch -n argo configmap workflow-controller-configmap --patch '{"data":{"containerRuntimeExecutor":"pns"}}'
 ```
 
-Also, for our tutorial we want to disable having to log in to access the Argo UI:
+If your workflow pods fail to start or Argo gives you errors reaching the pods, then switching to a different runtime
+executor will probably help. Also, for our tutorial we want to disable having to log in to access the Argo UI:
 ```shell
 kubectl patch -n argo deployment argo-server --patch \
   '{"spec":{"template":{"spec":{"containers":[{"name":"argo-server","args":["server","--auth-mode=server"]}]}}}}'
