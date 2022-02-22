@@ -195,6 +195,7 @@ of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/).
 
 Let's start with installing Argo server and Workflows cluster-wide:
 ```shell
+kubectl create namespace argo
 kubectl -n argo apply -k github.com/argoproj/argo-workflows/manifests/cluster-install?ref=master
 ```
 
