@@ -273,7 +273,7 @@ to all life cycle events. In event-speak, these are `ADD`, `UPDATE` and `DELETE`
 You can install this with 
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+kubectl -n argo-events apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
 ```
 
 ### 5. Install the Sensor
