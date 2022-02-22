@@ -189,10 +189,9 @@ Installation".
 
 ### 2. Install Argo Workflows
 
-Follow [these steps](https://argoproj.github.io/argo-workflows/quick-start/). Why do we
-need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Well, technically we don't but you really, really do
-want this extraordinarily fine piece of software. Think of Workflows as much, much better versions
-of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/). 
+Why do we need [Argo Workflows](https://argoproj.github.io/argo-workflows/)? Because the operator "business logic" is
+going to be handled in a Workflow. Think of Workflows as much, much better versions
+of [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/).
 
 By default, Argo uses the Docker runtime executor. If you're on Azure, or you use Podman or some other runtime execution  
 engine, be sure to patch the Argo Workflow executor:
