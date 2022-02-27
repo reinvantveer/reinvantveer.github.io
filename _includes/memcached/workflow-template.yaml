@@ -117,38 +117,11 @@ spec:
             template: operator-logic
             arguments:
               parameters:
-                - name: manifest
-                  # Since the value of a parameter is always a string:
-                  # the "pipe" | symbol denotes yaml multi-line text
-                  value: |
-                    apiVersion: apps/v1
-                    kind: Deployment
-                    metadata:
-                      name: memcached-deployment
-                      labels:
-                        app: memcached
-                    spec:
-                      # This setting will be reconfigured by our operator!
-                      replicas: 1
-                      selector:
-                        matchLabels:
-                          app: memcached
-                      template:
-                        metadata:
-                          labels:
-                            app: memcached
-                        spec:
-                          containers:
-                            - name: memcached
-                              command:
-                                - memcached
-                                - -m=64
-                                - -o
-                                - modern
-                                - -v
-                              image: "docker.io/memcached:1.4.36-alpine"
-                              ports:
-                                - containerPort: 11211
+                - name: deployment-manifest
+                  valueFrom:
+                    configMapKeyRef:
+                      name: memcached-cm
+                      key: deployment-manifest
 
         - - name: log-result
             template: log
