@@ -40,22 +40,16 @@ data:
       },
       "spec": {
         "replicas": 1,
-        "selector": {
-          "matchLabels": { "app": "memcached" }
-        },
+        "selector": { "matchLabels": { "app": "memcached" } },
         "template": {
-          "metadata": {
-            "labels": { "app": "memcached" }
-          },
+          "metadata": { "labels": { "app": "memcached" } },
           "spec": {
-            "containers": [
-              {
+            "containers": [{
                 "name": "memcached",
                 "command": [ "memcached", "-m=64", "-o", "modern", "-v" ],
                 "image": "docker.io/memcached:1.4.36-alpine",
                 "ports": [{ "containerPort": 11211 }]
-              }
-            ]
+              }]
           }
         }
       }
