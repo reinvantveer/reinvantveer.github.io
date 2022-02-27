@@ -13,7 +13,7 @@ spec:
     secondsAfterCompletion: 300
   # Garbage collection settings for clearing up old pods
   podGC:
-    strategy: OnPodCompletion
+    strategy: OnPodSuccess
 
   # Global Workflow parameters, passed/overridden from the Sensor
   arguments:
