@@ -100,8 +100,8 @@ spec:
     # It takes care of the execution flow
     - name: main
       steps:
-        - - name: log-message
-            # Uses the "log" template below
+        - - name: log-memcached-manifest
+            # Uses the "log" template
             template: log
             arguments:
               parameters:
