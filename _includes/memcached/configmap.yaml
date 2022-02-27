@@ -14,13 +14,16 @@ data:
     import json
     
     parser = argparse.ArgumentParser(description='Memcached to deployment')
-    parser.add_argument('--replicas', help='The # of replicas', required=True)
-    parser.add_argument('--deployment', help='JSON manifest', required=True)
+    parser.add_argument('--memcached-manifest', required=True)
+    parser.add_argument('--deployment-manifest', required=True)
     args = parser.parse_args()
 
-    manifest = json.loads(args.deployment)
-    manifest['spec']['replicas'] = int(args.replicas)
-    result = json.dumps(manifest, indent=2)
+    memcached = json.loads(args.memcached_manifest)
+    deployment = json.loads(args.deployment_manifest)
+    
+    deployment['metadata']['namespace'] = memcached['metadata']['namespace']
+    deployment['spec']['replicas'] = int(memcached['spec']['size'])
+    result = json.dumps(deployment, indent=2)
     
     # Printed output goes into outputs.parameters.result
     with open('/output-manifest.json', 'wt') as f:
