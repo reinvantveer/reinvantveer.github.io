@@ -76,7 +76,6 @@ jobs:
       - name: Install the EventSource in the events namespace
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
-          sleep 10
 
       - name: Validate availability of the event source
         run: |
@@ -86,7 +85,6 @@ jobs:
       - name: Install the Sensor in the events namespace
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
-          sleep 10
 
       - name: Validate availability of the Sensor
         run: |
