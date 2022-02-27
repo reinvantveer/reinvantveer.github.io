@@ -380,5 +380,5 @@ How can we tell it's running?
 And we can watch as our operator cleans it up again:
 
 ```shell
-kubectl delete -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+kubectl delete -n services -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
 ```
