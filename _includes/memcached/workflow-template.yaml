@@ -13,7 +13,7 @@ spec:
     secondsAfterCompletion: 300
   # Garbage collection settings for clearing up old pods
   podGC:
-    strategy: OnPodCompletion
+    strategy: OnPodSuccess
 
   # Global Workflow parameters, passed/overridden from the Sensor
   arguments:
@@ -27,6 +27,17 @@ spec:
       # Overridden by Sensor workflow
       - name: replicas
         value: "1"
+      - name: script
+        valueFrom:
+          configMapKeyRef:
+            name: memcached-cm
+            key: main.py
+      - name: deployment-manifest
+        valueFrom:
+          configMapKeyRef:
+            name: memcached-cm
+            key: deployment-manifest
+
 
   templates:
     # A simple logging container template - we'll use this to debug
@@ -46,36 +57,24 @@ spec:
     # As tutorials go, it's a bit contrived - there's very little
     # action going on
     - name: operator-logic
-      inputs:
-        parameters:
-          - name: manifest
-      # A `script` template is special: the output to stdout automatically
-      # gets stored into an `outputs.result` workflow variable
-      script:
-        # We're using the ansible-runner, but without using Ansible!
-        # This is simply a Python for which I'm sure that there is a
-        # YAML parser included in the dependencies
-        image: quay.io/ansible/ansible-runner
+      container:
+        name: python-operator-logic
+        image: python:3.10-slim
         command:
           - python3
-        # This is typical tutorial stuff: you wouldn't put inline
-        # code like this in a workflow. Either pull it from a repo or
-        # include it using a ConfigMap
-        source: |
-          import yaml
-
-          manifest = yaml.safe_load("""
-          {{inputs.parameters.manifest}}
-          """)
-          manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
-          result = yaml.dump(manifest)
-
-          # Printed output goes into outputs.result workflow variable
-          print(result)
+          - -c
+          - "{{workflow.parameters.script}}"
+          - --deployment={{workflow.parameters.deployment-manifest}}
+          - --replicas={{workflow.parameters.replicas}}
+      outputs:
+        parameters:
+          - name: result
+            valueFrom:
+              path: /output-manifest.json
 
     - name: operation-mapping
       script:
-        image: quay.io/ansible/ansible-runner
+        image: python:3.10-slim
         command:
           - python3
         # The "operations" from our event source differ from the ones used in the
@@ -121,45 +120,18 @@ spec:
             template: operator-logic
             arguments:
               parameters:
-                - name: manifest
-                  # Since the value of a parameter is always a string:
-                  # the "pipe" | symbol denotes yaml multi-line text
-                  value: |
-                    apiVersion: apps/v1
-                    kind: Deployment
-                    metadata:
-                      name: memcached-deployment
-                      labels:
-                        app: memcached
-                    spec:
-                      # This setting will be reconfigured by our operator!
-                      replicas: 1
-                      selector:
-                        matchLabels:
-                          app: memcached
-                      template:
-                        metadata:
-                          labels:
-                            app: memcached
-                        spec:
-                          containers:
-                            - name: memcached
-                              command:
-                                - memcached
-                                - -m=64
-                                - -o
-                                - modern
-                                - -v
-                              image: "docker.io/memcached:1.4.36-alpine"
-                              ports:
-                                - containerPort: 11211
+                - name: deployment-manifest
+                  valueFrom:
+                    configMapKeyRef:
+                      name: memcached-cm
+                      key: deployment-manifest
 
         - - name: log-result
             template: log
             arguments:
               parameters:
                 - name: content
-                  value: "{{steps.parameterize-replicas.outputs.result}}"
+                  value: "{{steps.parameterize-replicas.outputs.parameters.result}}"
 
         - - name: map-operation-to-action
             # Calls the actual operator "business logic" part
@@ -179,5 +151,5 @@ spec:
                 - name: action
                   value: "{{steps.map-operation-to-action.outputs.result}}"
                 - name: manifest
-                  value: "{{steps.parameterize-replicas.outputs.result}}"
+                  value: "{{steps.parameterize-replicas.outputs.parameters.result}}"
 # Done! {% endraw %}

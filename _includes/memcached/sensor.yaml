@@ -36,6 +36,16 @@ spec:
                       value: "1"
                     - name: operation
                       value: ""
+                    - name: script
+                      valueFrom:
+                        configMapKeyRef:
+                          name: memcached-cm
+                          key: main.py
+                    - name: deployment-manifest
+                      valueFrom:
+                        configMapKeyRef:
+                          name: memcached-cm
+                          key: deployment-manifest
                 templates:
                   - name: deploy-memcached-template
                     steps:
