@@ -39,7 +39,6 @@ spec:
             name: memcached-cm
             key: deployment-manifest
 
-
   templates:
     # A simple logging container template - we'll use this to debug
     - name: log
