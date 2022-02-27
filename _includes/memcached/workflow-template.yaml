@@ -27,6 +27,11 @@ spec:
       # Overridden by Sensor workflow
       - name: replicas
         value: "1"
+      - name: script
+        valueFrom:
+          configMapKeyRef:
+            name: memcached-cm
+            key: main.py
 
   templates:
     # A simple logging container template - we'll use this to debug
