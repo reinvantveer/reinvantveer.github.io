@@ -59,20 +59,15 @@ spec:
         image: python:3.10-slim
         command:
           - python3
-        # This is typical tutorial stuff: you wouldn't put inline
-        # code like this in a workflow. Either pull it from a repo or
-        # include it using a ConfigMap
-        source: |
-          import yaml
-
-          manifest = yaml.safe_load("""
-          {{inputs.parameters.manifest}}
-          """)
-          manifest['spec']['replicas'] = int({{workflow.parameters.replicas}})
-          result = yaml.dump(manifest)
-
-          # Printed output goes into outputs.result workflow variable
-          print(result)
+          - -c
+          - "{{workflow.parameters.script}}"
+          - --deployment={{inputs.parameters.deployment-manifest}}
+          - --replicas={{workflow.parameters.replicas}}
+      outputs:
+        parameters:
+          - name: result
+            valueFrom:
+              path: /output-manifest.json
 
     - name: operation-mapping
       script:
