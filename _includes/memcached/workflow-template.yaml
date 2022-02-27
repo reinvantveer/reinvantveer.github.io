@@ -32,6 +32,12 @@ spec:
           configMapKeyRef:
             name: memcached-cm
             key: main.py
+      - name: deployment-manifest
+        valueFrom:
+          configMapKeyRef:
+            name: memcached-cm
+            key: deployment-manifest
+
 
   templates:
     # A simple logging container template - we'll use this to debug
@@ -51,9 +57,6 @@ spec:
     # As tutorials go, it's a bit contrived - there's very little
     # action going on
     - name: operator-logic
-      inputs:
-        parameters:
-          - name: deployment-manifest
       container:
         name: python-operator-logic
         image: python:3.10-slim
@@ -61,7 +64,7 @@ spec:
           - python3
           - -c
           - "{{workflow.parameters.script}}"
-          - --deployment={{inputs.parameters.deployment-manifest}}
+          - --deployment={{workflow.parameters.deployment-manifest}}
           - --replicas={{workflow.parameters.replicas}}
       outputs:
         parameters:
