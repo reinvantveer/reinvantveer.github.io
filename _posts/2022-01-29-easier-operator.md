@@ -347,8 +347,6 @@ Voilà, the workflow template is present in the Argo UI:
 
 ![Memcached deployment workflow template in Argo UI](/images/argo-operator/workflow-template-in-argo-ui.png)
 
-OK, so I worked in an `operators` namespace instead of `argo-events` but the principle still applies.
-
 ### 8. Let's go!
 
 Now we can deploy our Memcached instance:
