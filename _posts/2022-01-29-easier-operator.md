@@ -347,7 +347,9 @@ Voilà, the workflow template is present in the Argo UI:
 
 ![Memcached deployment workflow template in Argo UI](/images/argo-operator/workflow-template-in-argo-ui.png)
 
-OK, so I worked in an `operators` namespace instead of `argo-events` but the principle still applies.
+This is a fully functional workflow template. As most workflow templates, we can issue workflows from it, using the Argo
+UI using the "submit" button. You can test your operator logic in this way. Note that this does not test the correctness
+of the Sensor, though!
 
 ### 8. Let's go!
 
@@ -357,10 +359,14 @@ Now we can deploy our Memcached instance:
 {% include memcached/memcached.yaml %}
 ```
 
-Or
+which we should be able to, in good operator-fashion, apply in any namespace we want in our cluster. Let's say that we
+want our Memcached deployment to go into the "services" namespace:
 
 ```shell
-kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+# Create fresh namespace
+kubectl create namespace services
+# This is where we want our Memcached deployment to live:
+kubectl apply -n services -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
 ```
 
 And the workflow completes, deploying our application:
@@ -374,5 +380,5 @@ How can we tell it's running?
 And we can watch as our operator cleans it up again:
 
 ```shell
-kubectl delete -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+kubectl delete -n services -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
 ```

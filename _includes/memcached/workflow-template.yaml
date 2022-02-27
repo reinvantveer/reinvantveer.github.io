@@ -19,14 +19,15 @@ spec:
   arguments:
     parameters:
       # Injected by Sensor workflow
-      - name: message
-        default: ""
+      - name: memcached-manifest
+        # Sets a compact default which we can test-run in Argo UI
+        default: |
+          { "apiVersion": "cache.example.com/v1alpha1", "kind": "Memcached",
+            "metadata": { "name": "memcached", "namespace": "argo-events" },
+            "spec": { "size": "3" } }
       # Injected by Sensor workflow
       - name: operation
         default: ADD
-      # Overridden by Sensor workflow
-      - name: replicas
-        value: "1"
       - name: script
         valueFrom:
           configMapKeyRef:
@@ -37,7 +38,6 @@ spec:
           configMapKeyRef:
             name: memcached-cm
             key: deployment-manifest
-
 
   templates:
     # A simple logging container template - we'll use this to debug
@@ -64,8 +64,8 @@ spec:
           - python3
           - -c
           - "{{workflow.parameters.script}}"
-          - --deployment={{workflow.parameters.deployment-manifest}}
-          - --replicas={{workflow.parameters.replicas}}
+          - --deployment-manifest={{workflow.parameters.deployment-manifest}}
+          - --memcached-manifest={{workflow.parameters.memcached-manifest}}
       outputs:
         parameters:
           - name: result
@@ -100,16 +100,16 @@ spec:
     # It takes care of the execution flow
     - name: main
       steps:
-        - - name: log-message
-            # Uses the "log" template below
+        - - name: log-memcached-manifest
+            # Uses the "log" template
             template: log
             arguments:
               parameters:
                 - name: content
-                  value: "{{workflow.parameters.message}}"
+                  value: "{{workflow.parameters.memcached-manifest}}"
 
         - - name: log-operation
-            # Again: uses the "log" template below so we only need to define once
+            # Again: uses the "log" template below, so we only need to define once
             template: log
             arguments:
               parameters:
@@ -118,13 +118,6 @@ spec:
 
         - - name: parameterize-replicas
             template: operator-logic
-            arguments:
-              parameters:
-                - name: deployment-manifest
-                  valueFrom:
-                    configMapKeyRef:
-                      name: memcached-cm
-                      key: deployment-manifest
 
         - - name: log-result
             template: log

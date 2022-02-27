@@ -16,7 +16,7 @@ jobs:
 
       - name: Create namespaces
         run: |
-          for ns in argo-events argo memcached
+          for ns in argo-events argo services
           do 
               kubectl create ns ${ns}
           done
@@ -104,7 +104,7 @@ jobs:
 
       - name: Deploy our Memcached resource
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${GITHUB_REF##*/}/_includes/memcached/memcached.yaml
+          kubectl apply -n services -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${GITHUB_REF##*/}/_includes/memcached/memcached.yaml
           sleep 10
 
       - name: Log the sensor output
@@ -132,4 +132,4 @@ jobs:
       - name: Validate that the deployment was created
         run: |
           kubectl get -A deployments
-          kubectl wait -n ${EVENTS_NS} --for=condition=available --timeout=60s deployment/memcached-deployment
+          kubectl wait -n services --for=condition=available --timeout=60s deployment/memcached-deployment
