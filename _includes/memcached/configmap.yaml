@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: memcached-cm
+  labels:
+    # Note that this label is required for the informer to detect this ConfigMap.
+    # See also: https://github.com/argoproj/argo-workflows/blob/master/examples/configmaps/simple-parameters-configmap.yaml
+    # https://github.com/argoproj/argo-workflows/blob/master/examples/arguments-parameters-from-configmap.yaml
+    workflows.argoproj.io/configmap-type: Parameter
+data:
+  main.py: |
+    import argparse
+    import json
+    
+    parser = argparse.ArgumentParser(description='Memcached to deployment')
+    parser.add_argument('--replicas', help='The # of replicas', required=True)
+    parser.add_argument('--deployment', help='JSON manifest', required=True)
+    args = parser.parse_args()
+
+    manifest = json.loads(args.deployment)
+    manifest['spec']['replicas'] = int(args.replicas)
+    result = json.dumps(manifest, indent=2)
+    
+    # Printed output goes into outputs.parameters.result
+    with open('/output-manifest.json', 'wt') as f:
+      f.write(result)
+
+  # Storing the manifest in JSON allows us to use the Python standard library
+  deployment-manifest: |
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "memcached-deployment",
+        "labels": { "app": "memcached" }
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "matchLabels": { "app": "memcached" }
+        },
+        "template": {
+          "metadata": {
+            "labels": { "app": "memcached" }
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "memcached",
+                "command": [ "memcached", "-m=64", "-o", "modern", "-v" ],
+                "image": "docker.io/memcached:1.4.36-alpine",
+                "ports": [{ "containerPort": 11211 }]
+              }
+            ]
+          }
+        }
+      }
+    }
