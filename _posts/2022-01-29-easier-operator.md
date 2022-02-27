@@ -299,8 +299,36 @@ kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/r
 And it appears in the UI:
 ![Sensor in Argo UI](/images/argo-operator/sensor-in-argo-ui.png)
 
+### 6. Install the configmap containing the operator implementation details
 
-### 6. Install the workflow template to deploy Memcached resources
+Instead of putting all implementation details for the operator into the Workflow or Workflow Template (see next step),
+we use a common practice in Kubernetes: a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
+ConfigMaps hold configuration, in our case the script we use to configure the Memcached deployment and the deployment
+template for our Memcached deployment. 
+
+The main reason why this is a good idea is that operators tend to grow in complexity and with it the lines of code
+required to configure the target resources to apply to the cluster. Putting all this into the WorkflowTemplate will
+result in larger and larger WorkflowTemplates that become harder to maintain. With ConfigMaps we can "modularize" our
+operator logic into separate files that are stored in separate ConfigMap keys or even into separate ConfigMaps if we 
+like:
+
+```yaml
+{% include memcached/configmap.yaml %}
+```
+
+As you can see, this ConfigMap also holds the "template" we use for our Memcached deployment. Instead of YAML, we 
+express this manifest in JSON because this is much easier to load. Many programming languages come with a JSON parser in
+the standard library (think Python, JavaScript, Ruby, Go, PHP, etc), but I know of not a single language with a YAML
+parser in the standard lib. Since _any_ JSON is valid YAML, we can pass the result as JSON and be a valid output 
+manifest.
+
+Install with
+
+```shell
+kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/configmap.yaml
+```
+
+### 7. Install the workflow template to deploy Memcached resources
 
 Finally, we're deploying the Argo `WorkflowTemplate` that takes care of the deployment for us - the "heavy lifting" that
 the Sensor delegated to the Workflow:
