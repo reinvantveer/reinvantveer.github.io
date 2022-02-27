@@ -128,7 +128,7 @@ spec:
             arguments:
               parameters:
                 - name: content
-                  value: "{{steps.parameterize-replicas.outputs.result}}"
+                  value: "{{steps.parameterize-replicas.outputs.parameters.result}}"
 
         - - name: map-operation-to-action
             # Calls the actual operator "business logic" part
