@@ -355,10 +355,14 @@ Now we can deploy our Memcached instance:
 {% include memcached/memcached.yaml %}
 ```
 
-Or
+which we should be able to, in good operator-fashion, apply in any namespace we want in our cluster. Let's say that we
+want our Memcached deployment to go into the "services" namespace:
 
 ```shell
-kubectl apply -n argo-events -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+# Create fresh namespace
+kubectl create namespace services
+# This is where we want our Memcached deployment to live:
+kubectl apply -n services -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
 ```
 
 And the workflow completes, deploying our application:
