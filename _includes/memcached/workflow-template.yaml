@@ -118,13 +118,6 @@ spec:
 
         - - name: parameterize-replicas
             template: operator-logic
-            arguments:
-              parameters:
-                - name: deployment-manifest
-                  valueFrom:
-                    configMapKeyRef:
-                      name: memcached-cm
-                      key: deployment-manifest
 
         - - name: log-result
             template: log
