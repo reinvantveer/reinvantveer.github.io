@@ -148,5 +148,5 @@ spec:
                 - name: action
                   value: "{{steps.map-operation-to-action.outputs.result}}"
                 - name: manifest
-                  value: "{{steps.parameterize-replicas.outputs.result}}"
+                  value: "{{steps.parameterize-replicas.outputs.parameters.result}}"
 # Done! {% endraw %}
