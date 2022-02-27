@@ -349,7 +349,7 @@ Voilà, the workflow template is present in the Argo UI:
 
 OK, so I worked in an `operators` namespace instead of `argo-events` but the principle still applies.
 
-### 6. Let's go!
+### 8. Let's go!
 
 Now we can deploy our Memcached instance:
 
