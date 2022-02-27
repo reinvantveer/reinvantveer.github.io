@@ -347,6 +347,10 @@ Voilà, the workflow template is present in the Argo UI:
 
 ![Memcached deployment workflow template in Argo UI](/images/argo-operator/workflow-template-in-argo-ui.png)
 
+This is a fully functional workflow template. As most workflow templates, we can issue workflows from it, using the Argo
+UI using the "submit" button. You can test your operator logic in this way. Note that this does not test the correctness
+of the Sensor, though!
+
 ### 8. Let's go!
 
 Now we can deploy our Memcached instance:
