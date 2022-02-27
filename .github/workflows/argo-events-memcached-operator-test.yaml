@@ -93,6 +93,10 @@ jobs:
           kubectl wait -n ${EVENTS_NS} --for=condition=TriggersProvided --timeout=60s sensor/memcached-sensor
           sleep 10
 
+      - name: Install the operator implementation details in the ConfigMap
+        run: |
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/configmap.yaml
+
       - name: Install the workflow template
         run: |
           kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/workflow-template.yaml
