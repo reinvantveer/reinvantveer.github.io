@@ -24,7 +24,7 @@ and [Argo Workflows](https://argoproj.github.io/argo-workflows/), you can
 - have your operator without the need for publishing custom-built Docker images;
 - have much, much improved inspection into your operators' handling of resources thanks to the Argo UI.
 - develop and test the operator logic in the Argo workflow template _independently_ from the operator itself, 
-  using the Argo UI. 
+  using the Argo UI;
 - use ***any*** programming language you like, not just the ones supported by the "official" frameworks!
 
 ### However
