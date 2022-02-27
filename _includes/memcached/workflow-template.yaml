@@ -53,14 +53,10 @@ spec:
     - name: operator-logic
       inputs:
         parameters:
-          - name: manifest
-      # A `script` template is special: the output to stdout automatically
-      # gets stored into an `outputs.result` workflow variable
-      script:
-        # We're using the ansible-runner, but without using Ansible!
-        # This is simply a Python for which I'm sure that there is a
-        # YAML parser included in the dependencies
-        image: quay.io/ansible/ansible-runner
+          - name: deployment-manifest
+      container:
+        name: python-operator-logic
+        image: python:3.10-slim
         command:
           - python3
         # This is typical tutorial stuff: you wouldn't put inline
