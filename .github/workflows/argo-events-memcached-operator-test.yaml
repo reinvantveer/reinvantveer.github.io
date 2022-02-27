@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EVENTS_NS: argo-events
+      BRANCH_NAME: ${GITHUB_REF##*/}
 
     steps:
       - name: Install k3s
@@ -60,11 +61,11 @@ jobs:
 
       - name: Install the Memcached custom resource definition
         run: |
-          kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/crd.yaml
+          kubectl apply -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/crd.yaml
 
       - name: Install the rule-based access control (RBAC) config
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/rbac.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/rbac.yaml
 
       - name: Validate that the rules allow watching Memcached resources, create Deployments, Pods, Workflows
         run: |
@@ -75,7 +76,7 @@ jobs:
 
       - name: Install the EventSource in the events namespace
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/event-source.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/event-source.yaml
 
       - name: Validate availability of the event source
         run: |
@@ -84,7 +85,7 @@ jobs:
 
       - name: Install the Sensor in the events namespace
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/sensor.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/sensor.yaml
 
       - name: Validate availability of the Sensor
         run: |
@@ -95,15 +96,15 @@ jobs:
 
       - name: Install the operator implementation details in the ConfigMap
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/configmap.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/configmap.yaml
 
       - name: Install the workflow template
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/workflow-template.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/workflow-template.yaml
 
       - name: Deploy our Memcached resource
         run: |
-          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/master/_includes/memcached/memcached.yaml
+          kubectl apply -n ${EVENTS_NS} -f https://raw.githubusercontent.com/reinvantveer/reinvantveer.github.io/${BRANCH_NAME}/_includes/memcached/memcached.yaml
           sleep 10
 
       - name: Log the sensor output
