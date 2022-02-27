@@ -109,7 +109,7 @@ spec:
                   value: "{{workflow.parameters.memcached-manifest}}"
 
         - - name: log-operation
-            # Again: uses the "log" template below so we only need to define once
+            # Again: uses the "log" template below, so we only need to define once
             template: log
             arguments:
               parameters:
