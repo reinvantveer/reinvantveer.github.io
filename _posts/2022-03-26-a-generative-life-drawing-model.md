@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A Generative Life Drawing Model
-published: false
+published: true
 ---
 
 ## On how AI can be of use to artists
@@ -12,6 +12,22 @@ same time. In this article I will combine "models" of both kinds, from the artis
 intelligence" domain, although I try to shy away from this presumptious term, I'd rather opt for "machine learning" in
 most cases.
 
+<div style="display: table">
+    <figure style="width: 40%; float: left">
+      <img src="/images/models/model-g2f005866f_1920.jpg" alt="An artist's 'model'? Or the real thing?"/>
+      <figcaption>An artist's "model"? Or the real thing? Source: 
+        <a href="https://pixabay.com/photos/model-redhead-education-5953621/">Pixabay, by Victory Borodinova</a>
+      </figcaption>
+    </figure>
+    
+    <figure style="width: 40%; float: right">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/1925_Ford_Model_T_at_Hatfield_Heath_Festival_2017_-_01.jpg/450px-1925_Ford_Model_T_at_Hatfield_Heath_Festival_2017_-_01.jpg?20170710083231" alt="The Ford 'model' T"/>
+      <figcaption>The Ford "model" T. Yep, a model too. Source: 
+        <a href="https://commons.wikimedia.org/wiki/File:1925_Ford_Model_T_at_Hatfield_Heath_Festival_2017_-_01.jpg">CC-BY-SA 4 WikiMedia Commons, by Acabashi</a>
+      </figcaption>
+    </figure>
+</div>
+
 ### Art models
 
 The artistic context: a model (in the stricter sense) is usually a person. Someone offering to pose for artists such a
@@ -19,12 +35,6 @@ sculptors or painters. The model acts as a reference for the artist to draw or s
 course, something weird about this. The "model" in this case, the actual thing. The artwork could be more aptly
 described as a model for the real thing, rather than the other way round!
 
-<figure>
-  <img src="/images/models/model-g2f005866f_1920.jpg" alt="An artist's 'model'? Or the real thing?"/>
-  <figcaption>"An artist's 'model'? Or the real thing? Source: 
-    <a href="https://pixabay.com/photos/model-redhead-education-5953621/">Pixabay, by Victory Borodinova</a>
-  </figcaption>
-</figure>
 
 ### Machine learning models
 
