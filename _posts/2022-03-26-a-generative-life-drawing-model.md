@@ -54,3 +54,40 @@ In my [previous post](/2022/01/29/easier-operator.html) I used a generative mode
 include in my article. This was more something of a gimmick, to spice up the article a bit and to play around. But it
 sparked my interest again in using generative models for artistic purposes. Especially since I started sharing an 
 atelier with seven other art painters.
+
+## FAFA-VAE
+
+The first iteration of my model created logs like this:
+```
+ 1/16 [>.............................] - ETA: 51s - loss: 283867.6875 - reconstruction_loss: 283867.4375 - kl_loss: 0.2540
+ 2/16 [==>...........................] - ETA: 22s - loss: inf - reconstruction_loss: 70986436616009023488.0000 - kl_loss: inf
+ 3/16 [====>.........................] - ETA: 20s - loss: nan - reconstruction_loss: nan - kl_loss: nan
+ 4/16 [======>.......................] - ETA: 22s - loss: nan - reconstruction_loss: nan - kl_loss: nan
+ 5/16 [========>.....................] - ETA: 19s - loss: nan - reconstruction_loss: nan - kl_loss: nan
+ 6/16 [==========>...................] - ETA: 16s - loss: nan - reconstruction_loss: nan - kl_loss: nan
+ 7/16 [============>.................] - ETA: 14s - loss: nan - reconstruction_loss: nan - kl_loss: nan
+ ... (etc)
+```
+When this happens, you know there is something seriously wrong with the training. It could happen randomly, but in my
+case, it was consistent. Deep learning is a much more a matter of "negotiation" with a model, data and a loss function
+than "normal" programming is. At times it really feels like you have to "coach" your model into training properly.
+
+So what do these `nan`s mean? `nan` is, of course "not a number", which happens whenever your model tries to:
+- divide by zero
+- tries to compute log(0)
+- tries to take the root of a negative number
+- all the things they taught you that you shouldn't do with numbers
+
+When we look closely, we see that the model doesn't start out with `nan` loss. It actually computes something sensible,
+but right after epoch 1, it spirals out of control. The reconstruction loss explodes and the `kl_loss`, which is the 
+[Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) loss, is so large that
+it overflows the max value and becomes `inf`. This is generally caused by a phenomenon known 
+as ["exploding gradients"](https://machinelearningmastery.com/exploding-gradients-in-neural-networks/). The trouble is
+that there are many known causes, but fortunately also many known fixes for it. It is also an inescapable part of
+machine learning model development.
+
+Things that may help:
+- normalizing/whitening of your input data. Deep neural nets generally need data with mean 0 and unit variance. In my 
+  case, I already used either feature-wise normalization or sample-wise normalisation, but no whitening.
+
+- 
