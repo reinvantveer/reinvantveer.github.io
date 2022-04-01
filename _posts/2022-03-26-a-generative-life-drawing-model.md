@@ -35,7 +35,6 @@ sculptors or painters. The model acts as a reference for the artist to draw or s
 course, something weird about this. The "model" in this case, the actual thing. The artwork could be more aptly
 described as a model for the real thing, rather than the other way round!
 
-
 ### Machine learning models
 
 Machine learning models usually _are_ proxies for a real (or an imagined) world domain. "Classic" domain examples, in as
@@ -56,6 +55,8 @@ sparked my interest again in using generative models for artistic purposes. Espe
 atelier with seven other art painters.
 
 ## FAFA-VAE
+
+### Troubleshooting
 
 The first iteration of my model created logs like this:
 ```
@@ -87,7 +88,12 @@ that there are many known causes, but fortunately also many known fixes for it. 
 machine learning model development.
 
 Things that may help:
-- normalizing/whitening of your input data. Deep neural nets generally need data with mean 0 and unit variance. In my 
+- Normalizing/whitening of your input data. Deep neural nets generally need data with mean 0 and unit variance. In my 
   case, I already used either feature-wise normalization or sample-wise normalisation, but no whitening.
+- Lowering the learning rate. In my case, this helped to debug things. At the very least it allows you to see how the
+  model losses develop.
+- Fix your loss function. Maybe there's a mathematical error or a bug in there somewhere. Look closely.
 
-- 
+In my case, I switched from a binary cross-entropy to a mean squared error to calculate the image reconstruction loss.
+Why this helps in the first place is still beyond me. The reasons to choose either one of these loss functions is quite
+complex.
